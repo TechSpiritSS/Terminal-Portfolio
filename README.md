@@ -123,14 +123,6 @@ Thanks a lot for spending your time helping Terminal Portfolio grow. Thanks a lo
 [![Contributors](https://contrib.rocks/image?repo=TechSpiritSS/Terminal-Portfolio)](https://github.com/TechSpiritSS/Terminal-Portfolio/graphs/contributors)
   
 
-## GitHub
-
-  
-
-Dummygram is now part of GitHub. For code of conduct, please see [GitHub's Community Guidelines](https://help.github.com/en/github/site-policy/github-community-guidelines) and [Acceptable Use Policies](https://help.github.com/en/github/site-policy/github-acceptable-use-policies).
-
-  
-
 ## License
 
   
