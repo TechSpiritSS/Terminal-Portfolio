@@ -1,6 +1,6 @@
 
 ![image](https://user-images.githubusercontent.com/76687985/193596855-55adedb2-a896-4d78-b4d5-860eb4282e05.png)
-[see live!](https://techspiritss.github.io/Terminal-Portfolio/)
+[see live here!](https://techspiritss.github.io/Terminal-Portfolio/)
  
 ### *Terminal Portfolio*
  
@@ -95,7 +95,7 @@ All conversations and communities on Terminal Portfolio agree to GitHub's [Commu
 
   
 
-If you found a technical bug on Dummygram or have ideas for features we should implement, the issue tracker is the best place to share your ideas. Make sure to follow the issue template and you should be golden! ([click here to open a new issue](https://github.com/TechSpiritSS/Terminal-Portfolio/issues/new))
+If you found a technical bug on Terminal Portfolio or have ideas for features we should implement, the issue tracker is the best place to share your ideas. Make sure to follow the issue template and you should be golden! ([click here to open a new issue](https://github.com/TechSpiritSS/Terminal-Portfolio/issues/new))
 
   
 
