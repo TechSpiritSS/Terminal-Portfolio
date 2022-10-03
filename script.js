@@ -67,7 +67,7 @@ async function getInputValue() {
     createCode("social", "to see my social links");
     createCode("projects", "to see my projects");
     createText(
-      `<a href="https://github.com/techspiritss" target="_blank" onClick="return exit()">EXIT</a>`
+      `<div onClick="exit()">EXIT</div>`
     );
   } else if (value === "about") {
     trueValue(value);
@@ -155,10 +155,7 @@ function falseValue(value) {
 }
 
 function exit() {
-  let temp_window =
-      open(location, '_self');
-
-  temp_window.close();
+  window.close();
 }
 
 function createText(text) {
