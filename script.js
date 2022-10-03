@@ -19,7 +19,7 @@ app.addEventListener("click", function () {
 async function openTerminal() {
   createText("Welcome to the Terminal");
   await delay(500);
-  createText("Stating up...");
+  createText("Starting up...");
   await delay(800);
   createText("You can now interact with the Terminal");
   createCode("Type help", "for a list of commands");
@@ -66,6 +66,9 @@ async function getInputValue() {
     createCode("about", "to learn more about me");
     createCode("social", "to see my social links");
     createCode("projects", "to see my projects");
+    createText(
+      `<a href="https://github.com/techspiritss" target="_blank" onClick="return exit()">EXIT</a>`
+    );
   } else if (value === "about") {
     trueValue(value);
     createText(
@@ -119,7 +122,8 @@ async function getInputValue() {
   } else if (value === "cd") {
     trueValue(value);
     createText("There's no directory in this path");
-  } else {
+  } 
+  else {
     falseValue(value);
     createText(`${value} is not a valid command`);
   }
@@ -148,6 +152,13 @@ function falseValue(value) {
   div.appendChild(i);
   div.appendChild(msg);
   app.appendChild(div);
+}
+
+function exit() {
+  let temp_window =
+      open(location, '_self');
+
+  temp_window.close();
 }
 
 function createText(text) {
