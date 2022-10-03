@@ -67,7 +67,7 @@ async function getInputValue() {
     createCode("social", "to see my social links");
     createCode("projects", "to see my projects");
     createText(
-      `<div onClick="exit()">EXIT</div>`
+      `<div>exit to exit the terminal</div>`
     );
   } else if (value === "about") {
     trueValue(value);
@@ -122,7 +122,9 @@ async function getInputValue() {
   } else if (value === "cd") {
     trueValue(value);
     createText("There's no directory in this path");
-  } 
+  } else if (value === "exit") {
+    exit();
+  }
   else {
     falseValue(value);
     createText(`${value} is not a valid command`);
