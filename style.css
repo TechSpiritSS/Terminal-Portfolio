@@ -144,6 +144,9 @@ p {
 
 .bottom-bar {
   background-color: #fc766aff;
+  font-size: larger;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .bottom-name {
