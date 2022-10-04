@@ -158,8 +158,9 @@ h2 {
   color: #008c76ff;
 }
 
-p.code {
-  color: #faea48;
+span.code {
+  font-style: italic;
+  color: #8e0a5b;
   margin-left: 8px;
 }
 
