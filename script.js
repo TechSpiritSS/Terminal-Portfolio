@@ -1,7 +1,27 @@
 const app = document.querySelector("#app");
+const bodyContainer = document.querySelector("#bodyContainer");
+const greenButton = document.querySelector("#greenButton")
+const yellowButton = document.querySelector("#yellowButton")
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const history = [];
 var count = 0;
+
+greenButton.addEventListener("click", () => {
+  const container = document.querySelector("#screenContainer");
+  container.classList.contains("maximized")
+  ? container.classList.remove("maximized")
+  : container.classList.add("maximized");
+
+
+  if(bodyContainer.classList.contains("minimized")) 
+    bodyContainer.classList.remove("minimized")
+});
+
+yellowButton.addEventListener("click", () => {
+  bodyContainer.classList.contains("minimized")
+  ? bodyContainer.classList.remove("minimized")
+  : bodyContainer.classList.add("minimized")
+})
 
 app.addEventListener("keydown", async function (event) {
   if (event.key === "Enter") {
