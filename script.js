@@ -1,13 +1,31 @@
 const app = document.querySelector("#app");
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const history = [];
+var count = 0;
 
-app.addEventListener("keypress", async function (event) {
+app.addEventListener("keydown", async function (event) {
   if (event.key === "Enter") {
     await delay(150);
     getInputValue();
     removeInput();
     await delay(150);
     new_line();
+  }
+  if (event.key === "ArrowUp") {
+    if (count > 0){
+      const input = document.querySelector("input");
+      input.value = history[--count];
+    }
+  }
+  if (event.key === "ArrowDown") {
+    if (count < history.length-1){
+      const input = document.querySelector("input");
+      input.value = history[++count];
+    }
+    else{
+      const input = document.querySelector("input");
+      input.value = "";
+    }
   }
 });
 
@@ -59,6 +77,9 @@ async function getInputValue() {
     .querySelector("input")
     .value.replace(/\s+/g, "")
     .toLowerCase();
+
+    history.push(document.querySelector("input").value);
+    count++;
 
   switch (value) {
     case "help":
