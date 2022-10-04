@@ -3,6 +3,8 @@ const bodyContainer = document.querySelector("#bodyContainer");
 const greenButton = document.querySelector("#greenButton")
 const yellowButton = document.querySelector("#yellowButton")
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const history = [];
+var count = 0;
 
 greenButton.addEventListener("click", () => {
   const container = document.querySelector("#screenContainer");
@@ -21,13 +23,29 @@ yellowButton.addEventListener("click", () => {
   : bodyContainer.classList.add("minimized")
 })
 
-app.addEventListener("keypress", async function (event) {
+app.addEventListener("keydown", async function (event) {
   if (event.key === "Enter") {
     await delay(150);
     getInputValue();
     removeInput();
     await delay(150);
     new_line();
+  }
+  if (event.key === "ArrowUp") {
+    if (count > 0){
+      const input = document.querySelector("input");
+      input.value = history[--count];
+    }
+  }
+  if (event.key === "ArrowDown") {
+    if (count < history.length-1){
+      const input = document.querySelector("input");
+      input.value = history[++count];
+    }
+    else{
+      const input = document.querySelector("input");
+      input.value = "";
+    }
   }
 });
 
@@ -79,6 +97,9 @@ async function getInputValue() {
     .querySelector("input")
     .value.replace(/\s+/g, "")
     .toLowerCase();
+
+    history.push(document.querySelector("input").value);
+    count++;
 
   switch (value) {
     case "help":
@@ -172,6 +193,9 @@ async function getInputValue() {
       falseValue(value);
       createText(`${value} is not a valid command`);
   }
+
+
+
 }
 
 function trueValue(value) {
