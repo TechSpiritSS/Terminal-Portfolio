@@ -54,8 +54,8 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 95vw;
   height: 100%;
+  max-width: 95vw;
   max-height: 95vh;
   overflow: hidden;
   border-radius: 6px;
@@ -64,11 +64,22 @@ body {
   cursor: text;
 }
 
+.maximized {
+  max-width: 100vw;
+  max-height: 100vh;
+  margin:0;
+}
+
+.minimized {
+  height: 45px;
+}
+
 .menu {
   display: flex;
   align-items: center;
   text-align: center;
   width: 100%;
+  min-height: 45px;
   height: 45px;
   background-color: #faa094ff;
   padding: 0 6px;
@@ -158,9 +169,8 @@ h2 {
   color: #008c76ff;
 }
 
-span.code {
-  font-style: italic;
-  color: #8e0a5b;
+p.code {
+  color: #faea48;
   margin-left: 8px;
 }
 
