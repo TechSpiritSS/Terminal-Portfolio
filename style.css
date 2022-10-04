@@ -227,3 +227,31 @@ input:focus {
 .icone.error {
   color: #ff1700;
 }
+
+.flip {
+  display: none
+}
+
+.footer-on-exit {
+  font-size: 15px;
+  text-align: center;
+  left: 30%;
+  right: 30%
+}
+
+.maximize-terminal p {
+  position: absolute;
+  bottom: 10px;
+  left: 40px;
+  overflow: hidden;
+  color: #f56201;
+  cursor: pointer
+}
+
+.maximize-terminal p span span {
+  color: #64ed0b
+}
+
+.maximize-terminal p:hover {
+  color: #fa9b0d
+}

@@ -198,4 +198,19 @@ function createCode(code, text) {
   app.appendChild(p);
 }
 
+//for min - max
+let min = document.querySelector(".green")
+let max = document.querySelector(".maximize-terminal")
+let term = document.querySelector(".container")
+min.addEventListener("click", () => {
+    console.log("inside")
+    max.classList.toggle("flip");
+    term.classList.toggle("flip");
+});
+
+max.addEventListener("click", () => {
+    term.classList.toggle("flip");
+    max.classList.toggle("flip");
+});
+
 openTerminal();
