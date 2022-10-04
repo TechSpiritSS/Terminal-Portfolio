@@ -2,6 +2,7 @@ const app = document.querySelector("#app");
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const history = [];
 var count = 0;
+const replyArr = [`Thank you! It makes my day😊😊😊`,`It is great to hear that way!😁😁😁`,`I would love to take credit😂😂😂`,`That's so good to hear! I'm glad😍😍😍`];
 
 app.addEventListener("keydown", async function (event) {
   if (event.key === "Enter") {
@@ -92,6 +93,7 @@ async function getInputValue() {
       createCode("about", "to learn more about me");
       createCode("social", "to see my social links");
       createCode("projects", "to see my projects");
+      createCode("cheer", "to appreciate my work");
       createText(
         `<div onClick="exit()">EXIT</div>`
       );
