@@ -1,13 +1,5 @@
 const app = document.querySelector("#app");
-const maxWindowIcon = document.querySelector("#maximizeWindow")
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-maxWindowIcon.addEventListener("click", () => {
-  const container = document.querySelector("#screenContainer");
-  container.classList.contains("maximized")
-    ? container.classList.remove("maximized")
-    : container.classList.add("maximized");
-});
 
 app.addEventListener("keypress", async function (event) {
   if (event.key === "Enter") {
@@ -160,6 +152,9 @@ async function getInputValue() {
       falseValue(value);
       createText(`${value} is not a valid command`);
   }
+
+
+
 }
 
 function trueValue(value) {
