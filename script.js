@@ -93,12 +93,10 @@ function removeInput() {
 }
 
 async function getInputValue() {
-  const value = document.querySelector("input").value;
-  if(value.substring(0,5)==="cheer"){
-    value.substring(0,5).toLowerCase();
-  } else{
-    value.replace(/\s+/g, "").toLowerCase();
-  }
+  const value = document
+    .querySelector("input")
+    .value.replace(/\s+/g, "")
+    .toLowerCase();
 
     history.push(document.querySelector("input").value);
     count++;
@@ -192,14 +190,8 @@ async function getInputValue() {
       break;
 
     default:
-      if(value.substring(0,5)==="cheer"){
-        trueValue(value);
-        const reply=replyArr[Math.floor(Math.random()*replyArr.length)];
-        createText(reply);
-      }else{
-        falseValue(value);
-        createText(`${value} is not a valid command`);
-      }
+      falseValue(value);
+      createText(`${value} is not a valid command`);
   }
 
 
