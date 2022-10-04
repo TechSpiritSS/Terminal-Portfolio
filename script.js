@@ -199,3 +199,40 @@ function createCode(code, text) {
 }
 
 openTerminal();
+
+
+// Themes Switcher
+
+let switches = document.getElementsByClassName('switch');
+
+let style = localStorage.getItem('style');
+
+if (style == null) {
+  setTheme('default');
+} else {
+  setTheme(style);
+}
+
+for (let i of switches) {
+  i.addEventListener('click', function () {
+    let theme = this.dataset.theme;
+    setTheme(theme);
+  });
+}
+
+function setTheme(theme) {
+  if (theme == 'nature') {
+    document.getElementById('switcher-id').href = './themes/nature.css';
+  } else if (theme == 'sky') {
+    document.getElementById('switcher-id').href = './themes/sky.css';
+  } else if (theme == 'matrix') {
+    document.getElementById('switcher-id').href = './themes/matrix.css';
+  } else if (theme == 'metalic') {
+    document.getElementById('switcher-id').href = './themes/metalic.css';
+  } else if (theme == 'default') {
+    document.getElementById('switcher-id').href = './themes/default.css';
+  }
+  
+  localStorage.setItem('style', theme);
+}
+setTheme('default');

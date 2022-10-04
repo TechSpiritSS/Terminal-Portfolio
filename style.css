@@ -2,7 +2,55 @@
 
 :root {
   --font-size: 1.3rem;
+  --metalic: #6e94ad;
+  --sky: #f5ebe1;
+  --matrix: lime;
+  --nature: #cda76e;
+  --default: #fc766aff;
 }
+
+
+.theme-switches {
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 0;
+  justify-content: end;
+}
+
+.switch {
+  border: 2px solid black;
+  border-radius: 50px;
+  height: 30px;
+  width: 30px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.switch:hover {
+  transform: scale(1.2);
+  transition: 0.3s ease-in-out;
+}
+
+#switch1 {
+  background-color: var(--nature);
+}
+
+#switch2 {
+  background-color: var(--metalic);
+}
+
+#switch3 {
+  background-color: var(--matrix);
+}
+
+#switch4 {
+  background-color: var(--sky);
+}
+
+#switch5 {
+  background-color: var(--default);
+}
+
 
 * {
   margin: 0;
@@ -68,6 +116,7 @@ body {
   display: flex;
   align-items: center;
   text-align: center;
+  justify-content: space-between;
   width: 100%;
   height: 45px;
   background-color: #faa094ff;
@@ -85,9 +134,10 @@ body {
 }
 
 .buttons-flex {
-  position: absolute;
   display: flex;
   flex-direction: row;
+  flex-grow: 1;
+  flex-basis: 0;
 }
 
 .red {
@@ -117,6 +167,9 @@ div.title {
     position: unset;
     display: flex;
     flex-direction: row;
+  }
+  .theme-switches {
+    display: none;
   }
 }
 

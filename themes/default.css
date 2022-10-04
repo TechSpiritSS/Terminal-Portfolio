@@ -1,0 +1,75 @@
+.container {
+  border: 1px solid rgb(212, 12, 12);
+}
+
+.menu {
+  background-color: #faa094ff;
+}
+
+.menu h1 {
+  color: #000000;
+}
+
+#app {
+  background-color: #ffdde2ff;
+}
+
+p {
+  color: #000000;
+}
+
+.bottom-bar {
+  background-color: #fc766aff;
+}
+
+.bottom-name {
+  color: #000000;
+}
+
+h2 {
+  color: #008c76ff;
+}
+
+p.code {
+  color: #faea48;
+}
+
+span.text {
+  color: #00ffc6;
+}
+
+p.path {
+  color: #240a8e;
+}
+
+p.path span {
+  color: #3ec70b;
+}
+
+p.path span + span {
+  color: #3b44f6;
+}
+
+.success {
+  color: #008c76ff;
+}
+
+.error {
+  color: #c50000;
+}
+
+p.response {
+  color: #37e2d5;
+}
+
+input {
+  color: #ff8d29;
+}
+
+.icone {
+  color: #008c76ff;
+}
+
+.icone.error {
+  color: #ff1700;
+}
