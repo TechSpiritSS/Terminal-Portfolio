@@ -5,6 +5,7 @@ const yellowButton = document.querySelector("#yellowButton")
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const history = [];
 var count = 0;
+const replyArr = [`Thank you! It makes my day😊😊😊`,`It is great to hear that way!😁😁😁`,`I would love to take credit😂😂😂`,`That's so good to hear! I'm glad😍😍😍`];
 
 greenButton.addEventListener("click", () => {
   const container = document.querySelector("#screenContainer");
@@ -93,10 +94,12 @@ function removeInput() {
 }
 
 async function getInputValue() {
-  const value = document
-    .querySelector("input")
-    .value.replace(/\s+/g, "")
-    .toLowerCase();
+    const value = document.querySelector("input").value;
+  if(value.substring(0,5)==="cheer"){
+    value.substring(0,5).toLowerCase();
+  } else{
+    value.replace(/\s+/g, "").toLowerCase();
+  }
 
     history.push(document.querySelector("input").value);
     count++;
@@ -110,6 +113,7 @@ async function getInputValue() {
       createCode("about", "to learn more about me");
       createCode("social", "to see my social links");
       createCode("projects", "to see my projects");
+      createCode("cheer", "to appreciate my work");
       createText(
         `<div onClick="exit()">EXIT</div>`
       );
@@ -190,8 +194,14 @@ async function getInputValue() {
       break;
 
     default:
-      falseValue(value);
-      createText(`${value} is not a valid command`);
+      if(value.substring(0,5)==="cheer"){
+        trueValue(value);
+        const reply=replyArr[Math.floor(Math.random()*replyArr.length)];
+        createText(reply);
+      }else{
+        falseValue(value);
+        createText(`${value} is not a valid command`);
+      }
   }
 
 
