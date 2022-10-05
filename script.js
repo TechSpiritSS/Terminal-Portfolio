@@ -5,6 +5,7 @@ const yellowButton = document.querySelector("#yellowButton")
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const history = [];
 var count = 0;
+const commandsList = ["help", "clear", "about", "social", "projects", "cheer"]
 const replyArr = [`Thank you! It makes my day😊😊😊`,`It is great to hear that way!😁😁😁`,`I would love to take credit😂😂😂`,`That's so good to hear! I'm glad😍😍😍`];
 
 greenButton.addEventListener("click", () => {
@@ -46,6 +47,17 @@ app.addEventListener("keydown", async function (event) {
     else{
       const input = document.querySelector("input");
       input.value = "";
+    }
+  }
+  if (event.key === "Tab") {
+    event.preventDefault();
+    const input = document.querySelector("input");
+    const toComplete = input.value;
+    const completed = commandsList.find(command => command.startsWith(toComplete))
+    if(toComplete && completed) {
+      // autocomplete if there was something typed in and it matches the start
+      // of some command
+      input.value = completed;
     }
   }
 });
