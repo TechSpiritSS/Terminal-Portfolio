@@ -1,13 +1,52 @@
 const app = document.querySelector("#app");
+const bodyContainer = document.querySelector("#bodyContainer");
+const greenButton = document.querySelector("#greenButton")
+const yellowButton = document.querySelector("#yellowButton")
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const history = [];
+var count = 0;
+const replyArr = [`Thank you! It makes my day😊😊😊`,`It is great to hear that way!😁😁😁`,`I would love to take credit😂😂😂`,`That's so good to hear! I'm glad😍😍😍`];
 
-app.addEventListener("keypress", async function (event) {
+greenButton.addEventListener("click", () => {
+  const container = document.querySelector("#screenContainer");
+  container.classList.contains("maximized")
+  ? container.classList.remove("maximized")
+  : container.classList.add("maximized");
+
+
+  if(bodyContainer.classList.contains("minimized")) 
+    bodyContainer.classList.remove("minimized")
+});
+
+yellowButton.addEventListener("click", () => {
+  bodyContainer.classList.contains("minimized")
+  ? bodyContainer.classList.remove("minimized")
+  : bodyContainer.classList.add("minimized")
+})
+
+app.addEventListener("keydown", async function (event) {
   if (event.key === "Enter") {
     await delay(150);
     getInputValue();
     removeInput();
     await delay(150);
     new_line();
+  }
+  if (event.key === "ArrowUp") {
+    if (count > 0){
+      const input = document.querySelector("input");
+      input.value = history[--count];
+    }
+  }
+  if (event.key === "ArrowDown") {
+    if (count < history.length-1){
+      const input = document.querySelector("input");
+      input.value = history[++count];
+    }
+    else{
+      const input = document.querySelector("input");
+      input.value = "";
+    }
   }
 });
 
@@ -55,10 +94,15 @@ function removeInput() {
 }
 
 async function getInputValue() {
-  const value = document
-    .querySelector("input")
-    .value.replace(/\s+/g, "")
-    .toLowerCase();
+    const value = document.querySelector("input").value;
+  if(value.substring(0,5)==="cheer"){
+    value.substring(0,5).toLowerCase();
+  } else{
+    value.replace(/\s+/g, "").toLowerCase();
+  }
+
+    history.push(document.querySelector("input").value);
+    count++;
 
   switch (value) {
     case "help":
@@ -69,6 +113,7 @@ async function getInputValue() {
       createCode("about", "to learn more about me");
       createCode("social", "to see my social links");
       createCode("projects", "to see my projects");
+      createCode("cheer", "to appreciate my work");
       createText(
         `<div onClick="exit()">EXIT</div>`
       );
@@ -149,8 +194,14 @@ async function getInputValue() {
       break;
 
     default:
-      falseValue(value);
-      createText(`${value} is not a valid command`);
+      if(value.substring(0,5)==="cheer"){
+        trueValue(value);
+        const reply=replyArr[Math.floor(Math.random()*replyArr.length)];
+        createText(reply);
+      }else{
+        falseValue(value);
+        createText(`${value} is not a valid command`);
+      }
   }
 
 
