@@ -38,10 +38,6 @@ I am currently using this as my default Portfolio.:sparkles:
   - [Ground Rules](#ground-rules)
   - [Codebase](#codebase)
     - [Technologies](#technologies)
-    - [Folder Structure](#folder-structure)
-    - [Code Style](#code-style)
-  - [First time setup](#first-time-setup)
-  - [Running the app locally](#running-the-app-locally)
 
 
 ## Codebase
@@ -51,9 +47,6 @@ I am currently using this as my default Portfolio.:sparkles:
 
 **Frontend HTML/CSS/JS**: Almost all of the code you'll touch in this codebase will be HTML, CSS or JavaScript. 
 <img  src="http://3con14.biz/code/_data/js/intro/js-logo.png"  alt="JS"  width="30"  height="30">
-  
-
-### Folder structure
 
 ## How to get started with Open Source
 Here's a quick run down on how to get started with open source, first of all let's know some basic terminologies:
