@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+    --back-color: #1b1b1b;
+    --primary-color: #702459;
+    --header-back: #874f5e;
+    --header-text: #eee;
+  }
+  
+  body {
+    background-color: var(--back-color);
+    color: var(--primary-color);
+  }
+  
+  header {
+    background-color: var(--header-back);
+    color: var(--header-text);
+  }
+  
+  .box img {
+    border: 2px solid var(--primary-color);
+  }
+
+  .menu { /* top bar */
+    background-color: black;
+}
+
+.bottom-bar {
+    background-color: black;
+}
+
+.bottom-name, .menu h1, .bottom-bar {
+    color: white;
+}
+
+p {
+    color: #96905f;
+}
+
+h2 {
+    color: lime;
+}
+
+
+#app { /* main content */
+    background-color: black;
+}
+
+p.path { /* username */
+    color: lime !important;
+}
+
+#app p { /* main text */
+    color: lime;
+}
+
+p.path span { /* sudo */
+    color: lime;
+}
+
+p.path span + span { /* directory */
+    color: lime;
+}
+
+.icone {
+    color: lime;
+}
+
+input {
+    color: lime;
+}
+
+.error {
+    background-color: #;
+}
+
+.container {
+    border: .5px solid rgb(47, 47, 47);
+}
+
+* {
+    font-family: "VT323", monospace;
+}

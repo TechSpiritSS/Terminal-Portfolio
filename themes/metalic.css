@@ -1,0 +1,76 @@
+:root {
+    --back-color: #1d272a;
+    --primary-color: #f9ffee;
+    --header-back: #1a1d24;
+    --header-text: #eee;
+}
+
+body {
+    background-color: var(--back-color);
+    color: var(--primary-color);
+}
+
+header {
+    background-color: var(--header-back);
+    color: var(--header-text);
+}
+
+.box img {
+    border: 2px solid var(--primary-color);
+}
+
+.menu { /* top bar */
+    background-color: #3f545a;
+}
+
+.bottom-bar {
+    background-color: #0e1314;
+}
+
+.menu h1 {
+    color: #f9ffee;
+}
+
+.bottom-name, .bottom-bar {
+    color: #727272;
+}
+
+p {
+    color: #f9ffee;
+}
+
+#app { /* main content */
+    background-color: #1d272a;
+}
+
+p.path { /* username */
+    color: #7a9f81 !important;
+}
+
+#app p { /* main text */
+    color: #6e94ad;
+}
+
+p.path span {
+    color: #ff8800;
+}
+
+p.path span + span {
+    color: #937aba;
+}
+
+.icone {
+    color: #6e94ad;
+}
+
+input {
+    background-color: #;
+}
+
+.error {
+    background-color: #;
+}
+
+.container {
+    border: 1px solid #000000;
+}
