@@ -1,50 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script
-      src="https://kit.fontawesome.com/1eb44e0a35.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&display=swap"
-    />
-    <script src="script.js" defer></script>
-    <title>Terminal</title>
-    <link rel="icon" type="image/jpg" href="favicon.ico">
-  </head>
-  <body>
-    <div class="container">
-      <div class="menu">
-        <div class="buttons-flex">
-          <div class="button green"></div>
-          <div class="button yellow"></div>
-          <div class="button red"></div>
-        </div>
-        <div class="title">
-          <a href="http://github.com/techspiritss">
-            <h1>
-              <i class="fab fa-globe"></i>
-              TechSpiritSS
-            </h1>
-          </a>
-        </div>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://kit.fontawesome.com/1eb44e0a35.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&display=swap" />
+  <link rel="stylesheet" id="switcher-id" href="">
+  <script src="script.js" defer></script>
+  <title>Terminal</title>
+  <link rel="icon" type="image/jpg" href="favicon.ico">
+</head>
+
+<body>
+  <div class="container">
+    <div class="menu">
+      <div class="buttons-flex">
+        <div class="button green"></div>
+        <div class="button yellow"></div>
+        <div class="button red"></div>
       </div>
-      <div id="app"></div>
       <div class="title">
-        <p class="bottom-bar">
-          &copy;
-          <script>
-            document.write(new Date().getFullYear());
-          </script>
-          <a href="http://github.com/techspiritss" class="bottom-name">
-            Sidharth Sethi</a
-          >
-        </p>
+        <a href="http://github.com/techspiritss">
+          <h1>
+            <i class="fab fa-globe"></i>
+            TechSpiritSS
+          </h1>
+        </a>
+      </div>
+      <div class="theme-switches">
+        <div data-theme="default" class="switch" id="switch5"></div>
+        <div data-theme="nature" class="switch" id="switch1"></div>
+        <div data-theme="metalic" class="switch" id="switch2"></div>
+        <div data-theme="matrix" class="switch" id="switch3"></div>
+        <div data-theme="sky" class="switch" id="switch4"></div>
       </div>
     </div>
-  </body>
+    <div id="app"></div>
+    <div class="title">
+      <p class="bottom-bar">
+        &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        <a href="http://github.com/techspiritss" class="bottom-name">
+          Sidharth Sethi</a>
+      </p>
+    </div>
+  </div>
+</body>
 </html>
