@@ -113,7 +113,7 @@ If you found a technical bug on Terminal Portfolio or have ideas for features we
 
 Thanks a lot for spending your time helping Terminal Portfolio grow. Thanks a lot! Keep rocking 🍻
 
-[![Contributors](https://contrib.rocks/image?repo=TechSpiritSS/Terminal-Portfolio)](https://github.com/TechSpiritSS/Terminal-Portfolio/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=techspiritss/terminal-portfolio)](https://github.com/TechSpiritSS/Terminal-Portfolio/graphs/contributors)
   
 
 ## License
