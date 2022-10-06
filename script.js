@@ -143,6 +143,7 @@ async function getInputValue() {
       createCode("social", "to see my social links");
       createCode("projects", "to see my projects");
       createCode("blogs", "to see my recent blogs");
+      createCode("contact", "to enquire about my services");
       createCode("cheer", "to appreciate my work");
       createText(`<div onClick="exit()">EXIT</div>`);
       break;
@@ -214,7 +215,10 @@ async function getInputValue() {
         .querySelectorAll("section")
         .forEach((e) => e.parentNode.removeChild(e));
       break;
-
+    case "contact":
+      createText("Hey! Would love to get in touch. Drop me a text at sidharth.sherry@gmail.com");
+      window.location.href = "mailto:sidharth.sherry@gmail.com";
+      break;
     case "sudo":
       trueValue(value);
       createText("You are not authorized to use this command");
