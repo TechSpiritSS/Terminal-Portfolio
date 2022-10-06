@@ -156,11 +156,11 @@ async function getInputValue() {
       createCode("about", "to learn more about me");
       createCode("social", "to see my social links");
       createCode("projects", "to see my projects");
+
       createCode("blogs", "to see my recent blogs");
       createCode("contact", "to enquire about my services");
       createCode("cheer", "to appreciate my work");
       createCode("contributors", "to see all the contributors");
-      createText(`<div onClick="exit()">EXIT</div>`);
       break;
 
     case "about":
@@ -255,7 +255,8 @@ async function getInputValue() {
       trueValue(value);
       createText("There's no directory in this path");
       break;
-
+    case "exit":
+      window.close();
     default:
       if (value.substring(0, 5) === "cheer") {
         trueValue(value);
