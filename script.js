@@ -1,29 +1,42 @@
 const app = document.querySelector("#app");
 const bodyContainer = document.querySelector("#bodyContainer");
-const greenButton = document.querySelector("#greenButton")
-const yellowButton = document.querySelector("#yellowButton")
+const greenButton = document.querySelector("#greenButton");
+const yellowButton = document.querySelector("#yellowButton");
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const history = [];
+const contributors = [];
 var count = 0;
-const commandsList = ["help", "clear", "about", "social", "projects", "cheer"]
-const replyArr = [`Thank you! It makes my day😊😊😊`,`It is great to hear that way!😁😁😁`,`I would love to take credit😂😂😂`,`That's so good to hear! I'm glad😍😍😍`];
+const commandsList = [
+  "help",
+  "clear",
+  "about",
+  "social",
+  "projects",
+  "cheer",
+  "contributors",
+];
+const replyArr = [
+  `Thank you! It makes my day😊😊😊`,
+  `It is great to hear that way!😁😁😁`,
+  `I would love to take credit😂😂😂`,
+  `That's so good to hear! I'm glad😍😍😍`,
+];
 
 greenButton.addEventListener("click", () => {
   const container = document.querySelector("#screenContainer");
   container.classList.contains("maximized")
-  ? container.classList.remove("maximized")
-  : container.classList.add("maximized");
+    ? container.classList.remove("maximized")
+    : container.classList.add("maximized");
 
-
-  if(bodyContainer.classList.contains("minimized")) 
-    bodyContainer.classList.remove("minimized")
+  if (bodyContainer.classList.contains("minimized"))
+    bodyContainer.classList.remove("minimized");
 });
 
 yellowButton.addEventListener("click", () => {
   bodyContainer.classList.contains("minimized")
-  ? bodyContainer.classList.remove("minimized")
-  : bodyContainer.classList.add("minimized")
-})
+    ? bodyContainer.classList.remove("minimized")
+    : bodyContainer.classList.add("minimized");
+});
 
 app.addEventListener("keydown", async function (event) {
   if (event.key === "Enter") {
@@ -34,17 +47,16 @@ app.addEventListener("keydown", async function (event) {
     new_line();
   }
   if (event.key === "ArrowUp") {
-    if (count > 0){
+    if (count > 0) {
       const input = document.querySelector("input");
       input.value = history[--count];
     }
   }
   if (event.key === "ArrowDown") {
-    if (count < history.length-1){
+    if (count < history.length - 1) {
       const input = document.querySelector("input");
       input.value = history[++count];
-    }
-    else{
+    } else {
       const input = document.querySelector("input");
       input.value = "";
     }
@@ -53,8 +65,10 @@ app.addEventListener("keydown", async function (event) {
     event.preventDefault();
     const input = document.querySelector("input");
     const toComplete = input.value;
-    const completed = commandsList.find(command => command.startsWith(toComplete))
-    if(toComplete && completed) {
+    const completed = commandsList.find((command) =>
+      command.startsWith(toComplete)
+    );
+    if (toComplete && completed) {
       // autocomplete if there was something typed in and it matches the start
       // of some command
       input.value = completed;
@@ -123,15 +137,15 @@ async function showRecentBlogs(mediumLink) {
 }
 
 async function getInputValue() {
-    const value = document.querySelector("input").value;
-  if(value.substring(0,5)==="cheer"){
-    value.substring(0,5).toLowerCase();
-  } else{
+  const value = document.querySelector("input").value;
+  if (value.substring(0, 5) === "cheer") {
+    value.substring(0, 5).toLowerCase();
+  } else {
     value.replace(/\s+/g, "").toLowerCase();
   }
 
-    history.push(document.querySelector("input").value);
-    count++;
+  history.push(document.querySelector("input").value);
+  count++;
 
   switch (value) {
     case "help":
@@ -145,6 +159,7 @@ async function getInputValue() {
       createCode("blogs", "to see my recent blogs");
       createCode("contact", "to enquire about my services");
       createCode("cheer", "to appreciate my work");
+      createCode("contributors", "to see all the contributors");
       createText(`<div onClick="exit()">EXIT</div>`);
       break;
 
@@ -206,6 +221,16 @@ async function getInputValue() {
       showRecentBlogs("");
       break;
 
+    case "contributors":
+      trueValue(value);
+      contributors.forEach((user) => {
+        createText(
+          `<a href=${user.userProfile} target="_blank">${user.username}</a>`
+        );
+      });
+      createText(`Thanks to all the contributors 💖`);
+      break;
+
     case "clear":
     case "cls":
       document
@@ -216,7 +241,9 @@ async function getInputValue() {
         .forEach((e) => e.parentNode.removeChild(e));
       break;
     case "contact":
-      createText("Hey! Would love to get in touch. Drop me a text at sidharth.sherry@gmail.com");
+      createText(
+        "Hey! Would love to get in touch. Drop me a text at sidharth.sherry@gmail.com"
+      );
       window.location.href = "mailto:sidharth.sherry@gmail.com";
       break;
     case "sudo":
@@ -239,9 +266,6 @@ async function getInputValue() {
         createText(`${value} is not a valid command`);
       }
   }
-
-
-
 }
 
 function trueValue(value) {
@@ -287,39 +311,61 @@ function createCode(code, text) {
 
 openTerminal();
 
+// get the contributors list
+
+const getContributors = async () => {
+  try {
+    const response = await fetch(
+      "https://api.github.com/repos/TechSpiritSS/Terminal-Portfolio/contributors"
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        data.forEach((user) => {
+          const userDetails = { username: "", userProfile: "" };
+          userDetails.username = user.login;
+          userDetails.userProfile = user.html_url;
+          contributors.push(userDetails);
+        });
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+getContributors();
 
 // Themes Switcher
 
-let switches = document.getElementsByClassName('switch');
+let switches = document.getElementsByClassName("switch");
 
-let style = localStorage.getItem('style');
+let style = localStorage.getItem("style");
 
 if (style == null) {
-  setTheme('default');
+  setTheme("default");
 } else {
   setTheme(style);
 }
 
 for (let i of switches) {
-  i.addEventListener('click', function () {
+  i.addEventListener("click", function () {
     let theme = this.dataset.theme;
     setTheme(theme);
   });
 }
 
 function setTheme(theme) {
-  if (theme == 'nature') {
-    document.getElementById('switcher-id').href = './themes/nature.css';
-  } else if (theme == 'sky') {
-    document.getElementById('switcher-id').href = './themes/sky.css';
-  } else if (theme == 'matrix') {
-    document.getElementById('switcher-id').href = './themes/matrix.css';
-  } else if (theme == 'metalic') {
-    document.getElementById('switcher-id').href = './themes/metalic.css';
-  } else if (theme == 'default') {
-    document.getElementById('switcher-id').href = './themes/default.css';
+  if (theme == "nature") {
+    document.getElementById("switcher-id").href = "./themes/nature.css";
+  } else if (theme == "sky") {
+    document.getElementById("switcher-id").href = "./themes/sky.css";
+  } else if (theme == "matrix") {
+    document.getElementById("switcher-id").href = "./themes/matrix.css";
+  } else if (theme == "metalic") {
+    document.getElementById("switcher-id").href = "./themes/metalic.css";
+  } else if (theme == "default") {
+    document.getElementById("switcher-id").href = "./themes/default.css";
   }
-  
-  localStorage.setItem('style', theme);
+
+  localStorage.setItem("style", theme);
 }
-setTheme('default');
+setTheme("default");
