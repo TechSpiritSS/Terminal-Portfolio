@@ -160,6 +160,7 @@ async function getInputValue() {
       createCode("contact", "to enquire about my services");
       createCode("cheer", "to appreciate my work");
       createCode("contributors", "to see all the contributors");
+      createCode("stats", "to see my github stats");
       createText(`<div onClick="exit()">EXIT</div>`);
       break;
 
@@ -229,6 +230,33 @@ async function getInputValue() {
         );
       });
       createText(`Thanks to all the contributors 💖`);
+      break;
+
+    case "stats":
+      
+      trueValue(value);
+      createText("My github stats ");
+      createText(
+        "Number of repositories : 80"
+      );
+      createText(
+        "Number of stars : 33"
+      );
+      createText(
+        "Number of followers : 40"
+      )
+      createText(
+        "Number of committs : 1521"
+      );
+      createText(
+        "Number of issues : 41"
+      );
+      createText(
+        "Number of pull requests : 89"
+      );
+      createText(
+        "Number of contributed repositories : 13"
+      )
       break;
 
     case "clear":
