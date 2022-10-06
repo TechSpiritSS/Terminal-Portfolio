@@ -105,6 +105,23 @@ function removeInput() {
   app.removeChild(div);
 }
 
+async function showRecentBlogs(mediumLink) {
+  const rssConverter = `https://api.rss2json.com/v1/api.json?rss_url=${mediumLink}`;
+
+  fetch(rssConverter)
+    .then((response) => response.json())
+    .then((data) => {
+      const { items } = data;
+      items.forEach((item, index) => {
+        createText(
+          `<a href="${item.link}" target="_blank">${index + 1}. ${
+            item.title
+          }</a>`
+        );
+      });
+    });
+}
+
 async function getInputValue() {
     const value = document.querySelector("input").value;
   if(value.substring(0,5)==="cheer"){
@@ -125,15 +142,12 @@ async function getInputValue() {
       createCode("about", "to learn more about me");
       createCode("social", "to see my social links");
       createCode("projects", "to see my projects");
+      createCode("blogs", "to see my recent blogs");
       createCode("cheer", "to appreciate my work");
-      createText(
-        `<div onClick="exit()">EXIT</div>`
-      );
+      createText(`<div onClick="exit()">EXIT</div>`);
       break;
 
-
     case "about":
-
       trueValue(value);
       createText(
         "I am a Web Developer with a good knowledge of Data Structures and Algorithms along with SQL. I am currently Google DSC Lead, CodeChef Chapter Event Lead, and Co-Founder of Algoders Community at my Campus. I have 3-star rating at CodeChef. In 2022 I am learning MERN Stack and I am planning to work as a Full-Stack Developer."
@@ -141,7 +155,6 @@ async function getInputValue() {
       break;
 
     case "social":
-
       trueValue(value);
       createText(
         `<a href="https://github.com/techspiritss" target="_blank">GitHub</a>`
@@ -157,9 +170,7 @@ async function getInputValue() {
       );
       break;
 
-
     case "projects":
-
       trueValue(value);
       createText("Projects:");
       createText(
@@ -184,18 +195,27 @@ async function getInputValue() {
       );
       break;
 
+    case "blogs":
+      trueValue(value);
+      createText("Recent Blogs:");
+      // Hashnode Feed URL: https://username.hashnode.dev/rss.xml
+      // Dev.to Feed URL: https://dev.to/feed/username
+      // Medium Feed URL: https://medium.com/feed/@username
+      // TODO: Insert your Medium/Dev/Hashnode or any blog feed URL below
+      showRecentBlogs("");
+      break;
+
     case "clear":
     case "cls":
-
-      document.querySelectorAll("p").forEach((e) => e.parentNode.removeChild(e));
+      document
+        .querySelectorAll("p")
+        .forEach((e) => e.parentNode.removeChild(e));
       document
         .querySelectorAll("section")
         .forEach((e) => e.parentNode.removeChild(e));
       break;
 
-
     case "sudo":
-
       trueValue(value);
       createText("You are not authorized to use this command");
       break;
@@ -206,11 +226,11 @@ async function getInputValue() {
       break;
 
     default:
-      if(value.substring(0,5)==="cheer"){
+      if (value.substring(0, 5) === "cheer") {
         trueValue(value);
-        const reply=replyArr[Math.floor(Math.random()*replyArr.length)];
+        const reply = replyArr[Math.floor(Math.random() * replyArr.length)];
         createText(reply);
-      }else{
+      } else {
         falseValue(value);
         createText(`${value} is not a valid command`);
       }
