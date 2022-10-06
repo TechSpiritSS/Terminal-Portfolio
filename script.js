@@ -2,6 +2,7 @@ const app = document.querySelector("#app");
 const bodyContainer = document.querySelector("#bodyContainer");
 const greenButton = document.querySelector("#greenButton");
 const yellowButton = document.querySelector("#yellowButton");
+const redButton = document.querySelector("#redButton");
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const history = [];
 const contributors = [];
@@ -27,16 +28,17 @@ greenButton.addEventListener("click", () => {
   container.classList.contains("maximized")
     ? container.classList.remove("maximized")
     : container.classList.add("maximized");
-
-  if (bodyContainer.classList.contains("minimized"))
-    bodyContainer.classList.remove("minimized");
 });
 
 yellowButton.addEventListener("click", () => {
-  bodyContainer.classList.contains("minimized")
+    bodyContainer.classList.contains("minimized")
     ? bodyContainer.classList.remove("minimized")
     : bodyContainer.classList.add("minimized");
 });
+
+redButton.addEventListener("click", ()=>{
+    exit();
+})
 
 app.addEventListener("keydown", async function (event) {
   if (event.key === "Enter") {
