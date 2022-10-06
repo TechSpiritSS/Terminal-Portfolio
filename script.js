@@ -147,7 +147,8 @@ async function getInputValue() {
       trueValue(value);
       createText("There's no directory in this path");
       break;
-
+    case "exit":
+      window.close();
     default:
       falseValue(value);
       createText(`${value} is not a valid command`);
