@@ -69,9 +69,6 @@ async function getInputValue() {
       createCode("about", "to learn more about me");
       createCode("social", "to see my social links");
       createCode("projects", "to see my projects");
-      createText(
-        `<div onClick="exit()">EXIT</div>`
-      );
       break;
 
 
