@@ -1,3 +1,6 @@
+<div align="center">
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F7E94C&center=true&vCenter=true&width=435&lines=Terminal+Portfolio;Fork+%7C+Star+%7C+Contribute" alt="Typing SVG" /></a>
+</div>
 
 ![image](https://user-images.githubusercontent.com/76687985/193596855-55adedb2-a896-4d78-b4d5-860eb4282e05.png)
 [see live here!](https://techspiritss.github.io/Terminal-Portfolio/)
