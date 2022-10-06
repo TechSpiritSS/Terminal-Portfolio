@@ -1,3 +1,6 @@
+<div align="center">
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F7E94C&center=true&vCenter=true&width=435&lines=Terminal+Portfolio;Fork+%7C+Star+%7C+Contribute" alt="Typing SVG" /></a>
+</div>
 
 ![image](https://user-images.githubusercontent.com/76687985/193596855-55adedb2-a896-4d78-b4d5-860eb4282e05.png)
 [see live here!](https://techspiritss.github.io/Terminal-Portfolio/)
@@ -38,10 +41,6 @@ I am currently using this as my default Portfolio.:sparkles:
   - [Ground Rules](#ground-rules)
   - [Codebase](#codebase)
     - [Technologies](#technologies)
-    - [Folder Structure](#folder-structure)
-    - [Code Style](#code-style)
-  - [First time setup](#first-time-setup)
-  - [Running the app locally](#running-the-app-locally)
 
 
 ## Codebase
@@ -51,9 +50,6 @@ I am currently using this as my default Portfolio.:sparkles:
 
 **Frontend HTML/CSS/JS**: Almost all of the code you'll touch in this codebase will be HTML, CSS or JavaScript. 
 <img  src="http://3con14.biz/code/_data/js/intro/js-logo.png"  alt="JS"  width="30"  height="30">
-  
-
-### Folder structure
 
 ## How to get started with Open Source
 Here's a quick run down on how to get started with open source, first of all let's know some basic terminologies:
@@ -120,7 +116,7 @@ If you found a technical bug on Terminal Portfolio or have ideas for features we
 
 Thanks a lot for spending your time helping Terminal Portfolio grow. Thanks a lot! Keep rocking 🍻
 
-[![Contributors](https://contrib.rocks/image?repo=TechSpiritSS/Terminal-Portfolio)](https://github.com/TechSpiritSS/Terminal-Portfolio/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=techspiritss/terminal-portfolio)](https://github.com/TechSpiritSS/Terminal-Portfolio/graphs/contributors)
   
 
 ## License

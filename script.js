@@ -1,13 +1,78 @@
 const app = document.querySelector("#app");
+const bodyContainer = document.querySelector("#bodyContainer");
+const greenButton = document.querySelector("#greenButton");
+const yellowButton = document.querySelector("#yellowButton");
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const history = [];
+const contributors = [];
+var count = 0;
+const commandsList = [
+  "help",
+  "clear",
+  "about",
+  "social",
+  "projects",
+  "cheer",
+  "contributors",
+];
+const replyArr = [
+  `Thank you! It makes my day😊😊😊`,
+  `It is great to hear that way!😁😁😁`,
+  `I would love to take credit😂😂😂`,
+  `That's so good to hear! I'm glad😍😍😍`,
+];
 
-app.addEventListener("keypress", async function (event) {
+greenButton.addEventListener("click", () => {
+  const container = document.querySelector("#screenContainer");
+  container.classList.contains("maximized")
+    ? container.classList.remove("maximized")
+    : container.classList.add("maximized");
+
+  if (bodyContainer.classList.contains("minimized"))
+    bodyContainer.classList.remove("minimized");
+});
+
+yellowButton.addEventListener("click", () => {
+  bodyContainer.classList.contains("minimized")
+    ? bodyContainer.classList.remove("minimized")
+    : bodyContainer.classList.add("minimized");
+});
+
+app.addEventListener("keydown", async function (event) {
   if (event.key === "Enter") {
     await delay(150);
     getInputValue();
     removeInput();
     await delay(150);
     new_line();
+  }
+  if (event.key === "ArrowUp") {
+    if (count > 0) {
+      const input = document.querySelector("input");
+      input.value = history[--count];
+    }
+  }
+  if (event.key === "ArrowDown") {
+    if (count < history.length - 1) {
+      const input = document.querySelector("input");
+      input.value = history[++count];
+    } else {
+      const input = document.querySelector("input");
+      input.value = "";
+    }
+  }
+  if (event.key === "Tab") {
+    event.preventDefault();
+    const input = document.querySelector("input");
+    const toComplete = input.value;
+    const completed = commandsList.find((command) =>
+      command.startsWith(toComplete)
+    );
+    if (toComplete && completed) {
+      // autocomplete if there was something typed in and it matches the start
+      // of some command
+      input.value = completed;
+    }
   }
 });
 
@@ -54,11 +119,33 @@ function removeInput() {
   app.removeChild(div);
 }
 
+async function showRecentBlogs(mediumLink) {
+  const rssConverter = `https://api.rss2json.com/v1/api.json?rss_url=${mediumLink}`;
+
+  fetch(rssConverter)
+    .then((response) => response.json())
+    .then((data) => {
+      const { items } = data;
+      items.forEach((item, index) => {
+        createText(
+          `<a href="${item.link}" target="_blank">${index + 1}. ${
+            item.title
+          }</a>`
+        );
+      });
+    });
+}
+
 async function getInputValue() {
-  const value = document
-    .querySelector("input")
-    .value.replace(/\s+/g, "")
-    .toLowerCase();
+  const value = document.querySelector("input").value;
+  if (value.substring(0, 5) === "cheer") {
+    value.substring(0, 5).toLowerCase();
+  } else {
+    value.replace(/\s+/g, "").toLowerCase();
+  }
+
+  history.push(document.querySelector("input").value);
+  count++;
 
   switch (value) {
     case "help":
@@ -69,11 +156,14 @@ async function getInputValue() {
       createCode("about", "to learn more about me");
       createCode("social", "to see my social links");
       createCode("projects", "to see my projects");
+
+      createCode("blogs", "to see my recent blogs");
+      createCode("contact", "to enquire about my services");
+      createCode("cheer", "to appreciate my work");
+      createCode("contributors", "to see all the contributors");
       break;
 
-
     case "about":
-
       trueValue(value);
       createText(
         "I am a Web Developer with a good knowledge of Data Structures and Algorithms along with SQL. I am currently Google DSC Lead, CodeChef Chapter Event Lead, and Co-Founder of Algoders Community at my Campus. I have 3-star rating at CodeChef. In 2022 I am learning MERN Stack and I am planning to work as a Full-Stack Developer."
@@ -81,7 +171,6 @@ async function getInputValue() {
       break;
 
     case "social":
-
       trueValue(value);
       createText(
         `<a href="https://github.com/techspiritss" target="_blank">GitHub</a>`
@@ -97,9 +186,7 @@ async function getInputValue() {
       );
       break;
 
-
     case "projects":
-
       trueValue(value);
       createText("Projects:");
       createText(
@@ -124,18 +211,42 @@ async function getInputValue() {
       );
       break;
 
+    case "blogs":
+      trueValue(value);
+      createText("Recent Blogs:");
+      // Hashnode Feed URL: https://username.hashnode.dev/rss.xml
+      // Dev.to Feed URL: https://dev.to/feed/username
+      // Medium Feed URL: https://medium.com/feed/@username
+      // TODO: Insert your Medium/Dev/Hashnode or any blog feed URL below
+      showRecentBlogs("");
+      break;
+
+    case "contributors":
+      trueValue(value);
+      contributors.forEach((user) => {
+        createText(
+          `<a href=${user.userProfile} target="_blank">${user.username}</a>`
+        );
+      });
+      createText(`Thanks to all the contributors 💖`);
+      break;
+
     case "clear":
     case "cls":
-
-      document.querySelectorAll("p").forEach((e) => e.parentNode.removeChild(e));
+      document
+        .querySelectorAll("p")
+        .forEach((e) => e.parentNode.removeChild(e));
       document
         .querySelectorAll("section")
         .forEach((e) => e.parentNode.removeChild(e));
       break;
-
-
+    case "contact":
+      createText(
+        "Hey! Would love to get in touch. Drop me a text at sidharth.sherry@gmail.com"
+      );
+      window.location.href = "mailto:sidharth.sherry@gmail.com";
+      break;
     case "sudo":
-
       trueValue(value);
       createText("You are not authorized to use this command");
       break;
@@ -147,12 +258,15 @@ async function getInputValue() {
     case "exit":
       window.close();
     default:
-      falseValue(value);
-      createText(`${value} is not a valid command`);
+      if (value.substring(0, 5) === "cheer") {
+        trueValue(value);
+        const reply = replyArr[Math.floor(Math.random() * replyArr.length)];
+        createText(reply);
+      } else {
+        falseValue(value);
+        createText(`${value} is not a valid command`);
+      }
   }
-
-
-
 }
 
 function trueValue(value) {
@@ -197,3 +311,62 @@ function createCode(code, text) {
 }
 
 openTerminal();
+
+// get the contributors list
+
+const getContributors = async () => {
+  try {
+    const response = await fetch(
+      "https://api.github.com/repos/TechSpiritSS/Terminal-Portfolio/contributors"
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        data.forEach((user) => {
+          const userDetails = { username: "", userProfile: "" };
+          userDetails.username = user.login;
+          userDetails.userProfile = user.html_url;
+          contributors.push(userDetails);
+        });
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+getContributors();
+
+// Themes Switcher
+
+let switches = document.getElementsByClassName("switch");
+
+let style = localStorage.getItem("style");
+
+if (style == null) {
+  setTheme("default");
+} else {
+  setTheme(style);
+}
+
+for (let i of switches) {
+  i.addEventListener("click", function () {
+    let theme = this.dataset.theme;
+    setTheme(theme);
+  });
+}
+
+function setTheme(theme) {
+  if (theme == "nature") {
+    document.getElementById("switcher-id").href = "./themes/nature.css";
+  } else if (theme == "sky") {
+    document.getElementById("switcher-id").href = "./themes/sky.css";
+  } else if (theme == "matrix") {
+    document.getElementById("switcher-id").href = "./themes/matrix.css";
+  } else if (theme == "metalic") {
+    document.getElementById("switcher-id").href = "./themes/metalic.css";
+  } else if (theme == "default") {
+    document.getElementById("switcher-id").href = "./themes/default.css";
+  }
+
+  localStorage.setItem("style", theme);
+}
+setTheme("default");
