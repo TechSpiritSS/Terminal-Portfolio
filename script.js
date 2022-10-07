@@ -2,9 +2,11 @@ const app = document.querySelector("#app");
 const bodyContainer = document.querySelector("#bodyContainer");
 const greenButton = document.querySelector("#greenButton");
 const yellowButton = document.querySelector("#yellowButton");
+const redButton = document.querySelector("#redButton");
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const history = [];
 const contributors = [];
+const IpDetails = [];
 var count = 0;
 const commandsList = [
   "help",
@@ -13,6 +15,7 @@ const commandsList = [
   "social",
   "projects",
   "cheer",
+  "ipconfig",
   "contributors",
 ];
 const replyArr = [
@@ -27,15 +30,16 @@ greenButton.addEventListener("click", () => {
   container.classList.contains("maximized")
     ? container.classList.remove("maximized")
     : container.classList.add("maximized");
-
-  if (bodyContainer.classList.contains("minimized"))
-    bodyContainer.classList.remove("minimized");
 });
 
 yellowButton.addEventListener("click", () => {
   bodyContainer.classList.contains("minimized")
     ? bodyContainer.classList.remove("minimized")
     : bodyContainer.classList.add("minimized");
+});
+
+redButton.addEventListener("click", () => {
+  exit();
 });
 
 app.addEventListener("keydown", async function (event) {
@@ -45,6 +49,7 @@ app.addEventListener("keydown", async function (event) {
     removeInput();
     await delay(150);
     new_line();
+    count = history.length;
   }
   if (event.key === "ArrowUp") {
     if (count > 0) {
@@ -156,10 +161,10 @@ async function getInputValue() {
       createCode("about", "to learn more about me");
       createCode("social", "to see my social links");
       createCode("projects", "to see my projects");
-
       createCode("blogs", "to see my recent blogs");
       createCode("contact", "to enquire about my services");
       createCode("cheer", "to appreciate my work");
+      createCode("ipconfig", "to see your IP details");
       createCode("contributors", "to see all the contributors");
       break;
 
@@ -225,10 +230,21 @@ async function getInputValue() {
       trueValue(value);
       contributors.forEach((user) => {
         createText(
-          `<a href=${user.userProfile} target="_blank">${user.username}</a>`
+          `- <a href=${user.userProfile} target="_blank">${user.username}</a>`
         );
       });
-      createText(`Thanks to all the contributors 💖`);
+      createText(`- Thanks to all the contributors 💖`);
+      break;
+
+    case "ipconfig":
+      trueValue(value);
+      const IP = IpDetails[0];
+      createText(`- Ipv6: ${IP.ip}`);
+      createText(`- network: ${IP.network}`);
+      createText(`- city: ${IP.city}`);
+      createText(`- network org: ${IP.org}`);
+      createText(`- region: ${IP.region}`);
+      createText(`- postal: ${IP.postal}`);
       break;
 
     case "clear":
@@ -330,10 +346,40 @@ const getContributors = async () => {
       });
   } catch (error) {
     console.log(error);
+    // handling the error
+    contributors.push({
+      username: "__network_error __check internet connection",
+      userProfile: "/",
+    });
   }
 };
 
 getContributors();
+
+// ip lookup --> https://ipapi.co/json
+
+const getIPDetails = async () => {
+  try {
+    const response = await fetch("https://ipapi.co/json")
+      .then((response) => response.json())
+      .then((data) => {
+        IpDetails.push(data);
+      });
+  } catch (error) {
+    console.log(error);
+    // handling the error
+    IpDetails.push({
+      ip: "__network_error",
+      network: "__kindly check internet connection",
+      city: "",
+      region: "",
+      org: "",
+      postal: "",
+    });
+  }
+};
+
+getIPDetails();
 
 // Themes Switcher
 
