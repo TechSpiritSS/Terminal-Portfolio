@@ -47,6 +47,7 @@ app.addEventListener("keydown", async function (event) {
     removeInput();
     await delay(150);
     new_line();
+    count = history.length;
   }
   if (event.key === "ArrowUp") {
     if (count > 0) {
