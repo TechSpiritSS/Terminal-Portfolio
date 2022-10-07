@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@600&display=swap');
 
 :root {
   --font-size: 1.3rem;
@@ -9,6 +9,33 @@
   --default: #fc766aff;
 }
 
+.key {
+  color: purple;
+}
+
+.value {
+  color: cyan;
+}
+
+.fetch-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+.fetch-img {
+  background-image: url('js.png');
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 50%;
+}
+
+.info {
+  margin-top: 10%;
+  height: 100%;
+  width: 50%;
+}
 
 .theme-switches {
   display: flex;
@@ -51,12 +78,11 @@
   background-color: var(--default);
 }
 
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Source Code Pro", monospace;
+  font-family: 'Source Code Pro', monospace;
 }
 
 ::-webkit-scrollbar-track {
@@ -115,7 +141,7 @@ body {
 .maximized {
   max-width: 100vw;
   max-height: 100vh;
-  margin:0;
+  margin: 0;
 }
 
 .minimized {
