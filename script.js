@@ -166,7 +166,6 @@ async function getInputValue() {
       break;
     case 'neofetch':
       neofetch();
-      createText("it's working", 'for now');
       break;
     case 'about':
       trueValue(value);
