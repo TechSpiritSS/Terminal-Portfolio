@@ -1,4 +1,4 @@
-import config from './config.json' assert {type: 'json'};
+import config from "./config.json" assert { type: "json" };
 
 const app = document.querySelector("#app");
 const bodyContainer = document.querySelector("#bodyContainer");
@@ -140,6 +140,22 @@ async function showRecentBlogs(mediumLink) {
     });
 }
 
+async function fetchGithubStats() {
+  const githubLink = config.social.find((c) => c.title === "Github").link;
+  const githubUsername =
+    githubLink.split("/")[githubLink.split("/").length - 1];
+  const responseRaw = await fetch(
+    `https://api.github.com/users/${githubUsername}`
+  );
+  const response = await responseRaw.json();
+
+  createText(`Github Bio: ${response.bio}`);
+  createText(`Number of repositories : ${response.public_repos}`);
+  createText(`Number of gists: ${response.public_gists}`);
+  createText(`Number of followers: ${response.followers}`);
+  createText(`Number of following: ${response.following}`);
+}
+
 async function getInputValue() {
   const value = document.querySelector("input").value.trim().toLowerCase();
   if (value.substring(0, 5) === "cheer") {
@@ -165,6 +181,7 @@ async function getInputValue() {
       createCode("cheer", "to appreciate my work");
       createCode("repos", "to see my github repositories");
       createCode("ipconfig", "to see your IP details");
+      createCode("github", "to see my github stats");
       createCode("contributors", "to see all the contributors");
       break;
     case "neofetch":
@@ -179,10 +196,8 @@ async function getInputValue() {
     case "social":
       trueValue(value);
       config.social.forEach((item) => {
-        createText(
-          `<a href=${item.link} target="_blank">${item.title}</a>`
-        );
-      })
+        createText(`<a href=${item.link} target="_blank">${item.title}</a>`);
+      });
       break;
 
     case "projects":
@@ -192,7 +207,7 @@ async function getInputValue() {
         createText(
           `<a href=${item.link} target="_blank">${item.title}</a> - ${item.description}`
         );
-      })
+      });
       break;
 
     case "blogs":
@@ -203,9 +218,9 @@ async function getInputValue() {
       // Medium Feed URL: https://medium.com/feed/@username
       // TODO: Insert your Medium/Dev/Hashnode or any blog feed URL below
       config.blogs.forEach((item) => {
-        createText(`${item.site}: `)
+        createText(`${item.site}: `);
         showRecentBlogs(item.url);
-      })
+      });
       break;
 
     case "contributors":
@@ -265,6 +280,10 @@ async function getInputValue() {
       trueValue(value);
       createText("You are not authorized to use this command");
       break;
+    case "github":
+      trueValue(value);
+      fetchGithubStats();
+      break;
 
     case "cd":
       trueValue(value);
@@ -275,7 +294,10 @@ async function getInputValue() {
     default:
       if (value.substring(0, 5) === "cheer") {
         trueValue(value);
-        const reply = config.cheer.responseArray[Math.floor(Math.random() * config.cheer.responseArray.length)];
+        const reply =
+          config.cheer.responseArray[
+            Math.floor(Math.random() * config.cheer.responseArray.length)
+          ];
         createText(reply);
       } else {
         falseValue(value);
