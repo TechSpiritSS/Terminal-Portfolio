@@ -495,4 +495,3 @@ function setTheme(theme) {
 
   localStorage.setItem("style", theme);
 }
-setTheme("default");
