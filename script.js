@@ -142,7 +142,7 @@ async function showRecentBlogs(mediumLink) {
 }
 
 async function getInputValue() {
-  const value = document.querySelector("input").value;
+  const value = document.querySelector("input").value.trim().toLowerCase();
   if (value.substring(0, 5) === "cheer") {
     value.substring(0, 5).toLowerCase();
   } else {
