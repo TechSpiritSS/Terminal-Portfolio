@@ -7,6 +7,7 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const history = [];
 const contributors = [];
 const IpDetails = [];
+const userRepos = [];
 var count = 0;
 const commandsList = [
   "help",
@@ -14,6 +15,7 @@ const commandsList = [
   "about",
   "social",
   "projects",
+  "repos",
   "cheer",
   "ipconfig",
   "contributors",
@@ -164,6 +166,7 @@ async function getInputValue() {
       createCode("blogs", "to see my recent blogs");
       createCode("contact", "to enquire about my services");
       createCode("cheer", "to appreciate my work");
+      createCode("repos", "to see my github repositories");
       createCode("ipconfig", "to see your IP details");
       createCode("contributors", "to see all the contributors");
       break;
@@ -229,9 +232,7 @@ async function getInputValue() {
     case "contributors":
       trueValue(value);
       contributors.forEach((user) => {
-        createText(
-          `- <a href=${user.userProfile} target="_blank">${user.username}</a>`
-        );
+        createText(`- <a href=${user.userProfile}>${user.username}</a>`);
       });
       createText(`- Thanks to all the contributors 💖`);
       break;
@@ -245,6 +246,24 @@ async function getInputValue() {
       createText(`- network org: ${IP.org}`);
       createText(`- region: ${IP.region}`);
       createText(`- postal: ${IP.postal}`);
+      break;
+
+    case "repos":
+      trueValue(value);
+      userRepos[0].forEach((repo, index) => {
+        createText(
+          `- repo_${index} name: <a href=${repo.html_url}>${
+            repo.name
+          }</a> | language: ${
+            repo.language === null ? "no language" : repo.language
+          }`
+        );
+        createText(
+          `_ description: ${
+            repo.description === null ? "no description." : repo.description
+          }`
+        );
+      });
       break;
 
     case "clear":
@@ -349,7 +368,7 @@ const getContributors = async () => {
     // handling the error
     contributors.push({
       username: "__network_error __check internet connection",
-      userProfile: "/",
+      userProfile: " ",
     });
   }
 };
@@ -380,6 +399,31 @@ const getIPDetails = async () => {
 };
 
 getIPDetails();
+
+// get user github repositories
+
+const getRepo = async () => {
+  try {
+    const response = await fetch(
+      "https://api.github.com/users/TechSpiritSS/repos"
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        userRepos.push(data);
+      });
+  } catch (error) {
+    console.log(error);
+    userRepos.push([
+      {
+        name: "__network_error",
+        description: "__kindly check internet connection",
+        html_url: "",
+      },
+    ]);
+  }
+};
+
+getRepo();
 
 // Themes Switcher
 
