@@ -1,3 +1,5 @@
+import config from './config.json' assert {type: 'json'};
+
 const app = document.querySelector("#app");
 const bodyContainer = document.querySelector("#bodyContainer");
 const greenButton = document.querySelector("#greenButton");
@@ -18,12 +20,6 @@ const commandsList = [
   "ipconfig",
   "contributors",
   "neofetch",
-];
-const replyArr = [
-  `Thank you! It makes my day😊😊😊`,
-  `It is great to hear that way!😁😁😁`,
-  `I would love to take credit😂😂😂`,
-  `That's so good to hear! I'm glad😍😍😍`,
 ];
 
 greenButton.addEventListener("click", () => {
@@ -103,9 +99,9 @@ function new_line() {
   const span = document.createElement("span");
   const span2 = document.createElement("span");
   p.setAttribute("class", "path");
-  p.textContent = "$Sidharth_Sethi";
-  span.textContent = " sudo";
-  span2.textContent = " ~/guest";
+  p.textContent = config.terminal.user + " ";
+  span.textContent = config.terminal.host + " ";
+  span2.textContent = config.terminal.path + " ";
   p.appendChild(span);
   p.appendChild(span2);
   app.appendChild(p);
@@ -174,50 +170,26 @@ async function getInputValue() {
 
     case "about":
       trueValue(value);
-      createText(
-        "I am a Web Developer with a good knowledge of Data Structures and Algorithms along with SQL. I am currently Google DSC Lead, CodeChef Chapter Event Lead, and Co-Founder of Algoders Community at my Campus. I have 3-star rating at CodeChef. In 2022 I am learning MERN Stack and I am planning to work as a Full-Stack Developer."
-      );
+      createText(config.about);
       break;
 
     case "social":
       trueValue(value);
-      createText(
-        `<a href="https://github.com/techspiritss" target="_blank">GitHub</a>`
-      );
-      createText(
-        `<a href="https://www.linkedin.com/in/sidharthsethiss" target="_blank">LinkedIn</a>`
-      );
-      createText(
-        `<a href="https://leetcode.com/techspiritss" target="_blank">LeetCode</a>`
-      );
-      createText(
-        `<a href="https://www.codechef.com/users/techspiritss" target="_blank">CodeChef</a>`
-      );
+      config.social.forEach((item) => {
+        createText(
+          `<a href=${item.link} target="_blank">${item.title}</a>`
+        );
+      })
       break;
 
     case "projects":
       trueValue(value);
       createText("Projects:");
-      createText(
-        `<a href="https://techspiritss.github.io/MyChabi/" target="_blank">MyChabi</a> - MyChabi is a web application to help you out with your passwords`
-      );
-      createText(
-        `<a href="https://github.com/TechSpiritSS/Task-C-" target="_blank">Task C++</a> - A command-line based task management application`
-      );
-      createText(
-        `<a href="https://mohityadav0903.github.io/Notes-Insight" target="_blank">Notes Insight</a> - A note taking app for visually weak and elderly who aren't comfortable with Modern UI`
-      );
-      createText(
-        `<a href="https://github.com/TechSpiritSS/bigInt.git" target="_blank">BigINT Library</a> - This is my own C Library for BigINT made from scratch and it supports 2700 digits`
-      );
-      createText(
-        `<a href="https://techspiritss.github.io/50-Days-50-Projects-Web-Dev/" target="_blank">
-            50 Days of Web</a> - 50 Web Apps made over the period of 50 days for learning purpose`
-      );
-      createText(
-        `<a href="https://github.com/TechSpiritSS/Covid-Vaccine" target="_blank">
-            Covid Vaccination Slot</a> - This Python Program informs about the available Covid vaccine slots at your pin code according to your age group.`
-      );
+      config.projects.forEach((item) => {
+        createText(
+          `<a href=${item.link} target="_blank">${item.title}</a> - ${item.description}`
+        );
+      })
       break;
 
     case "blogs":
@@ -227,7 +199,10 @@ async function getInputValue() {
       // Dev.to Feed URL: https://dev.to/feed/username
       // Medium Feed URL: https://medium.com/feed/@username
       // TODO: Insert your Medium/Dev/Hashnode or any blog feed URL below
-      showRecentBlogs("");
+      config.blogs.forEach((item) => {
+        createText(`${item.site}: `)
+        showRecentBlogs(item.url);
+      })
       break;
 
     case "contributors":
@@ -263,9 +238,9 @@ async function getInputValue() {
       break;
     case "contact":
       createText(
-        "Hey! Would love to get in touch. Drop me a text at sidharth.sherry@gmail.com"
+        `Hey! Would love to get in touch. Drop me a text at <a href="mailto:${config.contact.email}" target="_blank">${config.contact.email}</a>`
       );
-      window.location.href = "mailto:sidharth.sherry@gmail.com";
+      window.location.href = `mailto:${config.contact.email}`;
       break;
     case "sudo":
       trueValue(value);
@@ -281,7 +256,7 @@ async function getInputValue() {
     default:
       if (value.substring(0, 5) === "cheer") {
         trueValue(value);
-        const reply = replyArr[Math.floor(Math.random() * replyArr.length)];
+        const reply = config.cheer.responseArray[Math.floor(Math.random() * config.cheer.responseArray.length)];
         createText(reply);
       } else {
         falseValue(value);
