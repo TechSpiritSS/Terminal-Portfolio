@@ -17,6 +17,7 @@ const commandsList = [
   "cheer",
   "ipconfig",
   "contributors",
+  "neofetch",
 ];
 const replyArr = [
   `Thank you! It makes my day😊😊😊`,
@@ -167,6 +168,9 @@ async function getInputValue() {
       createCode("ipconfig", "to see your IP details");
       createCode("contributors", "to see all the contributors");
       break;
+    case "neofetch":
+      neofetch();
+      break;
 
     case "about":
       trueValue(value);
@@ -255,6 +259,7 @@ async function getInputValue() {
       document
         .querySelectorAll("section")
         .forEach((e) => e.parentNode.removeChild(e));
+      removeNeoFetch();
       break;
     case "contact":
       createText(
@@ -328,6 +333,40 @@ function createCode(code, text) {
 
 openTerminal();
 
+//creat neofetch
+
+function neofetch() {
+  const data = {
+    name: "Shethi Sidharth",
+    title: "developer",
+    skills: "Frontend, Backend",
+    shell: "zsh",
+    langauges: "Javascript, Python, CSS, DB",
+  };
+  const container = document.createElement("div");
+  container.classList.add("fetch-container");
+
+  const fimg = document.createElement("div");
+  fimg.classList.add("fetch-img-container");
+  fimg.innerHTML = "<img class='fetch-img' src='js.png' />";
+
+  const info = document.createElement("div");
+  info.classList.add("info");
+  container.appendChild(fimg);
+  container.appendChild(info);
+
+  for (const [key, value] of Object.entries(data)) {
+    const p = document.createElement("p");
+    p.innerHTML = `<span class="key">${key}</span>: <span class="value">${value}</span>`;
+    info.appendChild(p);
+  }
+
+  app.appendChild(container);
+}
+
+function removeNeoFetch() {
+  document.querySelector(".fetch-container").remove();
+}
 // get the contributors list
 
 const getContributors = async () => {
