@@ -281,6 +281,7 @@ async function getInputValue() {
       createText("You are not authorized to use this command");
       break;
     case "github":
+      trueValue(value);
       fetchGithubStats();
       break;
 
