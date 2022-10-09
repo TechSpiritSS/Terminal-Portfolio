@@ -80,7 +80,7 @@ app.addEventListener("keydown", async function (event) {
     }
   }
   if (event.ctrlKey) {
-    if(event.key === "l") {
+    if(event.key === "l" || event.key === "L") {
       document
         .querySelectorAll("p")
         .forEach((e) => e.parentNode.removeChild(e));
@@ -157,7 +157,6 @@ async function showRecentBlogs(mediumLink) {
 
 async function getInputValue() {
   const value = document.querySelector("input").value;
-  console.log(value)
   if (value.substring(0, 5) === "cheer") {
     value.substring(0, 5).toLowerCase();
   } else {
