@@ -78,6 +78,20 @@ app.addEventListener("keydown", async function (event) {
       input.value = completed;
     }
   }
+  if (event.ctrlKey) {
+    if(event.key === "l" || event.key === "L") {
+      document
+        .querySelectorAll("p")
+        .forEach((e) => e.parentNode.removeChild(e));
+      document
+        .querySelectorAll("section")
+        .forEach((e) => e.parentNode.removeChild(e));
+      removeInput();
+      await delay(150);
+      new_line();
+      count = history.length;
+    }
+  }
 });
 
 app.addEventListener("click", function () {
