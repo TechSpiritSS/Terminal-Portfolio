@@ -3,49 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- HTML Meta Tags -->
-    <title>Terminal</title>
-    <meta
-      name="description"
-      content="Terminal Style Portfolio made with HTML / CSS / JS"
-    />
-
-    <!-- Facebook Meta Tags -->
-    <meta
-      property="og:url"
-      content="https://techspiritss.github.io/Terminal-Portfolio/"
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Terminal" />
-    <meta
-      property="og:description"
-      content="Terminal Style Portfolio made with HTML / CSS / JS"
-    />
-    <meta
-      property="og:image"
-      content="https://socialify.git.ci/TechSpiritSS/Terminal-Portfolio/image?font=Inter&language=1&name=1&owner=1&pattern=Charlie%20Brown&stargazers=1&theme=Light"
-    />
-
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="techspiritss.github.io" />
-    <meta
-      property="twitter:url"
-      content="https://techspiritss.github.io/Terminal-Portfolio/"
-    />
-    <meta name="twitter:title" content="Terminal" />
-    <meta
-      name="twitter:description"
-      content="Terminal Style Portfolio made with HTML / CSS / JS"
-    />
-    <meta
-      name="twitter:image"
-      content="https://socialify.git.ci/TechSpiritSS/Terminal-Portfolio/image?font=Inter&language=1&name=1&owner=1&pattern=Charlie%20Brown&stargazers=1&theme=Light"
-    />
-
-    <!-- Meta Tags Generated via https://www.opengraph.xyz -->
-
     <script
       src="https://kit.fontawesome.com/1eb44e0a35.js"
       crossorigin="anonymous"
@@ -55,18 +12,19 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&display=swap"
     />
-    <script type="module" src="./script.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <script src="script.js" defer></script>
     <title>Terminal</title>
-    <link rel="icon" type="image/jpg" href="favicon.ico" />
-    <link rel="stylesheet" id="switcher-id" href="" />
+    <link rel="icon" type="image/jpg" href="favicon.ico">
   </head>
   <body id="bodyContainer">
     <div id="screenContainer" class="container">
       <div class="menu">
         <div class="buttons-flex">
-          <div id="redButton" class="button red"></div>
-          <div id="yellowButton" class="button yellow"></div>
+          <i class="bi bi-brightness-high-fill" id="toggleDark"></i>
           <div id="greenButton" class="button green"></div>
+          <div id="yellowButton" class="button yellow"></div>
+          <div class="button red"></div>
         </div>
         <div class="title">
           <a href="http://github.com/techspiritss">
@@ -75,13 +33,6 @@
               TechSpiritSS
             </h1>
           </a>
-        </div>
-        <div class="theme-switches">
-          <div data-theme="default" class="switch" id="switch5"></div>
-          <div data-theme="nature" class="switch" id="switch1"></div>
-          <div data-theme="metalic" class="switch" id="switch2"></div>
-          <div data-theme="matrix" class="switch" id="switch3"></div>
-          <div data-theme="sky" class="switch" id="switch4"></div>
         </div>
       </div>
       <div id="app"></div>
@@ -94,7 +45,7 @@
           <a href="http://github.com/techspiritss" class="bottom-name">
             Sidharth Sethi</a
           >
-        </div>
+          </div>
       </div>
     </div>
   </body>

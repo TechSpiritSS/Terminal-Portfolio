@@ -2,84 +2,6 @@
 
 :root {
   --font-size: 1.3rem;
-  --metalic: #6e94ad;
-  --sky: #f5ebe1;
-  --matrix: lime;
-  --nature: #cda76e;
-  --default: #fc766aff;
-}
-
-.key {
-  color: purple;
-}
-
-.value {
-  color: cyan;
-}
-
-.fetch-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  height: 500px;
-  width: 100%;
-}
-.fetch-img-container {
-  display: flex;
-  justify-content: flex-end;
-  height: 300px;
-  width: 600px;
-}
-
-.fetch-img {
-  margin-right: 50px;
-}
-
-.info {
-  padding-top: 50px;
-  height: 100%;
-  width: 50%;
-}
-
-.theme-switches {
-  display: flex;
-  flex-grow: 1;
-  flex-basis: 0;
-  justify-content: end;
-}
-
-.switch {
-  border: 2px solid black;
-  border-radius: 50px;
-  height: 30px;
-  width: 30px;
-  margin: 10px;
-  cursor: pointer;
-}
-
-.switch:hover {
-  transform: scale(1.2);
-  transition: 0.3s ease-in-out;
-}
-
-#switch1 {
-  background-color: var(--nature);
-}
-
-#switch2 {
-  background-color: var(--metalic);
-}
-
-#switch3 {
-  background-color: var(--matrix);
-}
-
-#switch4 {
-  background-color: var(--sky);
-}
-
-#switch5 {
-  background-color: var(--default);
 }
 
 * {
@@ -145,7 +67,7 @@ body {
 .maximized {
   max-width: 100vw;
   max-height: 100vh;
-  margin: 0;
+  margin:0;
 }
 
 .minimized {
@@ -156,7 +78,6 @@ body {
   display: flex;
   align-items: center;
   text-align: center;
-  justify-content: space-between;
   width: 100%;
   min-height: 45px;
   height: 45px;
@@ -175,10 +96,9 @@ body {
 }
 
 .buttons-flex {
+  position: absolute;
   display: flex;
   flex-direction: row;
-  flex-grow: 1;
-  flex-basis: 0;
 }
 
 .red {
@@ -209,33 +129,11 @@ div.title {
     display: flex;
     flex-direction: row;
   }
-  .theme-switches {
-    display: none;
-  }
-
-  .fetch-img-container {
-    justify-content: flex-start;
-  }
-
-  .fetch-container {
-    flex-direction: column;
-    height: 500px;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-
-  .info {
-    width: 100%;
-  }
 }
 
 @media (max-width: 350px) {
   .menu h1 {
     display: none;
-  }
-
-  .info {
-    height: 500px;
   }
 }
 
@@ -271,9 +169,8 @@ h2 {
   color: #008c76ff;
 }
 
-span.code {
-  font-style: italic;
-  color: #8e0a5b;
+p.code {
+  color: #faea48;
   margin-left: 8px;
 }
 
@@ -340,4 +237,11 @@ input:focus {
 
 .icone.error {
   color: #ff1700;
+}
+
+i{
+  font-size:30px;
+  cursor:pointer;
+  position:absolute;
+  transform: translate(4650%,-30%);
 }
