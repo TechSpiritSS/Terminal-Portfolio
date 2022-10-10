@@ -8,6 +8,7 @@ const redButton = document.querySelector("#redButton");
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const history = [];
 const contributors = [];
+const userBlogs = [];
 const IpDetails = [];
 const userRepos = [];
 var count = 0;
@@ -137,23 +138,6 @@ function removeInput() {
   app.removeChild(div);
 }
 
-async function showRecentBlogs(mediumLink) {
-  const rssConverter = `https://api.rss2json.com/v1/api.json?rss_url=${mediumLink}`;
-
-  fetch(rssConverter)
-    .then((response) => response.json())
-    .then((data) => {
-      const { items } = data;
-      items.forEach((item, index) => {
-        createText(
-          `<a href="${item.link}" target="_blank">${index + 1}. ${
-            item.title
-          }</a>`
-        );
-      });
-    });
-}
-
 async function fetchGithubStats() {
   const githubLink = config.social.find((c) => c.title === "Github").link;
   const githubUsername =
@@ -231,9 +215,15 @@ async function getInputValue() {
       // Dev.to Feed URL: https://dev.to/feed/username
       // Medium Feed URL: https://medium.com/feed/@username
       // TODO: Insert your Medium/Dev/Hashnode or any blog feed URL below
-      config.blogs.forEach((item) => {
-        createText(`${item.site}: `);
-        showRecentBlogs(item.url);
+      userBlogs.forEach((blog) => {
+        createText(`${blog.site}: `);
+        blog.items.forEach((item, index) => {
+          createText(
+            `<a href="${item.link}" target="_blank">${index + 1}. ${
+              item.title
+            }</a>`
+          );
+        });
       });
       break;
 
@@ -424,6 +414,26 @@ const getContributors = async () => {
 };
 
 getContributors();
+
+const getBlogs = async () => {
+  config.blogs.forEach(async (blog) => {
+    try{
+      const rssConverter = `https://api.rss2json.com/v1/api.json?rss_url=${blog.url}`;
+      const response = await fetch(rssConverter);
+      const data = await response.json();
+      userBlogs.push({site:blog.site, items:data.items});
+    } catch (error) {
+      console.log(error);
+      // handling the error
+      userBlogs.push({
+        site: blog.site,
+        items: ["_failed_to_fetch_"],
+      });
+    }
+  });
+};
+
+getBlogs();
 
 // ip lookup --> https://ipapi.co/json
 
