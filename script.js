@@ -167,7 +167,6 @@ async function getInputValue() {
 
   history.push(document.querySelector("input").value);
   count++;
-  console.log(history)
   switch (value) {
     case "help":
     case "ls":
