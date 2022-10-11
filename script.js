@@ -80,7 +80,7 @@ app.addEventListener("keydown", async function (event) {
     }
   }
   if (event.ctrlKey) {
-    if(event.key === "l" || event.key === "L") {
+    if (event.key === "l" || event.key === "L") {
       document
         .querySelectorAll("p")
         .forEach((e) => e.parentNode.removeChild(e));
@@ -155,7 +155,10 @@ async function fetchGithubStats() {
 }
 
 async function getInputValue() {
-  const value = document.querySelector("input").value.trim().toLowerCase();
+  const val = document.querySelector("input").value.trim().toLowerCase();
+  const a = val.split(' ')
+  const flag = a[1]
+  const value = a[0]
   if (value.substring(0, 5) === "cheer") {
     value.substring(0, 5).toLowerCase();
   } else {
@@ -164,7 +167,7 @@ async function getInputValue() {
 
   history.push(document.querySelector("input").value);
   count++;
-
+  console.log(history)
   switch (value) {
     case "help":
     case "ls":
@@ -172,7 +175,7 @@ async function getInputValue() {
       createCode("help", "for a list of commands");
       createCode("clear", "to clear the terminal");
       createCode("about", "to learn more about me");
-      createCode("social", "to see my social links");
+      createCode("social", "to see my social links (add flags '-l' for links and '-d' for detailed results)");
       createCode("projects", "to see my projects");
       createCode("blogs", "to see my recent blogs");
       createCode("contact", "to enquire about my services");
@@ -192,6 +195,47 @@ async function getInputValue() {
       break;
 
     case "social":
+      if (flag == '-l') {
+        trueValue(val)
+        config.social.forEach((item) => {
+          createText(`${item.title} :- <a href=${item.link} target="_blank">${item.link}</a>
+          `);
+        });
+        break;
+      }
+      else if (flag == '-d') {
+        trueValue(val)
+        config.social.forEach((item) => {
+          createText(`${item.title} Link :- <a href=${item.link} target="_blank">${item.link}</a>
+          `);
+          if (item.connections) {
+            createText(`connections :- ${item.connections}`);
+          }
+          if (item.rank) {
+            createText(`Rank :- ${item.rank}`);
+          }
+          if (item.solved) {
+            createText(`Solved :- ${item.solved}`);
+          }
+          if (item.rating) {
+            createText(`Rating :- ${item.rating}`);
+          }
+          if (item.followers) {
+            createText(`Followers :- ${item.followers}`);
+          }
+          if (item.following) {
+            createText(`Following :- ${item.following}`);
+          }
+          if (item.stars) {
+            createText(`Stars :- ${item.stars}`);
+          }
+
+        });
+        break;
+      }
+
+
+
       trueValue(value);
       config.social.forEach((item) => {
         createText(`<a href=${item.link} target="_blank">${item.title}</a>`);
@@ -219,8 +263,7 @@ async function getInputValue() {
         createText(`${blog.site}: `);
         blog.items.forEach((item, index) => {
           createText(
-            `<a href="${item.link}" target="_blank">${index + 1}. ${
-              item.title
+            `<a href="${item.link}" target="_blank">${index + 1}. ${item.title
             }</a>`
           );
         });
@@ -250,15 +293,12 @@ async function getInputValue() {
       trueValue(value);
       userRepos[0].forEach((repo, index) => {
         createText(
-          `- repo_${index} name: <a href=${repo.html_url}>${
-            repo.name
-          }</a> | language: ${
-            repo.language === null ? "no language" : repo.language
+          `- repo_${index} name: <a href=${repo.html_url}>${repo.name
+          }</a> | language: ${repo.language === null ? "no language" : repo.language
           }`
         );
         createText(
-          `_ description: ${
-            repo.description === null ? "no description." : repo.description
+          `_ description: ${repo.description === null ? "no description." : repo.description
           }`
         );
       });
@@ -300,7 +340,7 @@ async function getInputValue() {
         trueValue(value);
         const reply =
           config.cheer.responseArray[
-            Math.floor(Math.random() * config.cheer.responseArray.length)
+          Math.floor(Math.random() * config.cheer.responseArray.length)
           ];
         createText(reply);
       } else {
@@ -417,11 +457,11 @@ getContributors();
 
 const getBlogs = async () => {
   config.blogs.forEach(async (blog) => {
-    try{
+    try {
       const rssConverter = `https://api.rss2json.com/v1/api.json?rss_url=${blog.url}`;
       const response = await fetch(rssConverter);
       const data = await response.json();
-      userBlogs.push({site:blog.site, items:data.items});
+      userBlogs.push({ site: blog.site, items: data.items });
     } catch (error) {
       console.log(error);
       // handling the error

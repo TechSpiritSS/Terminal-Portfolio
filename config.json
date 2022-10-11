@@ -1,60 +1,83 @@
 {
-    "terminal":{
+    "terminal": {
         "user": "$Sidharth_Sethi",
         "host": "sudo",
         "path": "~/guest"
     },
-    "blogs":[
-        {"site":"Medium","url":"https://medium.com/feed/@sadashay"}
+    "blogs": [
+        {
+            "site": "Medium",
+            "url": "https://medium.com/feed/@sadashay"
+        }
     ],
-    "cheer":{
-        "responseArray" : [
+    "cheer": {
+        "responseArray": [
             "Thank you! It makes my day😊😊😊",
             "It is great to hear that way!😁😁😁",
             "I would love to take credit😂😂😂",
             "That's so good to hear! I'm glad😍😍😍"
-          ]
+        ]
     },
     "about": "I am a Web Developer with a good knowledge of Data Structures and Algorithms along with SQL. I am currently Google DSC Lead, CodeChef Chapter Event Lead, and Co-Founder of Algoders Community at my Campus. I have 3-star rating at CodeChef. In 2022 I am learning MERN Stack and I am planning to work as a Full-Stack Developer.",
     "social": [
-        {"title":"Github", "link":"https://github.com/techspiritss"},
-        {"title":"LinkedIn", "link":"https://www.linkedin.com/in/sidharthsethiss"},
-        {"title":"LeetCode", "link":"https://leetcode.com/techspiritss"},
-        {"title":"Codechef", "link":"https://www.codechef.com/users/techspiritss"}
+        {
+            "title": "Github",
+            "link": "https://github.com/techspiritss",
+            "followers": "42",
+            "following": "18",
+            "stars": "26"
+        },
+        {
+            "title": "LinkedIn",
+            "link": "https://www.linkedin.com/in/sidharthsethiss",
+            "connections": "500+"
+        },
+        {
+            "title": "LeetCode",
+            "link": "https://leetcode.com/techspiritss",
+            "solved": "444",
+            "rank": "67,919"
+        },
+        {
+            "title": "Codechef",
+            "link": "https://www.codechef.com/users/techspiritss",
+            "rating": "1670",
+            "rank": "22,497"
+        }
     ],
     "projects": [
         {
-            "title":"MyChabi",
-            "link":"https://techspiritss.github.io/MyChabi/",
-            "description":"MyChabi is a web application to help you out with your passwords"
+            "title": "MyChabi",
+            "link": "https://techspiritss.github.io/MyChabi/",
+            "description": "MyChabi is a web application to help you out with your passwords"
         },
         {
-            "title":"Task C++",
-            "link":"https://github.com/TechSpiritSS/Task-C-",
-            "description":"A command-line based task management application"
+            "title": "Task C++",
+            "link": "https://github.com/TechSpiritSS/Task-C-",
+            "description": "A command-line based task management application"
         },
         {
-            "title":"Notes Insight",
-            "link":"https://mohityadav0903.github.io/Notes-Insight",
-            "description":"A note taking app for visually weak and elderly who aren't comfortable with Modern UI"
+            "title": "Notes Insight",
+            "link": "https://mohityadav0903.github.io/Notes-Insight",
+            "description": "A note taking app for visually weak and elderly who aren't comfortable with Modern UI"
         },
         {
-            "title":"BigINT Library",
-            "link":"https://github.com/TechSpiritSS/bigInt.git",
-            "description":"This is my own C Library for BigINT made from scratch and it supports 2700 digits"
+            "title": "BigINT Library",
+            "link": "https://github.com/TechSpiritSS/bigInt.git",
+            "description": "This is my own C Library for BigINT made from scratch and it supports 2700 digits"
         },
         {
-            "title":"50 Days of Web",
-            "link":"https://techspiritss.github.io/50-Days-50-Projects-Web-Dev/",
-            "description":"50 Web Apps made over the period of 50 days for learning purpose"
+            "title": "50 Days of Web",
+            "link": "https://techspiritss.github.io/50-Days-50-Projects-Web-Dev/",
+            "description": "50 Web Apps made over the period of 50 days for learning purpose"
         },
         {
-            "title":"Covid Vaccination Slot",
-            "link":"https://github.com/TechSpiritSS/Covid-Vaccine",
-            "description":"This Python Program informs about the available Covid vaccine slots at your pin code according to your age group"
+            "title": "Covid Vaccination Slot",
+            "link": "https://github.com/TechSpiritSS/Covid-Vaccine",
+            "description": "This Python Program informs about the available Covid vaccine slots at your pin code according to your age group"
         }
     ],
-    "contact":{
-        "email":"sidharth.sherry@gmail.com"
+    "contact": {
+        "email": "sidharth.sherry@gmail.com"
     }
 }
