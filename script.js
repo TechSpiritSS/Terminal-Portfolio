@@ -269,8 +269,6 @@ async function getInputValue() {
         break;
       }
 
-
-
       trueValue(value);
       config.social.forEach((item) => {
         createText(`<a href=${item.link} target="_blank">${item.title}</a>`);
