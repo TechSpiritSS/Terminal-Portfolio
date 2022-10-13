@@ -22,10 +22,7 @@
     "social": [
         {
             "title": "Github",
-            "link": "https://github.com/techspiritss",
-            "followers": "42",
-            "following": "18",
-            "stars": "26"
+            "link": "https://github.com/techspiritss"
         },
         {
             "title": "LinkedIn",
@@ -34,9 +31,7 @@
         },
         {
             "title": "LeetCode",
-            "link": "https://leetcode.com/techspiritss",
-            "solved": "444",
-            "rank": "67,919"
+            "link": "https://leetcode.com/techspiritss"
         },
         {
             "title": "Codechef",

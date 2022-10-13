@@ -12,6 +12,8 @@ const userBlogs = [];
 const IpDetails = [];
 const userRepos = [];
 var count = 0;
+var followers = 0, following = 0;
+var ranking = 0, totalSolved = 0, easySolved = 0, mediumSolved = 0, hardSolved = 0;
 const commandsList = [
   "help",
   "clear",
@@ -153,6 +155,45 @@ async function fetchGithubStats() {
   createText(`Number of followers: ${response.followers}`);
   createText(`Number of following: ${response.following}`);
 }
+async function fetchGithubSocialStats() {
+  const githubLink = config.social.find((c) => c.title === "Github").link;
+  const githubUsername =
+    githubLink.split("/")[githubLink.split("/").length - 1];
+  const responseRaw = await fetch(
+    `https://api.github.com/users/${githubUsername}`
+  );
+  const response = await responseRaw.json();
+  followers = response.followers
+  following = response.following
+}
+async function fetchLinkedInStats() {
+  const Linkedinkink = config.social.find((c) => c.title === "LinkedIn").link;
+  const LinkedinUsername =
+    Linkedinkink.split("/")[Linkedinkink.split("/").length - 1];
+  const responseRaw = await fetch(
+    `https://api.linkedin.com/v2/connections?q=viewer&projection=(paging)`
+  );
+  const response = await responseRaw.json();
+  connections = response.connections
+}
+
+async function fetchLeetCodeStats() {
+  const leetcodelink = config.social.find((c) => c.title === "LeetCode").link;
+  const leetcodeusername =
+    leetcodelink.split("/")[leetcodelink.split("/").length - 1];
+  const responseRaw = await fetch(
+    `https://leetcode-stats-api.herokuapp.com/${leetcodeusername}`
+  );
+  const response = await responseRaw.json();
+  totalSolved = response.totalSolved
+  easySolved = response.easySolved
+  mediumSolved = response.mediumSolved
+  hardSolved = response.hardSolved
+  ranking = response.ranking
+}
+fetchGithubSocialStats()
+fetchLinkedInStats()
+fetchLeetCodeStats()
 
 async function getInputValue() {
   const val = document.querySelector("input").value.trim().toLowerCase();
@@ -207,28 +248,23 @@ async function getInputValue() {
         config.social.forEach((item) => {
           createText(`${item.title} Link :- <a href=${item.link} target="_blank">${item.link}</a>
           `);
-          if (item.connections) {
-            createText(`connections :- ${item.connections}`);
+          if (item.title == "Github") {
+            createText(`Number of followers: ${followers}`);
+            createText(`Number of following: ${following}`);
           }
-          if (item.rank) {
-            createText(`Rank :- ${item.rank}`);
+          if (item.title == "LinkedIn") {
+            createText(`Connections :- ${connections}`);
           }
-          if (item.solved) {
-            createText(`Solved :- ${item.solved}`);
-          }
-          if (item.rating) {
-            createText(`Rating :- ${item.rating}`);
-          }
-          if (item.followers) {
-            createText(`Followers :- ${item.followers}`);
-          }
-          if (item.following) {
-            createText(`Following :- ${item.following}`);
-          }
-          if (item.stars) {
-            createText(`Stars :- ${item.stars}`);
+          if (item.title == "LeetCode") {
+            createText(`Problems Solved: ${totalSolved}`);
+            createText(`Distribution:- Easy:${easySolved} Medium:${mediumSolved} Hard:${hardSolved}`);
+            createText(`Ranking: ${ranking}`);
           }
 
+          if (item.title == "Codechef") {
+            createText(`Rank :- ${item.rank}`);
+            createText(`Rating :- ${item.rating}`);
+          }
         });
         break;
       }
