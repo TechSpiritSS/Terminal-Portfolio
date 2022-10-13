@@ -11,6 +11,7 @@ const contributors = [];
 const userBlogs = [];
 const IpDetails = [];
 const userRepos = [];
+let githubStats = {};
 var count = 0;
 const commandsList = [
   "help",
@@ -136,22 +137,6 @@ function new_line() {
 function removeInput() {
   const div = document.querySelector(".type");
   app.removeChild(div);
-}
-
-async function fetchGithubStats() {
-  const githubLink = config.social.find((c) => c.title === "Github").link;
-  const githubUsername =
-    githubLink.split("/")[githubLink.split("/").length - 1];
-  const responseRaw = await fetch(
-    `https://api.github.com/users/${githubUsername}`
-  );
-  const response = await responseRaw.json();
-
-  createText(`Github Bio: ${response.bio}`);
-  createText(`Number of repositories : ${response.public_repos}`);
-  createText(`Number of gists: ${response.public_gists}`);
-  createText(`Number of followers: ${response.followers}`);
-  createText(`Number of following: ${response.following}`);
 }
 
 async function getInputValue() {
@@ -286,7 +271,12 @@ async function getInputValue() {
       break;
     case "github":
       trueValue(value);
-      fetchGithubStats();
+      createText(`Github Username: ${githubStats.username}`);
+      createText(`Github Bio: ${githubStats.bio}`);
+      createText(`Number of repositories : ${githubStats.public_repos}`);
+      createText(`Number of gists: ${githubStats.public_gists}`);
+      createText(`Number of followers: ${githubStats.followers}`);
+      createText(`Number of following: ${githubStats.following}`);
       break;
 
     case "cd":
@@ -434,6 +424,30 @@ const getBlogs = async () => {
 };
 
 getBlogs();
+
+async function getGithubStats() {
+  try{  
+    const githubLink = config.social.find((c) => c.title.toLowerCase() === "github").link;
+    const githubUsername =
+      githubLink.split("/")[githubLink.split("/").length - 1];
+    const responseRaw = await fetch(`https://api.github.com/users/${githubUsername}`);
+    const response = await responseRaw.json();
+    githubStats = {...response, username:githubUsername}
+  } catch (error){
+      console.log(error);
+      // handling the error
+      githubStats = {
+        username : githubUsername,
+        bio : "_failed_to_fetch_",
+        public_repos : "_failed_to_fetch_",
+        public_gists : "_failed_to_fetch_",
+        followers : "_failed_to_fetch_",
+        following : "_failed_to_fetch_",
+      }
+  }
+}
+
+getGithubStats();
 
 // ip lookup --> https://ipapi.co/json
 
