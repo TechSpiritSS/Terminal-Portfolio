@@ -14,46 +14,44 @@ Being an open source contributor doesn't just mean writing code, either. You can
 
 </br>
 
-## Note : All PRs to this repo must be made only to develop branch ( master is used only for deployment ).
-
 ### 0 : Issues
 
-- Always check the Existing Issues and **Do not create an issue if it already exists.** or create your own issue.
+- Always check the [existing issues](https://github.com/TechSpiritSS/Terminal-Portfolio/issues) before creating your own issue.**Do not create an issue if it already exists.**
 - Only start working on an issue if it has been assigned to you. **Check assignees**
 - Every change in this project should/must have an associated issue. **Issue before PR**
-- Do not have multiple PRs for the same issue. **One PR per issue**
-- Assignee should make PR in a time bound manner (possibly 1-2 week ) otherwise it maybe unassigned.
+- Do not create multiple PRs for the same issue. **One PR per issue**
+- Assignee should make a PR in a time bound manner (possibly 1-2 weeks ) otherwise it maybe unassigned.
 - If a PR closes the issue link it to the issue.
-- If a change is requested link the commit to the issue.
+- If a change is requested, link the commit to the issue.
 
 
 
 ###  1 : Fork the Project
 
-- Fork this Repository. This will create a Local Copy of this Repository on your Github Profile.
+- Fork this repository. This will create a local copy of this repository on your GitHub profile.
 Keep a reference to the original project in `upstream` remote.  
 
 ```bash
-git clone https://github.com/<your-username>/<repo-name>  
-cd <repo-name>  
-git remote add upstream https://github.com/<upstream-owner>/<repo-name>  
+git clone https://github.com/<your-username>/Terminal-Portfolio.git 
+cd Terminal-Portfolio 
+git remote add upstream https://github.com/TechSpiritSS/Terminal-Portfolio.git  
 ```   
 
-- If you have already forked the project, update your copy before working.
+- If you have already forked the project, update your copy before working on it.
 
 ```bash
 git remote update
-git checkout <branch-name>
-git rebase upstream/<branch-name>
+git checkout main
+git rebase upstream/main
 ```  
 
 ###  2 : Branch
 
-###    Create a new branch after setting up the project locally before making any changes, so as to avoid merge conflicts while making PRs .
-Use its name to identify the issue your addressing.Feature , Bug Fix or Enhancement.
+Create a new branch after setting up the project locally before making any changes, so as to avoid merge conflicts while making PRs.
+Use the name of the branch to identify the issue you're addressing; Feature , Bug Fix or Enhancement.
 
 ```bash
-# It will create a new branch with name Branch_Name and switch to that branch 
+# It will create a new branch with name branch_name and switch to that branch 
 git checkout -b branch_name
 ```
 
@@ -61,19 +59,19 @@ git checkout -b branch_name
 
 - Work on the issue(s) assigned to you.
 - Add all the files/folders needed.
-- After you've made changes or made your contribution to the project add changes to the branch you've just created by:
+- After you've made changes or made your contribution to the project, add changes to the branch you've just created:
 
 ```bash  
-# To add all new files to branch Branch_Name  
+# To add all new files to branch branch_name  
 git add .  
 
-# To add only a few files to Branch_Name
+# To add only a few files to branch_name
 git add <some files>
 ```
 
 ###  4 : Commit
 
-- To commit give a descriptive message for the convenience of reviewer by:
+- To commit the changes you've made, give a descriptive message for the convenience of the reviewer:
 
 ```bash
 # This message get associated with all files you have changed  
@@ -86,18 +84,18 @@ git commit -m "message"
 
 ```bash  
 # To push your work to your remote repository
-git push -u origin Branch_Name
+git push -u origin branch_name
 ```
 
 ###  6 : Pull Request
 
-- Go to your repository in browser and click on compare and pull requests.
+- Go to your repository in the browser and click on compare and pull requests.
 Then add a title and description to your pull request that explains your contribution.  
 
 
 ### 7 : Review
 
-- 🎉🌟Congratulations! Sit and relax, you've made your contribution to js-dom-snippets project. Wait until the PR is reviewed and incorporate changes suggested by the community. After which the PR can be successfully merged.
+- 🎉🌟Congratulations! Sit and relax, you've made your contribution to Terminal-Portfolio project. Wait until the PR is reviewed and incorporate changes suggested by the community. After which the PR can be successfully merged.
 🎉🎊
 
 
