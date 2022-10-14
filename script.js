@@ -13,6 +13,8 @@ const IpDetails = [];
 const userRepos = [];
 let githubStats = {};
 var count = 0;
+var followers = 0, following = 0;
+var ranking = 0, totalSolved = 0, easySolved = 0, mediumSolved = 0, hardSolved = 0;
 const commandsList = [
   "help",
   "clear",
@@ -81,7 +83,7 @@ app.addEventListener("keydown", async function (event) {
     }
   }
   if (event.ctrlKey) {
-    if(event.key === "l" || event.key === "L") {
+    if (event.key === "l" || event.key === "L") {
       document
         .querySelectorAll("p")
         .forEach((e) => e.parentNode.removeChild(e));
@@ -139,8 +141,66 @@ function removeInput() {
   app.removeChild(div);
 }
 
+async function fetchGithubStats() {
+  const githubLink = config.social.find((c) => c.title === "Github").link;
+  const githubUsername =
+    githubLink.split("/")[githubLink.split("/").length - 1];
+  const responseRaw = await fetch(
+    `https://api.github.com/users/${githubUsername}`
+  );
+  const response = await responseRaw.json();
+
+  createText(`Github Bio: ${response.bio}`);
+  createText(`Number of repositories : ${response.public_repos}`);
+  createText(`Number of gists: ${response.public_gists}`);
+  createText(`Number of followers: ${response.followers}`);
+  createText(`Number of following: ${response.following}`);
+}
+async function fetchGithubSocialStats() {
+  const githubLink = config.social.find((c) => c.title === "Github").link;
+  const githubUsername =
+    githubLink.split("/")[githubLink.split("/").length - 1];
+  const responseRaw = await fetch(
+    `https://api.github.com/users/${githubUsername}`
+  );
+  const response = await responseRaw.json();
+  followers = response.followers
+  following = response.following
+}
+async function fetchLinkedInStats() {
+  const Linkedinkink = config.social.find((c) => c.title === "LinkedIn").link;
+  const LinkedinUsername =
+    Linkedinkink.split("/")[Linkedinkink.split("/").length - 1];
+  const responseRaw = await fetch(
+    `https://api.linkedin.com/v2/connections?q=viewer&projection=(paging)`
+  );
+  const response = await responseRaw.json();
+  connections = response.connections
+}
+
+async function fetchLeetCodeStats() {
+  const leetcodelink = config.social.find((c) => c.title === "LeetCode").link;
+  const leetcodeusername =
+    leetcodelink.split("/")[leetcodelink.split("/").length - 1];
+  const responseRaw = await fetch(
+    `https://leetcode-stats-api.herokuapp.com/${leetcodeusername}`
+  );
+  const response = await responseRaw.json();
+  totalSolved = response.totalSolved
+  easySolved = response.easySolved
+  mediumSolved = response.mediumSolved
+  hardSolved = response.hardSolved
+  ranking = response.ranking
+}
+fetchGithubSocialStats()
+fetchLinkedInStats()
+fetchLeetCodeStats()
+
 async function getInputValue() {
-  const value = document.querySelector("input").value.trim().toLowerCase();
+  const val = document.querySelector("input").value.trim().toLowerCase();
+  const a = val.split(' ')
+  const flag = a[1]
+  const value = a[0]
   if (value.substring(0, 5) === "cheer") {
     value.substring(0, 5).toLowerCase();
   } else {
@@ -149,7 +209,6 @@ async function getInputValue() {
 
   history.push(document.querySelector("input").value);
   count++;
-
   switch (value) {
     case "help":
     case "ls":
@@ -157,7 +216,7 @@ async function getInputValue() {
       createCode("help", "for a list of commands");
       createCode("clear", "to clear the terminal");
       createCode("about", "to learn more about me");
-      createCode("social", "to see my social links");
+      createCode("social", "to see my social links (add flags '-l' for links and '-d' for detailed results)");
       createCode("projects", "to see my projects");
       createCode("blogs", "to see my recent blogs");
       createCode("contact", "to enquire about my services");
@@ -177,6 +236,40 @@ async function getInputValue() {
       break;
 
     case "social":
+      if (flag == '-l') {
+        trueValue(val)
+        config.social.forEach((item) => {
+          createText(`${item.title} :- <a href=${item.link} target="_blank">${item.link}</a>
+          `);
+        });
+        break;
+      }
+      else if (flag == '-d') {
+        trueValue(val)
+        config.social.forEach((item) => {
+          createText(`${item.title} Link :- <a href=${item.link} target="_blank">${item.link}</a>
+          `);
+          if (item.title == "Github") {
+            createText(`Number of followers: ${followers}`);
+            createText(`Number of following: ${following}`);
+          }
+          if (item.title == "LinkedIn") {
+            createText(`Connections :- ${connections}`);
+          }
+          if (item.title == "LeetCode") {
+            createText(`Problems Solved: ${totalSolved}`);
+            createText(`Distribution:- Easy:${easySolved} Medium:${mediumSolved} Hard:${hardSolved}`);
+            createText(`Ranking: ${ranking}`);
+          }
+
+          if (item.title == "Codechef") {
+            createText(`Rank :- ${item.rank}`);
+            createText(`Rating :- ${item.rating}`);
+          }
+        });
+        break;
+      }
+
       trueValue(value);
       config.social.forEach((item) => {
         createText(`<a href=${item.link} target="_blank">${item.title}</a>`);
@@ -204,8 +297,7 @@ async function getInputValue() {
         createText(`${blog.site}: `);
         blog.items.forEach((item, index) => {
           createText(
-            `<a href="${item.link}" target="_blank">${index + 1}. ${
-              item.title
+            `<a href="${item.link}" target="_blank">${index + 1}. ${item.title
             }</a>`
           );
         });
@@ -235,15 +327,12 @@ async function getInputValue() {
       trueValue(value);
       userRepos[0].forEach((repo, index) => {
         createText(
-          `- repo_${index} name: <a href=${repo.html_url}>${
-            repo.name
-          }</a> | language: ${
-            repo.language === null ? "no language" : repo.language
+          `- repo_${index} name: <a href=${repo.html_url}>${repo.name
+          }</a> | language: ${repo.language === null ? "no language" : repo.language
           }`
         );
         createText(
-          `_ description: ${
-            repo.description === null ? "no description." : repo.description
+          `_ description: ${repo.description === null ? "no description." : repo.description
           }`
         );
       });
@@ -290,7 +379,7 @@ async function getInputValue() {
         trueValue(value);
         const reply =
           config.cheer.responseArray[
-            Math.floor(Math.random() * config.cheer.responseArray.length)
+          Math.floor(Math.random() * config.cheer.responseArray.length)
           ];
         createText(reply);
       } else {
@@ -407,11 +496,11 @@ getContributors();
 
 const getBlogs = async () => {
   config.blogs.forEach(async (blog) => {
-    try{
+    try {
       const rssConverter = `https://api.rss2json.com/v1/api.json?rss_url=${blog.url}`;
       const response = await fetch(rssConverter);
       const data = await response.json();
-      userBlogs.push({site:blog.site, items:data.items});
+      userBlogs.push({ site: blog.site, items: data.items });
     } catch (error) {
       console.log(error);
       // handling the error
@@ -426,24 +515,24 @@ const getBlogs = async () => {
 getBlogs();
 
 async function getGithubStats() {
-  try{  
+  try {
     const githubLink = config.social.find((c) => c.title.toLowerCase() === "github").link;
     const githubUsername =
       githubLink.split("/")[githubLink.split("/").length - 1];
     const responseRaw = await fetch(`https://api.github.com/users/${githubUsername}`);
     const response = await responseRaw.json();
-    githubStats = {...response, username:githubUsername}
-  } catch (error){
-      console.log(error);
-      // handling the error
-      githubStats = {
-        username : githubUsername,
-        bio : "_failed_to_fetch_",
-        public_repos : "_failed_to_fetch_",
-        public_gists : "_failed_to_fetch_",
-        followers : "_failed_to_fetch_",
-        following : "_failed_to_fetch_",
-      }
+    githubStats = { ...response, username: githubUsername }
+  } catch (error) {
+    console.log(error);
+    // handling the error
+    githubStats = {
+      username: githubUsername,
+      bio: "_failed_to_fetch_",
+      public_repos: "_failed_to_fetch_",
+      public_gists: "_failed_to_fetch_",
+      followers: "_failed_to_fetch_",
+      following: "_failed_to_fetch_",
+    }
   }
 }
 
