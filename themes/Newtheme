@@ -1,0 +1,84 @@
+:root {
+    --back-color: #000;
+    --primary-color: #F0F8FF;
+    --header-back: #FAEBD7 ;
+    --header-text: #7FFFD4;
+  }
+  
+  body {
+    background-color: var(--back-color);
+    color: var(--primary-color);
+  }
+  
+  header {
+    background-color: var(--header-back);
+    color: var(--header-text);
+  }
+  
+  .box img {
+    border: 2px solid var(--primary-color);
+  }
+
+  .menu { /* top bar */
+    background-color: blue;
+}
+
+.bottom-bar {
+    background-color: blue;
+}
+
+.bottom-name, .menu h1, .bottom-bar {
+    color:red ;
+}
+
+p {
+    color: #96905f;
+}
+
+
+
+
+h2 {
+    color: red;
+}
+
+
+#app { /* main content */
+    background-color: gray;
+}
+
+p.path { /* username */
+    color: black;
+}
+
+#app p { /* main text */
+    color: blue;
+}
+
+p.path span { /* sudo */
+    color: #b3534b;
+}
+
+p.path span + span { /* directory */
+    color: #476238;
+}
+
+.icone {
+    color: blue;
+}
+
+input {
+    color: red;
+}
+
+.error {
+    color: blue;
+}
+
+.container {
+    border: 1px solid white;
+}
+
+a {
+    color:blue;
+}
