@@ -28,7 +28,7 @@ Not Everyone is good at making attarctive GUI Elements. Some people rock at maki
 
   
 
-## Status
+## Status 
 
 I am currently using this as my default Portfolio.:sparkles:
   
