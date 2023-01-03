@@ -108,9 +108,12 @@ If you found a technical bug on Terminal Portfolio or have ideas for features we
 
 ## Open Source Programs
 <a href="https://hacktoberfest.com/">
-<img width="1200" alt="Email Banners-Dark" src="https://user-images.githubusercontent.com/79099734/189589410-ca17afb8-5855-4316-918a-054f27594809.png">
+<img width="1200" alt="Hacktoberfest22-Dark" src="https://user-images.githubusercontent.com/79099734/189589410-ca17afb8-5855-4316-918a-054f27594809.png">
 </a>
 
+<a href="https://swoc.getsocialnow.co/#/">
+<img width="1200" alt="SWOC S3" src="https://user-images.githubusercontent.com/76687985/210348430-920bfe20-90d9-471e-9b42-e3eec9205815.png">
+</a>
 
 ## Thanks to all Contributors 💪 
 
