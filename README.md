@@ -2,7 +2,7 @@
 <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F7E94C&center=true&vCenter=true&width=435&lines=Terminal+Portfolio;Fork+%7C+Star+%7C+Contribute" alt="Typing SVG" /></a>
 </div>
 
-![image](https://user-images.githubusercontent.com/76687985/193596855-55adedb2-a896-4d78-b4d5-860eb4282e05.png)
+![image](https://user-images.githubusercontent.com/76687985/210350014-65e73f81-4819-44ad-a182-3b8e7f584416.png)
 [see live here!](https://techspiritss.github.io/Terminal-Portfolio/)
  
 ### *Terminal Portfolio*
@@ -24,8 +24,7 @@
 
   
 
-Not Everyone is good at making attarctive GUI Elements. Some people rock at making CLI. This Project invites all those CLI Lovers to create a CLI Themed Portfolio :smiley:
-
+Terminal-Portfolio invites talented developers to create stunning, command-line themed portfolios to showcase their skills and work. Command-line interface is a powerful and efficient tool for developers, and this project aims to celebrate this through the creation of visually striking and intuitively designed web terminal.
   
 
 ## Status
