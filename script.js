@@ -56,8 +56,11 @@ app.addEventListener("keydown", async function (event) {
   }
   if (event.key === "ArrowUp") {
     if (count > 0) {
+      await delay(0.005);
       const input = document.querySelector("input");
       input.value = history[--count];
+      const end = input.value.length;
+      input.setSelectionRange(end, end);
     }
   }
   if (event.key === "ArrowDown") {
@@ -65,6 +68,10 @@ app.addEventListener("keydown", async function (event) {
       const input = document.querySelector("input");
       input.value = history[++count];
     } else {
+      
+      if (count === history.length - 1){
+        count++;
+      }
       const input = document.querySelector("input");
       input.value = "";
     }
