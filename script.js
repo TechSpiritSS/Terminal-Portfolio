@@ -5,6 +5,7 @@ const bodyContainer = document.querySelector("#bodyContainer");
 const greenButton = document.querySelector("#greenButton");
 const yellowButton = document.querySelector("#yellowButton");
 const redButton = document.querySelector("#redButton");
+const themeButton = document.querySelector("#themeButton");
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const history = [];
 const contributors = [];
@@ -41,6 +42,13 @@ yellowButton.addEventListener("click", () => {
     : bodyContainer.classList.add("minimized");
 });
 
+themeButton.addEventListener("click", () => {
+  const dropdown = document.getElementsByClassName("theme-switches")[0];
+  const close = document.getElementsByClassName("close")[0];
+  dropdown.classList.toggle('hide');
+  close.classList.toggle('hide');
+});
+
 redButton.addEventListener("click", () => {
   exit();
 });
@@ -68,8 +76,8 @@ app.addEventListener("keydown", async function (event) {
       const input = document.querySelector("input");
       input.value = history[++count];
     } else {
-      
-      if (count === history.length - 1){
+
+      if (count === history.length - 1) {
         count++;
       }
       const input = document.querySelector("input");

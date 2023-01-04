@@ -75,3 +75,11 @@ input {
 .container {
     border: 1px solid #000000;
 }
+
+.theme-dropdown{
+    color:white;
+}
+
+.close{
+    border : 1px solid white;
+}
