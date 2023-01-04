@@ -83,3 +83,8 @@ input {
 .close{
     border : 1px solid white;
 }
+
+.theme-switches{
+    background-color: #4b4343;
+    color: white;
+}

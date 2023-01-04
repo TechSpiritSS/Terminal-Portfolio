@@ -89,3 +89,8 @@ input {
 .close{
     border : 1px solid rgb(243, 255, 172);
 }
+
+.theme-switches{
+    background-color:  #000;
+    color: white;
+}
