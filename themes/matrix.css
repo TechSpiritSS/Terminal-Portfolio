@@ -81,3 +81,11 @@ input {
 * {
     font-family: "VT323", monospace;
 }
+
+.theme-dropdown{
+    color: rgb(232, 249, 131);
+}
+
+.close{
+    border : 1px solid rgb(243, 255, 172);
+}
