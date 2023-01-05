@@ -232,6 +232,42 @@ body {
   flex-grow: 1;
   flex-basis: 0;
 }
+@keyframes blinkanimation {
+  from{
+    width:0px;
+  }
+  to{
+    width :200px;
+  }
+}
+
+.blink{
+  display: block;
+  overflow: hidden;
+  animation: blinkanimation 0.8s linear infinite;
+  color: #3ec70b;
+  margin-left: 10px;
+}
+
+@keyframes on-off {
+  from{
+   z-index: -1;
+  }
+  to{
+    z-index:1;
+  }
+}
+
+.blink-dot{
+  display: inline-block;
+  position: relative;
+  margin:auto;
+  height:12px;
+  width:12px;
+  background-color: #00b14a;
+  border-radius: 50%;;
+  animation: on-off 1s linear infinite;
+}
 
 .red {
   background-color: rgb(204, 20, 20);
