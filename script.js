@@ -35,6 +35,7 @@ let commandsList = [
   "ipconfig",
   "contributors",
   "neofetch",
+  "download"
 ];
 
 let delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
