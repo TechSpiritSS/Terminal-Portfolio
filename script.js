@@ -6,6 +6,7 @@ const greenButton = document.querySelector("#greenButton");
 const yellowButton = document.querySelector("#yellowButton");
 const redButton = document.querySelector("#redButton");
 const themeButton = document.querySelector("#themeButton");
+const resumeUrl = "https://drive.google.com/u/0/uc?id=1J8QGMreVTsC-K-d5bpKV1BVNXxrCUYQa&export=download";
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const history = [];
 const contributors = [];
@@ -27,6 +28,7 @@ const commandsList = [
   "ipconfig",
   "contributors",
   "neofetch",
+  "download"
 ];
 
 greenButton.addEventListener("click", () => {
@@ -76,8 +78,8 @@ app.addEventListener("keydown", async function (event) {
       const input = document.querySelector("input");
       input.value = history[++count];
     } else {
-
-      if (count === history.length - 1) {
+      
+      if (count === history.length - 1){
         count++;
       }
       const input = document.querySelector("input");
@@ -240,6 +242,7 @@ async function getInputValue() {
       createCode("ipconfig", "to see your IP details");
       createCode("github", "to see my github stats");
       createCode("contributors", "to see all the contributors");
+      createCode("download", "to download my pdf resume");
       break;
     case "neofetch":
       neofetch();
@@ -352,6 +355,10 @@ async function getInputValue() {
         );
       });
       break;
+      case "download":
+        trueValue(value);
+        downloadFile();
+        break;
 
     case "clear":
     case "cls":
@@ -403,6 +410,21 @@ async function getInputValue() {
       }
   }
 }
+
+function downloadFile(){
+  let link = document.createElement("a");
+  link.href = resumeUrl;
+  link.click();
+  const p = document.createElement("p");
+
+  p.innerHTML = "<span class='blink'>###############<span/>";
+  app.appendChild(p);
+  setTimeout(()=>{
+    app.removeChild(p);
+  },2500);
+  document.body.removeChild(link);
+}
+
 
 function trueValue(value) {
   const div = document.createElement("section");
