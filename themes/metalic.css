@@ -78,3 +78,8 @@ input {
 .close{
     border : 1px solid white;
 }
+
+.theme-switches{
+    background-color: #3f545a;
+    color: white;
+  }
