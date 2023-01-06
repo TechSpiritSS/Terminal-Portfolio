@@ -17,11 +17,11 @@ const resumeUrl = "https://drive.google.com/u/0/uc?id=1J8QGMreVTsC-K-d5bpKV1BVNX
 //Defining the functions
 function neofetch() {
     const data = {
-      name: "Shethi Sidharth",
-      title: "developer",
-      skills: "Frontend, Backend",
+      name: "Sidharth Sethi",
+      title: "MERN Developer",
+      skills: "Frontend, Backend, Cloud",
       shell: "zsh",
-      langauges: "Javascript, Python, CSS, DB",
+      langauges: "Javascript, C++, HTML/CSS, SQL",
     };
     const container = document.createElement("div");
     container.classList.add("fetch-container");
