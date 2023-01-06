@@ -53,6 +53,8 @@ async function getInputValue(history) {
     const a = val.split(' ')
     const flag = a[1]
     const value = a[0]
+    const flags = [...a]
+    flags.shift(); // removes the first element
     if (value.substring(0, 5) === "cheer") {
       value.substring(0, 5).toLowerCase();
     } else {
@@ -77,6 +79,7 @@ async function getInputValue(history) {
         createCode("github", "to see my github stats");
         createCode("contributors", "to see all the contributors");
         createCode("download", "to download my pdf resume");
+        createCode("calc","to evaluate an expression, for eg: (2 + 3)");
         break;
       case "neofetch":
         neofetch();
@@ -228,6 +231,9 @@ async function getInputValue(history) {
         trueValue(value);
         createText("There's no directory in this path");
         break;
+      case "calc":
+        calc(flags.join(""));
+        break;
       case "exit":
         window.close();
       default:
@@ -323,6 +329,20 @@ function downloadFile(){
   document.body.removeChild(link);
 }
 
+function calc(flag){
+  try{
+    if(flag === "" || flag === " " || flag === undefined){
+      falseValue(flag);
+      createText("Please Enter a Valid Expression");
+    }else{
+      trueValue(flag);
+      createText(flag + " = " + eval(flag));
+    }
+  }catch(e){
+    falseValue(flag);
+    createText(flag + " is an Invalid Expression");
+  }
+}
 
 export {
   // all functions exported
@@ -335,5 +355,6 @@ export {
     falseValue,
     createText,
     createCode,
-    downloadFile
+    downloadFile,
+    calc
 }
