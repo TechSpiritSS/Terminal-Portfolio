@@ -19,7 +19,8 @@ import {
   falseValue,
   createText,
   createCode,
-  downloadFile
+  downloadFile,
+  calc
 } from "./scripts/functions.js";
 
 import { setTheme} from "./scripts/themeSetter.js";
