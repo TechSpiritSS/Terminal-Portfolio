@@ -25,8 +25,9 @@ import {
 
 import { setTheme} from "./scripts/themeSetter.js";
 
-let commandsList = [
+export let commandsList = [
   "help",
+  "ls",
   "clear",
   "about",
   "social",
@@ -36,8 +37,10 @@ let commandsList = [
   "ipconfig",
   "contributors",
   "neofetch",
-  "download"
+  "download",
+  "calc"
 ];
+
 
 let delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
