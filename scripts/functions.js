@@ -9,6 +9,7 @@ import { fetchGithubSocialStats, fetchLinkedInStats, fetchLeetCodeStats, fetchGi
     ranking, totalSolved, easySolved, mediumSolved, hardSolved,
    } from "./fetchStats.js";
 import { getContributors, getBlogs, getIPDetails, getRepo, contributors, userBlogs, IpDetails, userRepos} from "./getDetails.js";
+import { suggestFurtherCommand } from "./compare.js";
 
 const app = document.querySelector("#app");
 let delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -247,6 +248,8 @@ async function getInputValue(history) {
         } else {
           falseValue(value);
           createText(`${value} is not a valid command`);
+          let commands = suggestFurtherCommand(value);
+          createText("Are you looking for these: " + commands);
         }
     }
 }
