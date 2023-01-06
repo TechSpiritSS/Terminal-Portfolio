@@ -68,14 +68,7 @@ function levenshteinDistance(str1 = '', str2 = ''){
         similarityList.push([compareTwoStrings(inputString,commandsList[i]) - (levenshteinDistance(inputString,commandsList[i])/100),commandsList[i]])
     }
     similarityList.sort((a, b) => a[0] - b[0]).reverse();
-    let outputString = "";
-    for(let i=0;i<5;++i){
-        if(i === 4)
-        outputString = outputString + similarityList[i][1];
-        else
-        outputString = outputString + similarityList[i][1] + ", ";
-    }
-    return outputString;
+    return similarityList[0][1];
  }
 
 

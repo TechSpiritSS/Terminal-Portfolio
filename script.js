@@ -38,7 +38,10 @@ export let commandsList = [
   "contributors",
   "neofetch",
   "download",
-  "calc"
+  "calc",
+  "blog",
+  "contact",
+  "github"
 ];
 
 

@@ -249,7 +249,7 @@ async function getInputValue(history) {
           falseValue(value);
           createText(`${value} is not a valid command`);
           let commands = suggestFurtherCommand(value);
-          createText("Are you looking for these: " + commands);
+          createText("Are you looking for this: " + commands);
         }
     }
 }
