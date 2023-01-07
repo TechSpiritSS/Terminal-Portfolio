@@ -19,13 +19,15 @@ import {
   falseValue,
   createText,
   createCode,
-  downloadFile
+  downloadFile,
+  calc
 } from "./scripts/functions.js";
 
 import { setTheme} from "./scripts/themeSetter.js";
 
-let commandsList = [
+export let commandsList = [
   "help",
+  "ls",
   "clear",
   "about",
   "social",
@@ -35,8 +37,13 @@ let commandsList = [
   "ipconfig",
   "contributors",
   "neofetch",
-  "download"
+  "download",
+  "calc",
+  "blog",
+  "contact",
+  "github"
 ];
+
 
 let delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 

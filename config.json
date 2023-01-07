@@ -18,7 +18,7 @@
             "That's so good to hear! I'm glad😍😍😍"
         ]
     },
-    "about": "I am a Web Developer with a good knowledge of Data Structures and Algorithms along with SQL. I am currently Google DSC Lead, CodeChef Chapter Event Lead, and Co-Founder of Algoders Community at my Campus. I have 3-star rating at CodeChef. In 2022 I am learning MERN Stack and I am planning to work as a Full-Stack Developer.",
+    "about": "🎓 Aspiring software engineer with strong foundation in computer science and engineering, gained through BE degree program and hands-on experience with various technologies. (Graduating July 2024) \n 🌇 Proficient in MERN stack, data structures and algorithms, SQL, and Google Cloud Platform. Demonstrated expertise in these technologies through successful projects and 300+ day badge on LeetCode. \n 📚 Active member of tech community, serving as lead for multiple organizations including GDSC, CodeChef Chapter, and Algoders Community. Contributed to growth and success of these organizations through leadership and technical skills. \n 💻 Constantly seeking opportunities to grow and improve skills, with long-term goal of becoming a software development engineer. As a Google Venkat Scholar, demonstrated commitment to excellence and potential to succeed in tech industry.",
     "social": [
         {
             "title": "Github",
@@ -41,6 +41,11 @@
         }
     ],
     "projects": [
+        {
+            "title": "S Movies",
+            "link": "https://s-movies-react.netlify.app/",
+            "description": "This is a full fledged movie web app with profile and recommendations system. I am using ESLint configurations for clean code."
+        },
         {
             "title": "MyChabi",
             "link": "https://techspiritss.github.io/MyChabi/",
@@ -73,6 +78,6 @@
         }
     ],
     "contact": {
-        "email": "sidharth.sherry@gmail.com"
+        "email": "techspiritss@duck.com"
     }
 }
