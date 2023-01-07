@@ -245,9 +245,10 @@ async function getInputValue(history) {
             trueValue(value);
             createText("My Work Experience:");
             config.experience.forEach((item) => {
-                createText(
-                    `<a>${item.title}</a> - ${item.description}`
-                );
+                // createText(
+                createText(`<a>${item.title}</a>`);
+                createText(`${item.description}`);
+                // );
             });
             break;
 
