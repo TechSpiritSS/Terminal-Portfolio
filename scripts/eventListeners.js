@@ -13,6 +13,7 @@ import {
   createCode,
   downloadFile
 } from "./functions.js";
+import { commandsList } from "../script.js";
 
 const app = document.querySelector("#app");
 let delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
