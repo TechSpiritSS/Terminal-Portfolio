@@ -17,8 +17,8 @@ import { commandsList } from "../script.js";
 
 const app = document.querySelector("#app");
 let delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-let history = [];
-let count = 0;
+let history = JSON.parse(localStorage.getItem("history")) || [];
+let count = history.length;
 
 //Event listeners added to app
 app.addEventListener("keydown", async function (event) {
