@@ -1,0 +1,81 @@
+:root {
+    --back-color: #a2e0fa;
+    --primary-color: #60058a;
+    --header-back: #6d8bbb;
+    --header-text: rgb(143, 237, 239);
+  }
+  
+  body {
+    background-color: var(--back-color);
+    color: var(--primary-color);
+  }
+  
+  header {
+    background-color: var(--header-back);
+    color: var(--header-text);
+  }
+  
+  .box img {
+    border: 2px solid var(--primary-color);
+  }
+
+  .menu { /* top bar */
+    background-color: #99ecf1;
+}
+
+.bottom-bar {
+    background-color: #b6e8f3;
+}
+
+.bottom-name, .menu h1, .bottom-bar {
+    color: #ee6d6d;
+}
+
+p {
+    color: #6203a1;
+}
+
+h2 {
+    color: #551686;
+}
+
+
+#app { /* main content */
+    background-color: #c2e8ed;
+}
+
+p.path { /* username */
+    color: #ff589b !important;
+}
+
+#app p { /* main text */
+    color: #9d0789;
+}
+
+p.path span { /* sudo */
+    color: #4858ea;
+}
+
+p.path span + span { /* directory */
+    color: #547443;
+}
+
+.icone {
+    color: #81b6bc;
+}
+
+input {
+    color: #81b6bc;
+}
+
+.error {
+    color: #ff1249;
+}
+
+.container {
+    border: 1px solid #000000;
+}
+
+a {
+    color: #ff4d12;
+}

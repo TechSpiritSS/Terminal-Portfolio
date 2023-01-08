@@ -13,8 +13,13 @@ const IpDetails = [];
 const userRepos = [];
 let githubStats = {};
 var count = 0;
-var followers = 0, following = 0;
-var ranking = 0, totalSolved = 0, easySolved = 0, mediumSolved = 0, hardSolved = 0;
+var followers = 0,
+  following = 0;
+var ranking = 0,
+  totalSolved = 0,
+  easySolved = 0,
+  mediumSolved = 0,
+  hardSolved = 0;
 const commandsList = [
   "help",
   "clear",
@@ -145,16 +150,20 @@ async function fetchGithubStats() {
   const githubLink = config.social.find((c) => c.title === "Github").link;
   const githubUsername =
     githubLink.split("/")[githubLink.split("/").length - 1];
-  const responseRaw = await fetch(
-    `https://api.github.com/users/${githubUsername}`
-  );
-  const response = await responseRaw.json();
+  try {
+    const responseRaw = await fetch(
+      `https://api.github.com/users/${githubUsername}`
+    );
+    const response = await responseRaw.json();
 
-  createText(`Github Bio: ${response.bio}`);
-  createText(`Number of repositories : ${response.public_repos}`);
-  createText(`Number of gists: ${response.public_gists}`);
-  createText(`Number of followers: ${response.followers}`);
-  createText(`Number of following: ${response.following}`);
+    createText(`Github Bio: ${response.bio}`);
+    createText(`Number of repositories : ${response.public_repos}`);
+    createText(`Number of gists: ${response.public_gists}`);
+    createText(`Number of followers: ${response.followers}`);
+    createText(`Number of following: ${response.following}`);
+  } catch (err) {
+    console.log(err);
+  }
 }
 async function fetchGithubSocialStats() {
   const githubLink = config.social.find((c) => c.title === "Github").link;
@@ -164,43 +173,52 @@ async function fetchGithubSocialStats() {
     `https://api.github.com/users/${githubUsername}`
   );
   const response = await responseRaw.json();
-  followers = response.followers
-  following = response.following
+  followers = response.followers;
+  following = response.following;
 }
-async function fetchLinkedInStats() {
-  const Linkedinkink = config.social.find((c) => c.title === "LinkedIn").link;
-  const LinkedinUsername =
-    Linkedinkink.split("/")[Linkedinkink.split("/").length - 1];
-  const responseRaw = await fetch(
-    `https://api.linkedin.com/v2/connections?q=viewer&projection=(paging)`
-  );
-  const response = await responseRaw.json();
-  connections = response.connections
-}
+// async function fetchLinkedInStats() {
+//   const Linkedinkink = config.social.find((c) => c.title === "LinkedIn").link;
+//   const LinkedinUsername =
+//     Linkedinkink.split("/")[Linkedinkink.split("/").length - 1];
+//   try {
+//     const responseRaw = await fetch(
+//       `https://api.linkedin.com/v2/connections?q=viewer&projection=(paging)`
+//     );
+//     const response = await responseRaw.json();
+//     connections = response.connections;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
 
 async function fetchLeetCodeStats() {
   const leetcodelink = config.social.find((c) => c.title === "LeetCode").link;
   const leetcodeusername =
     leetcodelink.split("/")[leetcodelink.split("/").length - 1];
-  const responseRaw = await fetch(
-    `https://leetcode-stats-api.herokuapp.com/${leetcodeusername}`
-  );
-  const response = await responseRaw.json();
-  totalSolved = response.totalSolved
-  easySolved = response.easySolved
-  mediumSolved = response.mediumSolved
-  hardSolved = response.hardSolved
-  ranking = response.ranking
+  try {
+    const response = await fetch(
+      `https://leetcode-stats-api.herokuapp.com/${leetcodeusername}`
+    );
+    const data = response.json();
+
+    totalSolved = data.totalSolved;
+    easySolved = data.easySolved;
+    mediumSolved = data.mediumSolved;
+    hardSolved = data.hardSolved;
+    ranking = data.ranking;
+  } catch (err) {
+    console.log(err);
+  }
 }
-fetchGithubSocialStats()
-fetchLinkedInStats()
-fetchLeetCodeStats()
+fetchGithubSocialStats();
+// fetchLinkedInStats();
+fetchLeetCodeStats();
 
 async function getInputValue() {
   const val = document.querySelector("input").value.trim().toLowerCase();
-  const a = val.split(' ')
-  const flag = a[1]
-  const value = a[0]
+  const a = val.split(" ");
+  const flag = a[1];
+  const value = a[0];
   if (value.substring(0, 5) === "cheer") {
     value.substring(0, 5).toLowerCase();
   } else {
@@ -216,7 +234,10 @@ async function getInputValue() {
       createCode("help", "for a list of commands");
       createCode("clear", "to clear the terminal");
       createCode("about", "to learn more about me");
-      createCode("social", "to see my social links (add flags '-l' for links and '-d' for detailed results)");
+      createCode(
+        "social",
+        "to see my social links (add flags '-l' for links and '-d' for detailed results)"
+      );
       createCode("projects", "to see my projects");
       createCode("blogs", "to see my recent blogs");
       createCode("contact", "to enquire about my services");
@@ -236,16 +257,15 @@ async function getInputValue() {
       break;
 
     case "social":
-      if (flag == '-l') {
-        trueValue(val)
+      if (flag == "-l") {
+        trueValue(val);
         config.social.forEach((item) => {
           createText(`${item.title} :- <a href=${item.link} target="_blank">${item.link}</a>
           `);
         });
         break;
-      }
-      else if (flag == '-d') {
-        trueValue(val)
+      } else if (flag == "-d") {
+        trueValue(val);
         config.social.forEach((item) => {
           createText(`${item.title} Link :- <a href=${item.link} target="_blank">${item.link}</a>
           `);
@@ -253,12 +273,14 @@ async function getInputValue() {
             createText(`Number of followers: ${followers}`);
             createText(`Number of following: ${following}`);
           }
-          if (item.title == "LinkedIn") {
-            createText(`Connections :- ${connections}`);
-          }
+          //   if (item.title == "LinkedIn") {
+          //     createText(`Connections :- ${connections}`);
+          //   }
           if (item.title == "LeetCode") {
             createText(`Problems Solved: ${totalSolved}`);
-            createText(`Distribution:- Easy:${easySolved} Medium:${mediumSolved} Hard:${hardSolved}`);
+            createText(
+              `Distribution:- Easy:${easySolved} Medium:${mediumSolved} Hard:${hardSolved}`
+            );
             createText(`Ranking: ${ranking}`);
           }
 
@@ -297,7 +319,8 @@ async function getInputValue() {
         createText(`${blog.site}: `);
         blog.items.forEach((item, index) => {
           createText(
-            `<a href="${item.link}" target="_blank">${index + 1}. ${item.title
+            `<a href="${item.link}" target="_blank">${index + 1}. ${
+              item.title
             }</a>`
           );
         });
@@ -327,12 +350,15 @@ async function getInputValue() {
       trueValue(value);
       userRepos[0].forEach((repo, index) => {
         createText(
-          `- repo_${index} name: <a href=${repo.html_url}>${repo.name
-          }</a> | language: ${repo.language === null ? "no language" : repo.language
+          `- repo_${index} name: <a href=${repo.html_url}>${
+            repo.name
+          }</a> | language: ${
+            repo.language === null ? "no language" : repo.language
           }`
         );
         createText(
-          `_ description: ${repo.description === null ? "no description." : repo.description
+          `_ description: ${
+            repo.description === null ? "no description." : repo.description
           }`
         );
       });
@@ -379,7 +405,7 @@ async function getInputValue() {
         trueValue(value);
         const reply =
           config.cheer.responseArray[
-          Math.floor(Math.random() * config.cheer.responseArray.length)
+            Math.floor(Math.random() * config.cheer.responseArray.length)
           ];
         createText(reply);
       } else {
@@ -516,12 +542,16 @@ getBlogs();
 
 async function getGithubStats() {
   try {
-    const githubLink = config.social.find((c) => c.title.toLowerCase() === "github").link;
+    const githubLink = config.social.find(
+      (c) => c.title.toLowerCase() === "github"
+    ).link;
     const githubUsername =
       githubLink.split("/")[githubLink.split("/").length - 1];
-    const responseRaw = await fetch(`https://api.github.com/users/${githubUsername}`);
+    const responseRaw = await fetch(
+      `https://api.github.com/users/${githubUsername}`
+    );
     const response = await responseRaw.json();
-    githubStats = { ...response, username: githubUsername }
+    githubStats = { ...response, username: githubUsername };
   } catch (error) {
     console.log(error);
     // handling the error
@@ -532,7 +562,7 @@ async function getGithubStats() {
       public_gists: "_failed_to_fetch_",
       followers: "_failed_to_fetch_",
       following: "_failed_to_fetch_",
-    }
+    };
   }
 }
 
@@ -590,35 +620,58 @@ getRepo();
 
 // Themes Switcher
 
-let switches = document.getElementsByClassName("switch");
-
+let switches = document.querySelectorAll(".switch");
+console.log(switches);
 let style = localStorage.getItem("style");
-
+console.log(style);
 if (style == null) {
   setTheme("default");
 } else {
   setTheme(style);
 }
 
-for (let i of switches) {
-  i.addEventListener("click", function () {
-    let theme = this.dataset.theme;
-    setTheme(theme);
-  });
-}
+
+const togglerInp = document.querySelector("#togglerInp");
+
+//Theme based on mode
+
+const modeToggler = document.querySelector(".toggler");
+modeToggler.addEventListener("click", function(e){
+	togglerInp.classList.toggle("togglerInp");
+	console.log(true)
+  for (let i of switches) {
+    i.classList.toggle("hide");
+  }
+  e.preventDefault();
+  console.log("hhii");
+});
 
 function setTheme(theme) {
-  if (theme == "nature") {
-    document.getElementById("switcher-id").href = "./themes/nature.css";
-  } else if (theme == "sky") {
-    document.getElementById("switcher-id").href = "./themes/sky.css";
-  } else if (theme == "matrix") {
-    document.getElementById("switcher-id").href = "./themes/matrix.css";
-  } else if (theme == "metalic") {
-    document.getElementById("switcher-id").href = "./themes/metalic.css";
-  } else if (theme == "default") {
-    document.getElementById("switcher-id").href = "./themes/default.css";
+  switch (theme) {
+    case "nature":
+      document.getElementById("switcher-id").href = "./themes/nature.css";
+      break;
+    case "sky":
+      document.getElementById("switcher-id").href = "./themes/sky.css";
+      break;
+    case "matrix":
+      document.getElementById("switcher-id").href = "./themes/matrix.css";
+      break;
+    case "metalic":
+      document.getElementById("switcher-id").href = "./themes/metalic.css";
+      break;
+	case "light":
+	  document.getElementById("switcher-id").href = "./themes/light.css";
+	  break;
+    default:
+      document.getElementById("switcher-id").href = "./themes/default.css";
   }
 
+  for (let i of switches) {
+    i.addEventListener("click", function () {
+      let theme = this.dataset.theme;
+      setTheme(theme);
+    });
+  }
   localStorage.setItem("style", theme);
 }
