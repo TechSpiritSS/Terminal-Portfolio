@@ -43,7 +43,8 @@ export let commandsList = [
     "blog",
     "contact",
     "github",
-    "experience"
+    "experience",
+    "skills"
 ];
 
 

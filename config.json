@@ -89,5 +89,15 @@
             "title": "Google Venkat Panchapakesan Memorial Scholar 2022",
             "description": "One of the 14 awardees of this prestigious scholarship across India, which recognizes ‘Upcoming Computer Scientists and Technology Leaders who wish to give back to society. The scholarship included a substantial amount as well as a virtual retreat by Google, wherein we met the Googlers, Scholarship Alumni, Prominent Leaders at Google and YouTube."
         }
+    ],
+    "skills": [
+        {
+            "title": "Technical skills are: ",
+            "description": "Front-End Development, C++, C, MySQL, Linux, SQL, Node.js, MongoDB, JSON, DSA, OOP, Problem Solving."
+        },
+        {
+            "title": "Other Skills are:",
+            "description": "Team Leadership, Community Management, Team Building, Community Development, Team Management, Microsoft Word, Microsoft Powerpoint, Communication."
+        }
     ]
 }

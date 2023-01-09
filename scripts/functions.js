@@ -83,6 +83,7 @@ async function getInputValue(history) {
             createCode("download", "to download my pdf resume");
             createCode("calc", "to evaluate an expression, for eg: (2 + 3)");
             createCode("experience", "to see my work experience");
+            createCode("skills", "to see my skills");
             break;
         case "neofetch":
             neofetch();
@@ -174,10 +175,16 @@ async function getInputValue(history) {
             trueValue(value);
             createText("My Work Experience:");
             config.experience.forEach((item) => {
-                // createText(
                 createText(`<a>${item.title}</a>`);
                 createText(`${item.description}`);
-                // );
+            });
+            break;
+
+        case "skills":
+            trueValue(value);
+            config.skills.forEach((item) => {
+                createText(`<a>${item.title}</a>`);
+                createText(`${item.description}`);
             });
             break;
 
