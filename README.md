@@ -90,7 +90,7 @@ Now you know some basic terms, let's get into how to get started with some resou
 
 ## How to make a Pull Request?
 
-**1.** Start by forking the [**Weather_Detector**](https://github.com/TechSpiritSS/Terminal-Portfolio) repository. Click on the <a href="https://github.com/TechSpiritSS/Terminal-Portfolio/fork"><img src="https://i.imgur.com/G4z1kEe.png" height="21" width="21"></a> symbol at the top right corner.
+**1.** Start by forking the [**Terminal-Portfolio**](https://github.com/TechSpiritSS/Terminal-Portfolio) repository. Click on the <a href="https://github.com/TechSpiritSS/Terminal-Portfolio/fork"><img src="https://i.imgur.com/G4z1kEe.png" height="21" width="21"></a> symbol at the top right corner.
 
 **2.** Clone your forked repository:
 
@@ -101,7 +101,7 @@ git clone https://github.com/<your-github-username>/Terminal-Portfolio.git
 **3.** Navigate to the new project directory:
 
 ```bash
-cd Weather_Detector
+cd Terminal-Portfolio
 ```
 
 **4.** Set upstream command:
