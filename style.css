@@ -104,8 +104,8 @@
   border: 2px solid black;
   border-radius: 50px;
   height: 30px;
-  width: 30px;
-  margin: 10px;
+  width: 2rem;
+  margin: 1.4rem;
   cursor: pointer;
 }
 
@@ -208,10 +208,10 @@ body {
   display: flex;
   align-items: center;
   text-align: center;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100%;
   min-height: 45px;
-  height: 45px;
+  height: 2rem;
   background-color: #faa094ff;
   padding: 0 6px;
   cursor: default;
@@ -289,6 +289,10 @@ div.title {
 .menu h1 {
   font-size: 20px;
   color: #000000;
+  position: relative;
+  top: 0.1rem;
+  right: 57px;
+  
 }
 
 @media (max-width: 1150px) {
@@ -303,11 +307,26 @@ div.title {
   }
 }
 @media (max-width: 700px) {
+  .menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .menu h1{
+    font-size: 20px;
+    right: 2rem;
+    
+  }
   .theme-switches {
     right: 4rem;
   }
 }
 @media (max-width: 580px) {
+  .menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .theme-switches {
     right: 2rem;
   }
@@ -317,6 +336,17 @@ div.title {
 }
 
 @media (max-width: 500px) {
+  .menu{
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+  }
+  .menu h1{
+    font-size: 20px;
+    top: 0.1rem;
+    left: -2rem;
+  }
   .button-flex {
     position: unset;
     display: flex;
@@ -339,7 +369,14 @@ div.title {
   }
 }
 
-@media (max-width: 350px) {
+@media(max-width: 410px){
+  .menu h1{
+    top: -0.5rem;
+    left: -1rem;
+  }
+}
+
+@media (max-width: 380px) {
   .menu h1 {
     display: none;
   }
