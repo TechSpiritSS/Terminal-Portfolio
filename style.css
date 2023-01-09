@@ -327,6 +327,11 @@ div.title {
     justify-content: center;
     align-items: center;
   }
+  .menu h1{
+    font-size: 20px;
+    top: -0.7rem;
+    left: -2rem;
+  }
   .theme-switches {
     right: 2rem;
   }
@@ -344,7 +349,7 @@ div.title {
   }
   .menu h1{
     font-size: 20px;
-    top: 0.1rem;
+    top: -0.7rem;
     left: -2rem;
   }
   .button-flex {
@@ -371,7 +376,7 @@ div.title {
 
 @media(max-width: 410px){
   .menu h1{
-    top: -0.5rem;
+    top: -0.8rem;
     left: -1rem;
   }
 }

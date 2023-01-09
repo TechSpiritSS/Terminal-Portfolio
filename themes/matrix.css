@@ -23,6 +23,7 @@
 
   .menu { /* top bar */
     background-color: black;
+    
 }
 
 .bottom-bar {
@@ -71,7 +72,7 @@ input {
 }
 
 .error {
-    background-color: #;
+    background-color: lime;
 }
 
 .container {
@@ -94,3 +95,6 @@ input {
     background-color:  #000;
     color: white;
 }
+
+
+  
