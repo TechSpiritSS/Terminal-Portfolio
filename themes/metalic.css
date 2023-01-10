@@ -29,6 +29,7 @@ header {
 
 .menu h1 {
     color: #f9ffee;
+    
 }
 
 .bottom-name, .bottom-bar {
@@ -63,13 +64,13 @@ p.path span + span {
     color: #6e94ad;
 }
 
-input {
+/*input {
     background-color: #;
 }
 
 .error {
     background-color: #;
-}
+}*/
 
 .container {
     border: 1px solid #000000;
@@ -83,3 +84,5 @@ input {
     background-color: #3f545a;
     color: white;
   }
+
+ 
