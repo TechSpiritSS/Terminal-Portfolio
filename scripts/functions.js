@@ -11,6 +11,7 @@ import {
 } from "./fetchStats.js";
 import { getContributors, getBlogs, getIPDetails, getRepo, contributors, userBlogs, IpDetails, userRepos } from "./getDetails.js";
 import { suggestFurtherCommand } from "./compare.js";
+import { commandHistory, saveHistory, clearHistory, popInvalidCommand } from "./history.js";
 
 const app = document.querySelector("#app");
 let delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -52,6 +53,7 @@ function removeNeoFetch() {
 
 async function getInputValue(history) {
     const val = document.querySelector("input").value.trim().toLowerCase();
+    saveHistory(val);
     const a = val.split(' ')
     const flag = a[1]
     const value = a[0]
@@ -84,6 +86,7 @@ async function getInputValue(history) {
             createCode("calc", "to evaluate an expression, for eg: (2 + 3)");
             createCode("experience", "to see my work experience");
             createCode("skills", "to see my skills");
+            createCode("history","shows the last 10 valid commands performed, use --clear flag to clear the history");
             break;
         case "neofetch":
             neofetch();
@@ -213,6 +216,7 @@ async function getInputValue(history) {
                 );
             });
             break;
+            
         case "download":
             trueValue(value);
             downloadFile();
@@ -259,7 +263,15 @@ async function getInputValue(history) {
             break;
         case "exit":
             window.close();
-
+        case "history":
+            if(flag === "--clear")
+            clearHistory();
+            else
+            commandHistory();
+            break;
+        case "exit":
+            window.close();
+       
         default:
             if (value.substring(0, 5) === "cheer") {
                 trueValue(value);
@@ -270,6 +282,7 @@ async function getInputValue(history) {
                 createText(reply);
             } else {
                 falseValue(value);
+                popInvalidCommand();
                 createText(`${value} is not a valid command`);
                 let commands = suggestFurtherCommand(value);
                 createText("Are you looking for this: " + commands);

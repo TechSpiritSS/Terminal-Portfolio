@@ -1,3 +1,5 @@
+<a name="readme-top"></a>
+
 <div align="center">
 <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F7E94C&center=true&vCenter=true&width=435&lines=Terminal+Portfolio;Fork+%7C+Star+%7C+Contribute" alt="Typing SVG" /></a>
 </div>
@@ -41,14 +43,25 @@ I am currently using this as my default Portfolio.:sparkles:
   - [Codebase](#codebase)
     - [Technologies](#technologies)
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Codebase
 
 
 ### Technologies
-
+<p align="center">
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1200px-HTML5_logo_and_wordmark.svg.png" alt="HTML" width="100">
+  </a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/1200px-CSS3_logo_and_wordmark.svg.png" alt="CSS" width="100">
+  </a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png" alt="JavaScript" width="100">
+  </a>
+  </p>
+  
 **Frontend HTML/CSS/JS**: Almost all of the code you'll touch in this codebase will be HTML, CSS or JavaScript. 
-<img  src="http://3con14.biz/code/_data/js/intro/js-logo.png"  alt="JS"  width="30"  height="30">
 
 ## How to get started with Open Source
 Here's a quick run down on how to get started with open source, first of all let's know some basic terminologies:
@@ -66,13 +79,116 @@ Now you know some basic terms, let's get into how to get started with some resou
 - [A complete Guide to Open Source](https://www.youtube.com/watch?v=yzeVMecydCE) - Video
 - [Guide to Open Source](https://www.freecodecamp.org/news/how-to-contribute-to-open-source-projects-beginners-guide/) - Article
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Contributing
 
-  
+- Take a look at the existing [Issues](https://github.com/TechSpiritSS/Terminal-Portfolio/issues) 
+- Fork the Repo create a branch for any issue that you are working on and commit your work.
+- Create a ** [Pull Request](https://github.com/TechSpiritSS/Terminal-Portfolio/pulls), which will be promptly reviewed and given suggestions for improvements by the community.
+- Add screenshots or screen captures to your Pull Request to help us understand the effects of the changes that are included in your commits.
+
+## How to make a Pull Request?
+
+**1.** Start by forking the [**Terminal-Portfolio**](https://github.com/TechSpiritSS/Terminal-Portfolio) repository. Click on the <a href="https://github.com/TechSpiritSS/Terminal-Portfolio/fork"><img src="https://i.imgur.com/G4z1kEe.png" height="21" width="21"></a> symbol at the top right corner.
+
+**2.** Clone your forked repository:
+
+```bash
+git clone https://github.com/<your-github-username>/Terminal-Portfolio.git
+```
+
+**3.** Navigate to the new project directory:
+
+```bash
+cd Terminal-Portfolio
+```
+
+**4.** Set upstream command:
+
+```bash
+git remote add upstream https://github.com/TechSpiritSS/Terminal-Portfolio.git
+```
+
+**5.** Create a new branch:
+
+```bash
+git checkout -b YourBranchName
+```
+<i>or</i>
+```bash
+git branch YourBranchName
+git switch YourBranchName
+``` 
+
+**6.** Sync your fork or local repository with the origin repository:
+
+- In your forked repository click on "Fetch upstream"
+- Click "Fetch and merge".
+
+### Alternatively, Git CLI way to Sync forked repository with origin repository:
+
+```bash
+git fetch upstream
+```
+
+```bash
+git merge upstream/main
+```
+
+### [Github Docs](https://docs.github.com/en/github/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-on-github) for Syncing
+
+**7.** Make your changes to the source code.
+
+**8.** Stage your changes and commit:
+
+⚠️ **Make sure** not to commit `package.json` or `package-lock.json` file
+
+⚠️ **Make sure** not to run the commands ```git add .``` or ```git add *```. Instead, stage your changes for each file/folder
+
+```bash
+git add file/folder
+```
+
+```bash
+git commit -m "<your_commit_message>"
+```
+
+**9.** Push your local commits to the remote repository:
+
+```bash
+git push origin YourBranchName
+```
+
+**10.** Create a [Pull Request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)!
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Alternatively to create a Pull Request using GitHub Desktop:
+
+1. Open GitHub Desktop and log in to your GitHub account.
+
+2. Make sure you are on the "Current Repository" view. If not, go to "File" and select "Add Local Repository" to add your repository.
+
+3. In the "Current Repository" view, ensure you are on the branch that you want to submit a pull request for. If you're not on the correct branch, use the "Branch" menu to switch to the correct branch.
+
+4. Once you're on the correct branch, make your changes and commit them to the branch. You can do this by clicking the "+" button in the upper-left corner of the GitHub Desktop window, making your changes, and then entering a commit message.
+
+5. After you've made your changes and committed them, click the "Push origin" button in the top-right corner of the GitHub Desktop window. This will push your changes to the remote repository on GitHub.
+
+6. Now, go to the GitHub website, navigate to your fork of the repository, and you should see a button to "Compare & pull request" between your fork and the original repository, click on it.
+
+7. On the pull request page, you can review your changes and add any additional information, such as a title and a description, that you want to include with your pull request.
+
+8. Once you're satisfied with your pull request, click the "Create pull request" button to submit it.
+
+**Note:** In order to create a pull request, you must have a fork of the original repository in your GitHub account and you must have made the changes in that forked repository.
+
+
+## **Congratulations!** You've made your first contribution! 🙌🏼
 
 **We heartily welcome any and all contributions that match our engineering standards! :raised_hands:**
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
   
 ## Ground Rules
 
@@ -103,7 +219,7 @@ If you found a technical bug on Terminal Portfolio or have ideas for features we
 - If you want to contribute but are unsure to start, we have [a "good first issue" label](https://github.com/TechSpiritSS/Terminal-Portfolio/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) which is applied to newcomer-friendly issues. Take a look at [the full list of good first issues](https://github.com/TechSpiritSS/Terminal-Portfolio/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) and pick something you like!
 - Want to fix a bug or implement an agreed-upon feature? Great, jump to the [local setup instructions](#first-time-setup)!
 
- 
+ <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Open Source Programs
 <a href="https://hacktoberfest.com/">
@@ -125,6 +241,5 @@ Thanks a lot for spending your time helping Terminal Portfolio grow. Thanks a lo
 
   
 MIT License, see the [LICENSE](./LICENSE) file.
-
-
 ---
+<p align="right">(<a href="#readme-top">back to top</a>)</p>

@@ -82,7 +82,7 @@
     },
     "experience": [
         {
-            "title": "Project AdministratorProject Administrator:-)",
+            "title": "Project AdministratorProject Administrator",
             "description": "Terminal-Portfolio invites talented developers to create stunning, command-line themed portfolios to showcase their skills and work. Command-line interface is a powerful and efficient tool for developers, and this project aims to celebrate this through the creation of visually striking and intuitively designed web terminals."
         },
         {
@@ -101,3 +101,7 @@
         }
     ]
 }
+    ]
+
+}
+

@@ -44,7 +44,8 @@ export let commandsList = [
     "contact",
     "github",
     "experience",
-    "skills"
+    "skills",
+    "history"
 ];
 
 
