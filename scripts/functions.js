@@ -70,22 +70,34 @@ async function getInputValue(history) {
         case "help":
         case "ls":
             trueValue(value);
-            createCode("help", "for a list of commands");
-            createCode("clear", "to clear the terminal");
-            createCode("about", "to learn more about me");
-            createCode("social", "to see my social links (add flags '-l' for links and '-d' for detailed results)");
-            createCode("projects", "to see my projects");
-            createCode("blogs", "to see my recent blogs");
-            createCode("contact", "to enquire about my services");
-            createCode("cheer", "to appreciate my work");
-            createCode("repos", "to see my github repositories");
-            createCode("ipconfig", "to see your IP details");
-            createCode("github", "to see my github stats");
-            createCode("contributors", "to see all the contributors");
-            createCode("download", "to download my pdf resume");
-            createCode("calc", "to evaluate an expression, for eg: (2 + 3)");
-            createCode("experience", "to see my work experience");
-            createCode("history","shows the last 10 valid commands performed, use --clear flag to clear the history");
+            let listOfCreateCodes = [
+            [["help"], "for a list of commands"],
+            [["clear"], "to clear the terminal"],
+            [["about"], "to learn more about me"],
+            [["social"], "to see my social links (add flags '-l' for links and '-d' for detailed results)"],
+            [["projects"], "to see my projects"],
+            [["blogs"], "to see my recent blogs"],
+            [["contact"], "to enquire about my services"],
+            [["cheer"], "to appreciate my work"],
+            [["repos"], "to see my github repositories"],
+            [["ipconfig"], "to see your IP details"],
+            [["github"], "to see my github stats"],
+            [["contributors"], "to see all the contributors"],
+            [["download"], "to download my pdf resume"],
+            [["calc"], "to evaluate an expression, for eg: (2 + 3)"],
+            [["experience"], "to see my work experience"],
+            [["history"],"shows the last 10 valid commands performed, use --clear flag to clear the history"],
+            ]
+            listOfCreateCodes.sort((a,b)=>{
+                if(a[0]>b[0])
+                return 1;
+                else
+                return -1;
+            });
+            for(let i=0;i<listOfCreateCodes.length;++i){
+                console.log
+                createCode(listOfCreateCodes[i][0],listOfCreateCodes[i][1]);
+            }
             break;
         case "neofetch":
             neofetch();
