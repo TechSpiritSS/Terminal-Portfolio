@@ -11,7 +11,6 @@ import {
 } from "./fetchStats.js";
 import { getContributors, getBlogs, getIPDetails, getRepo, contributors, userBlogs, IpDetails, userRepos } from "./getDetails.js";
 import { suggestFurtherCommand } from "./compare.js";
-import { commandHistory, saveHistory, clearHistory, popInvalidCommand } from "./history.js";
 
 const app = document.querySelector("#app");
 let delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -53,7 +52,6 @@ function removeNeoFetch() {
 
 async function getInputValue(history) {
     const val = document.querySelector("input").value.trim().toLowerCase();
-    saveHistory(val);
     const a = val.split(' ')
     const flag = a[1]
     const value = a[0]
@@ -70,53 +68,35 @@ async function getInputValue(history) {
         case "help":
         case "ls":
             trueValue(value);
-<<<<<<< HEAD
-            createCode("help", "for a list of commands");
-            createCode("clear", "to clear the terminal");
-            createCode("about", "to learn more about me");
-            createCode("social", "to see my social links (add flags '-l' for links and '-d' for detailed results)");
-            createCode("projects", "to see my projects");
-            createCode("blogs", "to see my recent blogs");
-            createCode("contact", "to enquire about my services");
-            createCode("cheer", "to appreciate my work");
-            createCode("repos", "to see my github repositories");
-            createCode("ipconfig", "to see your IP details");
-            createCode("github", "to see my github stats");
-            createCode("contributors", "to see all the contributors");
-            createCode("download", "to download my pdf resume");
-            createCode("calc", "to evaluate an expression, for eg: (2 + 3)");
-            createCode("experience", "to see my work experience");
-            createCode("skills", "to see my skills");
-=======
             let listOfCreateCodes = [
-            [["help"], "for a list of commands"],
-            [["clear"], "to clear the terminal"],
-            [["about"], "to learn more about me"],
-            [["social"], "to see my social links (add flags '-l' for links and '-d' for detailed results)"],
-            [["projects"], "to see my projects"],
-            [["blogs"], "to see my recent blogs"],
-            [["contact"], "to enquire about my services"],
-            [["cheer"], "to appreciate my work"],
-            [["repos"], "to see my github repositories"],
-            [["ipconfig"], "to see your IP details"],
-            [["github"], "to see my github stats"],
-            [["contributors"], "to see all the contributors"],
-            [["download"], "to download my pdf resume"],
-            [["calc"], "to evaluate an expression, for eg: (2 + 3)"],
-            [["experience"], "to see my work experience"],
-            [["history"],"shows the last 10 valid commands performed, use --clear flag to clear the history"],
+                [["help"], "for a list of commands"],
+                [["clear"], "to clear the terminal"],
+                [["about"], "to learn more about me"],
+                [["social"], "to see my social links (add flags '-l' for links and '-d' for detailed results)"],
+                [["projects"], "to see my projects"],
+                [["blogs"], "to see my recent blogs"],
+                [["contact"], "to enquire about my services"],
+                [["cheer"], "to appreciate my work"],
+                [["repos"], "to see my github repositories"],
+                [["ipconfig"], "to see your IP details"],
+                [["github"], "to see my github stats"],
+                [["contributors"], "to see all the contributors"],
+                [["download"], "to download my pdf resume"],
+                [["calc"], "to evaluate an expression, for eg: (2 + 3)"],
+                [["experience"], "to see my work experience"],
+                [["history"], "shows the last 10 valid commands performed, use --clear flag to clear the history"],
+                [["skills"], "sto see my skills"],
             ]
-            listOfCreateCodes.sort((a,b)=>{
-                if(a[0]>b[0])
-                return 1;
+            listOfCreateCodes.sort((a, b) => {
+                if (a[0] > b[0])
+                    return 1;
                 else
-                return -1;
+                    return -1;
             });
-            for(let i=0;i<listOfCreateCodes.length;++i){
+            for (let i = 0; i < listOfCreateCodes.length; ++i) {
                 console.log
-                createCode(listOfCreateCodes[i][0],listOfCreateCodes[i][1]);
+                createCode(listOfCreateCodes[i][0], listOfCreateCodes[i][1]);
             }
->>>>>>> 606b48757919cce5a8f11cfbebb15a19c6ed012b
             break;
         case "neofetch":
             neofetch();
@@ -204,7 +184,6 @@ async function getInputValue(history) {
             createText(`- Thanks to all the contributors 💖`);
             break;
 
-<<<<<<< HEAD
         case "experience":
             trueValue(value);
             createText("My Work Experience:");
@@ -222,8 +201,6 @@ async function getInputValue(history) {
             });
             break;
 
-=======
->>>>>>> 606b48757919cce5a8f11cfbebb15a19c6ed012b
         case "ipconfig":
             trueValue(value);
             const IP = IpDetails[0];
@@ -293,29 +270,8 @@ async function getInputValue(history) {
         case "calc":
             calc(flags.join(""));
             break;
-<<<<<<< HEAD
         case "exit":
             window.close();
-=======
-        case "history":
-            if(flag === "--clear")
-            clearHistory();
-            else
-            commandHistory();
-            break;
-        case "exit":
-            window.close();
-        case "experience":
-            trueValue(value);
-            createText("My Work Experience:");
-            config.experience.forEach((item) => {
-                // createText(
-                createText(`<a>${item.title}</a>`);
-                createText(`${item.description}`);
-                // );
-            });
-            break;
->>>>>>> 606b48757919cce5a8f11cfbebb15a19c6ed012b
 
         default:
             if (value.substring(0, 5) === "cheer") {
@@ -327,10 +283,6 @@ async function getInputValue(history) {
                 createText(reply);
             } else {
                 falseValue(value);
-<<<<<<< HEAD
-=======
-                popInvalidCommand();
->>>>>>> 606b48757919cce5a8f11cfbebb15a19c6ed012b
                 createText(`${value} is not a valid command`);
                 let commands = suggestFurtherCommand(value);
                 createText("Are you looking for this: " + commands);
