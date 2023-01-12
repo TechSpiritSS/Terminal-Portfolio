@@ -11,7 +11,7 @@ import {
 } from "./fetchStats.js";
 import { getContributors, getBlogs, getIPDetails, getRepo, contributors, userBlogs, IpDetails, userRepos } from "./getDetails.js";
 import { suggestFurtherCommand } from "./compare.js";
-import { commandHistory, saveHistory, clearHistory, popInvalidCommand } from "./history.js";
+import { commandHistory, saveHistory, clearHistory, popInvalidCommand, runSpecificHistoryCmd } from "./history.js";
 
 const app = document.querySelector("#app");
 let delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -51,8 +51,8 @@ function removeNeoFetch() {
     document.querySelector(".fetch-container").remove();
 }
 
-async function getInputValue(history) {
-    const val = document.querySelector("input").value.trim().toLowerCase();
+async function getInputValue(history, cmd=undefined) {
+    const val = cmd || document.querySelector("input").value.trim().toLowerCase();
     saveHistory(val);
     const a = val.split(' ')
     const flag = a[1]
@@ -86,7 +86,7 @@ async function getInputValue(history) {
             [["download"], "to download my pdf resume"],
             [["calc"], "to evaluate an expression, for eg: (2 + 3)"],
             [["experience"], "to see my work experience"],
-            [["history"],"shows the last 10 valid commands performed, use --clear flag to clear the history"],
+            [["history"],"shows the last 10 valid commands performed, use --clear flag to clear the history or write an id to run command of that specific id in history"],
             ]
             listOfCreateCodes.sort((a,b)=>{
                 if(a[0]>b[0])
@@ -257,6 +257,8 @@ async function getInputValue(history) {
         case "history":
             if(flag === "--clear")
             clearHistory();
+            if (Number(flag))
+            runSpecificHistoryCmd(Number(flag));
             else
             commandHistory();
             break;
