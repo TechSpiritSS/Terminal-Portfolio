@@ -70,6 +70,25 @@ async function getInputValue(history) {
         case "help":
         case "ls":
             trueValue(value);
+            
+            createCode("help", "for a list of commands");
+            createCode("clear", "to clear the terminal");
+            createCode("about", "to learn more about me");
+            createCode("social", "to see my social links (add flags '-l' for links and '-d' for detailed results)");
+            createCode("projects", "to see my projects");
+            createCode("blogs", "to see my recent blogs");
+            createCode("contact", "to enquire about my services");
+            createCode("cheer", "to appreciate my work");
+            createCode("repos", "to see my github repositories");
+            createCode("ipconfig", "to see your IP details");
+            createCode("github", "to see my github stats");
+            createCode("contributors", "to see all the contributors");
+            createCode("download", "to download my pdf resume");
+            createCode("calc", "to evaluate an expression, for eg: (2 + 3)");
+            createCode("experience", "to see my work experience");
+            createCode("skills", "to see my skills");
+            createCode("history","shows the last 10 valid commands performed, use --clear flag to clear the history");
+            
             let listOfCreateCodes = [
             [["help"], "for a list of commands"],
             [["clear"], "to clear the terminal"],
@@ -99,6 +118,7 @@ async function getInputValue(history) {
                 createCode(listOfCreateCodes[i][0],listOfCreateCodes[i][1]);
             }
             break;
+            
         case "neofetch":
             neofetch();
             break;
