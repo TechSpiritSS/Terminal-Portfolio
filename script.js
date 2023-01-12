@@ -44,7 +44,11 @@ export let commandsList = [
     "contact",
     "github",
     "experience",
+<<<<<<< HEAD
     "skills"
+=======
+    "history"
+>>>>>>> 606b48757919cce5a8f11cfbebb15a19c6ed012b
 ];
 
 
