@@ -1,5 +1,5 @@
 :root {
-    --back-color: #c3dafe;
+    --back-color: #1d272a;
     --primary-color: #3c366b;
     --header-back: #5f718d;
     --header-text: #eee;
@@ -22,7 +22,9 @@
   .menu { /* top bar */
     background-color: #efdfcf;
 }
-
+.code{
+    color:#FF6600 !important;
+}
 .bottom-bar {
     background-color: #efdfcf;
 }
@@ -41,35 +43,39 @@ h2 {
 
 
 #app { /* main content */
-    background-color: #f5ebe1;
+    background-color: black;
 }
 
 p.path { /* username */
-    color: #8c4a79 !important;
+    color:#FF6600 !important;
+ 
 }
 
+
 #app p { /* main text */
-    color: #1a8591;
+    color: #FFFFFF;
+    font-weight: 300;
 }
 
 p.path span { /* sudo */
-    color: #b3534b;
+    color: #FFFFFF;
 }
 
 p.path span + span { /* directory */
-    color: #476238;
+    color: #FF6600;
+    font-weight: 25px !important;
 }
 
 .icone {
-    color: #81b6bc;
+    color: #FF6600;
 }
 
 input {
-    color: #81b6bc;
+    color:#FFFFFF;
 }
 
 .error {
-    color: #ff1276;
+    color:   #bfff00    ;
 }
 
 .container {
@@ -81,7 +87,7 @@ a {
 }
 
 .theme-switches { 
-    background-color: #efdfcf;
+    background-color: #FFFFF;
 }
 #switch7{
     background-color: #A080FF;
