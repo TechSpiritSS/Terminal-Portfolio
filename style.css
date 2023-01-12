@@ -24,6 +24,7 @@
   height: 500px;
   width: 100%;
 }
+
 .fetch-img-container {
   display: flex;
   justify-content: flex-end;
@@ -65,16 +66,19 @@
 }
 
 @keyframes close-animation {
-  25%{
+  25% {
     border-left: 1px solid rgb(83, 252, 255);
   }
-  50%{
+
+  50% {
     border-top: 1px solid rgb(83, 252, 255);
   }
-  75%{
+
+  75% {
     border-right: 1px solid rgb(83, 252, 255);
   }
-  100%{
+
+  100% {
     border-bottom: 1px solid rgb(83, 252, 255);
   }
 }
@@ -94,6 +98,7 @@
 .hide {
   display: none;
 }
+
 .theme-options {
   display: flex;
   justify-content: flex-start;
@@ -231,16 +236,18 @@ body {
   flex-grow: 1;
   flex-basis: 0;
 }
+
 @keyframes blinkanimation {
-  from{
-    width:0px;
+  from {
+    width: 0px;
   }
-  to{
-    width :200px;
+
+  to {
+    width: 200px;
   }
 }
 
-.blink{
+.blink {
   display: block;
   overflow: hidden;
   animation: blinkanimation 0.8s linear infinite;
@@ -249,22 +256,24 @@ body {
 }
 
 @keyframes on-off {
-  from{
-   z-index: -1;
+  from {
+    z-index: -1;
   }
-  to{
-    z-index:1;
+
+  to {
+    z-index: 1;
   }
 }
 
-.blink-dot{
+.blink-dot {
   display: inline-block;
   position: relative;
-  margin:auto;
-  height:12px;
-  width:12px;
+  margin: auto;
+  height: 12px;
+  width: 12px;
   background-color: #00b14a;
-  border-radius: 50%;;
+  border-radius: 50%;
+  ;
   animation: on-off 1s linear infinite;
 }
 
@@ -301,15 +310,18 @@ div.title {
     right: 5rem;
   }
 }
+
 @media (max-width: 700px) {
   .theme-switches {
     right: 4rem;
   }
 }
+
 @media (max-width: 580px) {
   .theme-switches {
     right: 2rem;
   }
+
   .close {
     margin-left: 5px;
   }
@@ -399,7 +411,7 @@ p.path span {
   color: #3ec70b;
 }
 
-p.path span + span {
+p.path span+span {
   color: #3b44f6;
 }
 
