@@ -38,8 +38,7 @@ import {
 
 const app = document.querySelector("#app");
 let delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const resumeUrl =
-    "https://drive.google.com/u/0/uc?id=1J8QGMreVTsC-K-d5bpKV1BVNXxrCUYQa&export=download";
+const resumeUrl = "https://drive.google.com/u/0/uc?id=1J8QGMreVTsC-K-d5bpKV1BVNXxrCUYQa&export=download";
 
 //Defining the functions
 function neofetch() {
@@ -52,22 +51,18 @@ function neofetch() {
     };
     const container = document.createElement("div");
     container.classList.add("fetch-container");
-
     const fimg = document.createElement("div");
     fimg.classList.add("fetch-img-container");
     fimg.innerHTML = "<img class='fetch-img' src='js.png' />";
-
     const info = document.createElement("div");
     info.classList.add("info");
     container.appendChild(fimg);
     container.appendChild(info);
-
     for (const [key, value] of Object.entries(data)) {
         const p = document.createElement("p");
         p.innerHTML = `<span class="key">${key}</span>: <span class="value">${value}</span>`;
         info.appendChild(p);
     }
-
     app.appendChild(container);
 }
 
@@ -122,12 +117,10 @@ async function getInputValue(history, cmd = undefined) {
         case "neofetch":
             neofetch();
             break;
-
         case "about":
             trueValue(value);
             createText(config.about);
             break;
-
         case "social":
             if (flag == "-l") {
                 trueValue(val);
@@ -155,7 +148,6 @@ async function getInputValue(history, cmd = undefined) {
                         );
                         createText(`Ranking: ${ranking}`);
                     }
-
                     if (item.title == "Codechef") {
                         createText(`Rank :- ${item.rank}`);
                         createText(`Rating :- ${item.rating}`);
@@ -163,7 +155,6 @@ async function getInputValue(history, cmd = undefined) {
                 });
                 break;
             }
-
             trueValue(value);
             config.social.forEach((item) => {
                 createText(
@@ -171,7 +162,6 @@ async function getInputValue(history, cmd = undefined) {
                 );
             });
             break;
-
         case "projects":
             trueValue(value);
             createText("Projects:");
@@ -181,7 +171,6 @@ async function getInputValue(history, cmd = undefined) {
                 );
             });
             break;
-
         case "blogs":
             trueValue(value);
             createText("Recent Blogs:");
@@ -200,7 +189,6 @@ async function getInputValue(history, cmd = undefined) {
                 });
             });
             break;
-
         case "contributors":
             trueValue(value);
             contributors.forEach((user) => {
@@ -210,7 +198,6 @@ async function getInputValue(history, cmd = undefined) {
             });
             createText(`- Thanks to all the contributors 💖`);
             break;
-
         case "experience":
             trueValue(value);
             createText("My Work Experience:");
@@ -219,7 +206,6 @@ async function getInputValue(history, cmd = undefined) {
                 createText(`${item.description}`);
             });
             break;
-
         case "skills":
             trueValue(value);
             config.skills.forEach((item) => {
@@ -227,7 +213,6 @@ async function getInputValue(history, cmd = undefined) {
                 createText(`${item.description}`);
             });
             break;
-
         case "ipconfig":
             trueValue(value);
             const IP = IpDetails[0];
@@ -238,7 +223,6 @@ async function getInputValue(history, cmd = undefined) {
             createText(`- region: ${IP.region}`);
             createText(`- postal: ${IP.postal}`);
             break;
-
         case "repos":
             trueValue(value);
             userRepos[0].forEach((repo, index) => {
@@ -262,7 +246,6 @@ async function getInputValue(history, cmd = undefined) {
             trueValue(value);
             downloadFile();
             break;
-
         case "clear":
         case "cls":
             document
@@ -401,7 +384,6 @@ function downloadFile() {
     link.href = resumeUrl;
     link.click();
     const p = document.createElement("p");
-
     p.innerHTML = "<span class='blink'>###############<span/>";
     app.appendChild(p);
     setTimeout(() => {
@@ -428,8 +410,8 @@ function calc(flag) {
     }
 }
 
+// all functions exported
 export {
-    // all functions exported
     neofetch,
     removeNeoFetch,
     getInputValue,
