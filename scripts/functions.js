@@ -417,7 +417,7 @@ function calc(flag) {
             createText("Please Enter a Valid Expression");
         } else {
             trueValue(flag);
-            createText(flag + " = " + eval(flag));
+            createText(flag + " = " + math.evaluate(flag));
         }
     } catch (e) {
         falseValue(flag);
