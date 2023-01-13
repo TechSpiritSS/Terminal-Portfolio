@@ -417,7 +417,10 @@ function calc(flag) {
             createText("Please Enter a Valid Expression");
         } else {
             trueValue(flag);
-            createText(flag + " = " + math.evaluate(flag));
+            function parse(str) {
+                return Function(`'use strict'; return (${str})`)();
+            }
+            createText(flag + " = " + parse(flag));
         }
     } catch (e) {
         falseValue(flag);
