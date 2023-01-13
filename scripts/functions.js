@@ -11,6 +11,7 @@ import {
 } from "./fetchStats.js";
 import { getContributors, getBlogs, getIPDetails, getRepo, contributors, userBlogs, IpDetails, userRepos } from "./getDetails.js";
 import { suggestFurtherCommand } from "./compare.js";
+import { commandHistory, saveHistory, clearHistory, popInvalidCommand, runSpecificHistoryCmd } from "./history.js";
 
 const app = document.querySelector("#app");
 let delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -50,8 +51,9 @@ function removeNeoFetch() {
     document.querySelector(".fetch-container").remove();
 }
 
-async function getInputValue(history) {
-    const val = document.querySelector("input").value.trim().toLowerCase();
+async function getInputValue(history, cmd=undefined) {
+    const val = cmd || document.querySelector("input").value.trim().toLowerCase();
+    saveHistory(val);
     const a = val.split(' ')
     const flag = a[1]
     const value = a[0]
@@ -272,6 +274,9 @@ async function getInputValue(history) {
         case "history":
             if (flag === "--clear") {
                 clearHistory();
+            }
+            if (Number(flag)) {
+                runSpecificHistoryCmd(Number(flag));
             } else {
                 commandHistory();
             }
