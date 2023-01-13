@@ -1,4 +1,4 @@
-{
+const config = {
     "terminal": {
         "user": "$Sidharth_Sethi",
         "host": "sudo",
@@ -101,3 +101,4 @@
         }
     ]
 }
+export default config
