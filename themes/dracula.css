@@ -1,0 +1,99 @@
+/* Dracula theme for terminal - https://draculatheme.com */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+
+:root {
+    --back-color: #282a36;
+    --primary-color: #f8f8f2;
+    --header-back: #44475a;
+    --header-text: #f8f8f2;
+}
+
+* {
+    font-family: 'Fira Code', monospace;
+}
+
+body {
+    background-color: #383a59;
+    color: var(--primary-color);
+}
+
+header {
+    background-color: var(--header-back);
+    color: var(--header-text);
+}
+
+.box img {
+    border: 2px solid var(--primary-color);
+}
+
+.menu {
+    background-color: var(--header-back);
+}
+
+.bottom-bar {
+    background-color: var(--header-back);
+}
+
+.bottom-name,
+.menu h1,
+.bottom-bar {
+    color: var(--header-text);
+}
+
+p {
+    color: var(--primary-color);
+}
+
+h2 {
+    color: #8be9fd;
+}
+
+h3 {
+    color: #6272a4;
+}
+
+#app {
+    background-color: var(--back-color);
+}
+
+p.path {
+    color: #ff79c6 !important;
+}
+
+#app p {
+    color: #50fa7b;
+}
+
+p.path span {
+    color: #ffb86c;
+}
+
+p.path span+span {
+    color: #8be9fd;
+}
+
+.icone {
+    color: #8be9fd;
+}
+
+input {
+    border: none;
+    background-color: #282a36;
+    color: #f8f8f2;
+}
+
+.error {
+    color: #ff5555;
+}
+
+.container {
+    border: 1px solid #44475a;
+}
+
+a {
+    color: #8be9fd;
+}
+
+.theme-switches {
+    background-color: #44475a;
+}
