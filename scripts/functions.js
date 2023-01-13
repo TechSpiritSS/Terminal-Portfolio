@@ -96,34 +96,24 @@ async function getInputValue(history, cmd = undefined) {
         case "ls":
             trueValue(value);
             let listOfCreateCodes = [
-                [["help"], "for a list of commands"],
-                [["clear"], "to clear the terminal"],
                 [["about"], "to learn more about me"],
-                [
-                    ["social"],
-                    "to see my social links (add flags '-l' for links and '-d' for detailed results)",
-                ],
-                [["projects"], "to see my projects"],
                 [["blogs"], "to see my recent blogs"],
-                [["contact"], "to enquire about my services"],
+                [["calc"], "to evaluate an expression, for eg: (2 + 3)"],
                 [["cheer"], "to appreciate my work"],
-                [["repos"], "to see my github repositories"],
-                [["ipconfig"], "to see your IP details"],
-                [["github"], "to see my github stats"],
+                [["clear"], "to clear the terminal"],
+                [["contact"], "to enquire about my services"],
                 [["contributors"], "to see all the contributors"],
                 [["download"], "to download my pdf resume"],
-                [["calc"], "to evaluate an expression, for eg: (2 + 3)"],
                 [["experience"], "to see my work experience"],
-                [
-                    ["history"],
-                    "shows the last 10 valid commands performed, use --clear flag to clear the history",
-                ],
+                [["github"], "to see my github stats"],
+                [["help"], "for a list of commands"],
+                [["history"], "shows the last 10 valid commands performed, use --clear flag to clear the history"],
+                [["ipconfig"], "to see your IP details"],
+                [["projects"], "to see my projects"],
+                [["repos"], "to see my github repositories"],
                 [["skills"], "to see my skills"],
+                [["social"], "to see my social links (add flags '-l' for links and '-d' for detailed results)"],
             ];
-            listOfCreateCodes.sort((a, b) => {
-                if (a[0] > b[0]) return 1;
-                else return -1;
-            });
             for (let i = 0; i < listOfCreateCodes.length; ++i) {
                 console.log;
                 createCode(listOfCreateCodes[i][0], listOfCreateCodes[i][1]);
