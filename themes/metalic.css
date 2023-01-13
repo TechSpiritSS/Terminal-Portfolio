@@ -19,7 +19,8 @@ header {
     border: 2px solid var(--primary-color);
 }
 
-.menu { /* top bar */
+.menu {
+    /* top bar */
     background-color: #3f545a;
 }
 
@@ -31,7 +32,8 @@ header {
     color: #f9ffee;
 }
 
-.bottom-name, .bottom-bar {
+.bottom-name,
+.bottom-bar {
     color: #727272;
 }
 
@@ -39,15 +41,18 @@ p {
     color: #f9ffee;
 }
 
-#app { /* main content */
+#app {
+    /* main content */
     background-color: #1d272a;
 }
 
-p.path { /* username */
+p.path {
+    /* username */
     color: #7a9f81 !important;
 }
 
-#app p { /* main text */
+#app p {
+    /* main text */
     color: #6e94ad;
 }
 
@@ -55,7 +60,7 @@ p.path span {
     color: #ff8800;
 }
 
-p.path span + span {
+p.path span+span {
     color: #937aba;
 }
 
@@ -75,11 +80,11 @@ input {
     border: 1px solid #000000;
 }
 
-.close{
-    border : 1px solid white;
+.close {
+    border: 1px solid white;
 }
 
-.theme-switches{
+.theme-switches {
     background-color: #3f545a;
     color: white;
   }
@@ -89,4 +94,5 @@ input {
 #switch6{
     background-color:#FF6600 ;
 
+}
 }
