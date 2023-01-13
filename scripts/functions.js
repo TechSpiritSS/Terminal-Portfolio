@@ -85,7 +85,7 @@ async function getInputValue(history) {
                 [["calc"], "to evaluate an expression, for eg: (2 + 3)"],
                 [["experience"], "to see my work experience"],
                 [["history"], "shows the last 10 valid commands performed, use --clear flag to clear the history"],
-                [["skills"], "sto see my skills"],
+                [["skills"], "to see my skills"],
             ]
             listOfCreateCodes.sort((a, b) => {
                 if (a[0] > b[0])
@@ -262,7 +262,6 @@ async function getInputValue(history) {
             createText(`Number of followers: ${githubStats.followers}`);
             createText(`Number of following: ${githubStats.following}`);
             break;
-
         case "cd":
             trueValue(value);
             createText("There's no directory in this path");
@@ -270,9 +269,15 @@ async function getInputValue(history) {
         case "calc":
             calc(flags.join(""));
             break;
+        case "history":
+            if (flag === "--clear") {
+                clearHistory();
+            } else {
+                commandHistory();
+            }
+            break;
         case "exit":
             window.close();
-
         default:
             if (value.substring(0, 5) === "cheer") {
                 trueValue(value);
