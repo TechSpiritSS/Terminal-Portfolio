@@ -1,7 +1,7 @@
 //Functions to fetch basic details are defined here.
 
 //Imports done
-import config from "../config.json" assert { type: "json" };
+import config from "../config.js";
 
 let contributors = [];
 let userBlogs = [];
@@ -58,7 +58,6 @@ const getIPDetails = async () => {
             .then((data) => {
                 IpDetails.push(data);
             });
-
     } catch (error) {
         console.log(error);
         // handling the error
@@ -105,5 +104,5 @@ export {
     contributors,
     userBlogs,
     IpDetails,
-    userRepos
+    userRepos,
 };

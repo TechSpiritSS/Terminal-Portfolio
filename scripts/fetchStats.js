@@ -1,12 +1,17 @@
 //Statistics file. All fetchStats functions & variables are defined here & exported for use.
 
-import config from "../config.json" assert { type: "json" };
+import config from "../config.js";
 
 //Stat variables
 let connections = 0;
 let githubStats = {};
-let followers = 0, following = 0;
-let ranking = 0, totalSolved = 0, easySolved = 0, mediumSolved = 0, hardSolved = 0;
+let followers = 0,
+    following = 0;
+let ranking = 0,
+    totalSolved = 0,
+    easySolved = 0,
+    mediumSolved = 0,
+    hardSolved = 0;
 
 //Stat functions
 async function fetchGithubSocialStats() {
@@ -49,12 +54,16 @@ async function fetchLeetCodeStats() {
 
 async function fetchGithubStats() {
     try {
-        const githubLink = config.social.find((c) => c.title.toLowerCase() === "github").link;
+        const githubLink = config.social.find(
+            (c) => c.title.toLowerCase() === "github"
+        ).link;
         const githubUsername =
             githubLink.split("/")[githubLink.split("/").length - 1];
-        const responseRaw = await fetch(`https://api.github.com/users/${githubUsername}`);
+        const responseRaw = await fetch(
+            `https://api.github.com/users/${githubUsername}`
+        );
         const response = await responseRaw.json();
-        githubStats = { ...response, username: githubUsername }
+        githubStats = { ...response, username: githubUsername };
     } catch (error) {
         console.log(error);
         // handling the error
@@ -65,7 +74,7 @@ async function fetchGithubStats() {
             public_gists: "_failed_to_fetch_",
             followers: "_failed_to_fetch_",
             following: "_failed_to_fetch_",
-        }
+        };
     }
 }
 
@@ -79,6 +88,11 @@ export {
     //variables exported
     connections,
     githubStats,
-    followers, following,
-    ranking, totalSolved, easySolved, mediumSolved, hardSolved
+    followers,
+    following,
+    ranking,
+    totalSolved,
+    easySolved,
+    mediumSolved,
+    hardSolved,
 };

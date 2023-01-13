@@ -1,21 +1,45 @@
 //Functions file. All important functions are defined here. These are used for setup & operations
 
 //Imports done
-import config from "../config.json" assert { type: "json" };
+import config from "../config.js";
 import {
-    fetchGithubSocialStats, fetchLinkedInStats, fetchLeetCodeStats, fetchGithubStats,
+    fetchGithubSocialStats,
+    fetchLinkedInStats,
+    fetchLeetCodeStats,
+    fetchGithubStats,
     connections,
     githubStats,
-    followers, following,
-    ranking, totalSolved, easySolved, mediumSolved, hardSolved,
+    followers,
+    following,
+    ranking,
+    totalSolved,
+    easySolved,
+    mediumSolved,
+    hardSolved,
 } from "./fetchStats.js";
-import { getContributors, getBlogs, getIPDetails, getRepo, contributors, userBlogs, IpDetails, userRepos } from "./getDetails.js";
+import {
+    getContributors,
+    getBlogs,
+    getIPDetails,
+    getRepo,
+    contributors,
+    userBlogs,
+    IpDetails,
+    userRepos,
+} from "./getDetails.js";
 import { suggestFurtherCommand } from "./compare.js";
-import { commandHistory, saveHistory, clearHistory, popInvalidCommand, runSpecificHistoryCmd } from "./history.js";
+import {
+    commandHistory,
+    saveHistory,
+    clearHistory,
+    popInvalidCommand,
+    runSpecificHistoryCmd,
+} from "./history.js";
 
 const app = document.querySelector("#app");
 let delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const resumeUrl = "https://drive.google.com/u/0/uc?id=1J8QGMreVTsC-K-d5bpKV1BVNXxrCUYQa&export=download";
+const resumeUrl =
+    "https://drive.google.com/u/0/uc?id=1J8QGMreVTsC-K-d5bpKV1BVNXxrCUYQa&export=download";
 
 //Defining the functions
 function neofetch() {
@@ -51,13 +75,14 @@ function removeNeoFetch() {
     document.querySelector(".fetch-container").remove();
 }
 
-async function getInputValue(history, cmd=undefined) {
-    const val = cmd || document.querySelector("input").value.trim().toLowerCase();
+async function getInputValue(history, cmd = undefined) {
+    const val =
+        cmd || document.querySelector("input").value.trim().toLowerCase();
     saveHistory(val);
-    const a = val.split(' ')
-    const flag = a[1]
-    const value = a[0]
-    const flags = [...a]
+    const a = val.split(" ");
+    const flag = a[1];
+    const value = a[0];
+    const flags = [...a];
     flags.shift(); // removes the first element
     if (value.substring(0, 5) === "cheer") {
         value.substring(0, 5).toLowerCase();
@@ -74,7 +99,10 @@ async function getInputValue(history, cmd=undefined) {
                 [["help"], "for a list of commands"],
                 [["clear"], "to clear the terminal"],
                 [["about"], "to learn more about me"],
-                [["social"], "to see my social links (add flags '-l' for links and '-d' for detailed results)"],
+                [
+                    ["social"],
+                    "to see my social links (add flags '-l' for links and '-d' for detailed results)",
+                ],
                 [["projects"], "to see my projects"],
                 [["blogs"], "to see my recent blogs"],
                 [["contact"], "to enquire about my services"],
@@ -86,17 +114,18 @@ async function getInputValue(history, cmd=undefined) {
                 [["download"], "to download my pdf resume"],
                 [["calc"], "to evaluate an expression, for eg: (2 + 3)"],
                 [["experience"], "to see my work experience"],
-                [["history"], "shows the last 10 valid commands performed, use --clear flag to clear the history"],
+                [
+                    ["history"],
+                    "shows the last 10 valid commands performed, use --clear flag to clear the history",
+                ],
                 [["skills"], "to see my skills"],
-            ]
+            ];
             listOfCreateCodes.sort((a, b) => {
-                if (a[0] > b[0])
-                    return 1;
-                else
-                    return -1;
+                if (a[0] > b[0]) return 1;
+                else return -1;
             });
             for (let i = 0; i < listOfCreateCodes.length; ++i) {
-                console.log
+                console.log;
                 createCode(listOfCreateCodes[i][0], listOfCreateCodes[i][1]);
             }
             break;
@@ -110,16 +139,15 @@ async function getInputValue(history, cmd=undefined) {
             break;
 
         case "social":
-            if (flag == '-l') {
-                trueValue(val)
+            if (flag == "-l") {
+                trueValue(val);
                 config.social.forEach((item) => {
                     createText(`${item.title} :- <a href=${item.link} target="_blank">${item.link}</a>
             `);
                 });
                 break;
-            }
-            else if (flag == '-d') {
-                trueValue(val)
+            } else if (flag == "-d") {
+                trueValue(val);
                 config.social.forEach((item) => {
                     createText(`${item.title} Link :- <a href=${item.link} target="_blank">${item.link}</a>
             `);
@@ -132,7 +160,9 @@ async function getInputValue(history, cmd=undefined) {
                     }
                     if (item.title == "LeetCode") {
                         createText(`Problems Solved: ${totalSolved}`);
-                        createText(`Distribution:- Easy:${easySolved} Medium:${mediumSolved} Hard:${hardSolved}`);
+                        createText(
+                            `Distribution:- Easy:${easySolved} Medium:${mediumSolved} Hard:${hardSolved}`
+                        );
                         createText(`Ranking: ${ranking}`);
                     }
 
@@ -146,7 +176,9 @@ async function getInputValue(history, cmd=undefined) {
 
             trueValue(value);
             config.social.forEach((item) => {
-                createText(`<a href=${item.link} target="_blank">${item.title}</a>`);
+                createText(
+                    `<a href=${item.link} target="_blank">${item.title}</a>`
+                );
             });
             break;
 
@@ -171,7 +203,8 @@ async function getInputValue(history, cmd=undefined) {
                 createText(`${blog.site}: `);
                 blog.items.forEach((item, index) => {
                     createText(
-                        `<a href="${item.link}" target="_blank">${index + 1}. ${item.title
+                        `<a href="${item.link}" target="_blank">${index + 1}. ${
+                            item.title
                         }</a>`
                     );
                 });
@@ -181,7 +214,9 @@ async function getInputValue(history, cmd=undefined) {
         case "contributors":
             trueValue(value);
             contributors.forEach((user) => {
-                createText(`- <a href=${user.userProfile}>${user.username}</a>`);
+                createText(
+                    `- <a href=${user.userProfile}>${user.username}</a>`
+                );
             });
             createText(`- Thanks to all the contributors 💖`);
             break;
@@ -218,12 +253,17 @@ async function getInputValue(history, cmd=undefined) {
             trueValue(value);
             userRepos[0].forEach((repo, index) => {
                 createText(
-                    `- repo_${index} name: <a href=${repo.html_url}>${repo.name
-                    }</a> | language: ${repo.language === null ? "no language" : repo.language
+                    `- repo_${index} name: <a href=${repo.html_url}>${
+                        repo.name
+                    }</a> | language: ${
+                        repo.language === null ? "no language" : repo.language
                     }`
                 );
                 createText(
-                    `_ description: ${repo.description === null ? "no description." : repo.description
+                    `_ description: ${
+                        repo.description === null
+                            ? "no description."
+                            : repo.description
                     }`
                 );
             });
@@ -288,7 +328,9 @@ async function getInputValue(history, cmd=undefined) {
                 trueValue(value);
                 const reply =
                     config.cheer.responseArray[
-                    Math.floor(Math.random() * config.cheer.responseArray.length)
+                        Math.floor(
+                            Math.random() * config.cheer.responseArray.length
+                        )
                     ];
                 createText(reply);
             } else {
@@ -405,5 +447,5 @@ export {
     createText,
     createCode,
     downloadFile,
-    calc
-}
+    calc,
+};
