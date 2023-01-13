@@ -11,7 +11,6 @@ import {
 } from "./fetchStats.js";
 import { getContributors, getBlogs, getIPDetails, getRepo, contributors, userBlogs, IpDetails, userRepos } from "./getDetails.js";
 import { suggestFurtherCommand } from "./compare.js";
-import { commandHistory, saveHistory, clearHistory, popInvalidCommand } from "./history.js";
 
 const app = document.querySelector("#app");
 let delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -53,7 +52,6 @@ function removeNeoFetch() {
 
 async function getInputValue(history) {
     const val = document.querySelector("input").value.trim().toLowerCase();
-    saveHistory(val);
     const a = val.split(' ')
     const flag = a[1]
     const value = a[0]
@@ -87,6 +85,7 @@ async function getInputValue(history) {
                 [["calc"], "to evaluate an expression, for eg: (2 + 3)"],
                 [["experience"], "to see my work experience"],
                 [["history"], "shows the last 10 valid commands performed, use --clear flag to clear the history"],
+                [["skills"], "to see my skills"],
             ]
             listOfCreateCodes.sort((a, b) => {
                 if (a[0] > b[0])
@@ -185,6 +184,23 @@ async function getInputValue(history) {
             createText(`- Thanks to all the contributors 💖`);
             break;
 
+        case "experience":
+            trueValue(value);
+            createText("My Work Experience:");
+            config.experience.forEach((item) => {
+                createText(`<a>${item.title}</a>`);
+                createText(`${item.description}`);
+            });
+            break;
+
+        case "skills":
+            trueValue(value);
+            config.skills.forEach((item) => {
+                createText(`<a>${item.title}</a>`);
+                createText(`${item.description}`);
+            });
+            break;
+
         case "ipconfig":
             trueValue(value);
             const IP = IpDetails[0];
@@ -246,7 +262,6 @@ async function getInputValue(history) {
             createText(`Number of followers: ${githubStats.followers}`);
             createText(`Number of following: ${githubStats.following}`);
             break;
-
         case "cd":
             trueValue(value);
             createText("There's no directory in this path");
@@ -255,24 +270,14 @@ async function getInputValue(history) {
             calc(flags.join(""));
             break;
         case "history":
-            if (flag === "--clear")
+            if (flag === "--clear") {
                 clearHistory();
-            else
+            } else {
                 commandHistory();
+            }
             break;
         case "exit":
             window.close();
-        case "experience":
-            trueValue(value);
-            createText("My Work Experience:");
-            config.experience.forEach((item) => {
-                // createText(
-                createText(`<a>${item.title}</a>`);
-                createText(`${item.description}`);
-                // );
-            });
-            break;
-
         default:
             if (value.substring(0, 5) === "cheer") {
                 trueValue(value);
@@ -283,7 +288,6 @@ async function getInputValue(history) {
                 createText(reply);
             } else {
                 falseValue(value);
-                popInvalidCommand();
                 createText(`${value} is not a valid command`);
                 let commands = suggestFurtherCommand(value);
                 createText("Are you looking for this: " + commands);
