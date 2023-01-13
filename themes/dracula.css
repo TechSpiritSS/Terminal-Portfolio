@@ -1,4 +1,5 @@
 /* Dracula theme for terminal - https://draculatheme.com */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
 
 :root {
     --back-color: #282a36;
@@ -7,8 +8,12 @@
     --header-text: #f8f8f2;
 }
 
+* {
+    font-family: 'Fira Code', monospace;
+}
+
 body {
-    background-color: var(--back-color);
+    background-color: #383a59;
     color: var(--primary-color);
 }
 
@@ -22,21 +27,21 @@ header {
 }
 
 .menu {
-    background-color: #44475a;
+    background-color: var(--header-back);
 }
 
 .bottom-bar {
-    background-color: #44475a;
+    background-color: var(--header-back);
 }
 
 .bottom-name,
 .menu h1,
 .bottom-bar {
-    color: #f8f8f2;
+    color: var(--header-text);
 }
 
 p {
-    color: #f8f8f2;
+    color: var(--primary-color);
 }
 
 h2 {
@@ -48,7 +53,7 @@ h3 {
 }
 
 #app {
-    background-color: #282a36;
+    background-color: var(--back-color);
 }
 
 p.path {
