@@ -11,7 +11,7 @@ import {
 } from "./fetchStats.js";
 import { getContributors, getBlogs, getIPDetails, getRepo, contributors, userBlogs, IpDetails, userRepos } from "./getDetails.js";
 import { suggestFurtherCommand } from "./compare.js";
-import { commandHistory, saveHistory, clearHistory, popInvalidCommand, runSpecificHistoryCmd } from "./history.js";
+import { commandHistory, saveHistory, clearHistory, popInvalidCommand } from "./history.js";
 
 const app = document.querySelector("#app");
 let delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -51,8 +51,8 @@ function removeNeoFetch() {
     document.querySelector(".fetch-container").remove();
 }
 
-async function getInputValue(history, cmd=undefined) {
-    const val = cmd || document.querySelector("input").value.trim().toLowerCase();
+async function getInputValue(history) {
+    const val = document.querySelector("input").value.trim().toLowerCase();
     saveHistory(val);
     const a = val.split(' ')
     const flag = a[1]
@@ -71,33 +71,32 @@ async function getInputValue(history, cmd=undefined) {
         case "ls":
             trueValue(value);
             let listOfCreateCodes = [
-                [["help"], "for a list of commands"],
-                [["clear"], "to clear the terminal"],
-                [["about"], "to learn more about me"],
-                [["social"], "to see my social links (add flags '-l' for links and '-d' for detailed results)"],
-                [["projects"], "to see my projects"],
-                [["blogs"], "to see my recent blogs"],
-                [["contact"], "to enquire about my services"],
-                [["cheer"], "to appreciate my work"],
-                [["repos"], "to see my github repositories"],
-                [["ipconfig"], "to see your IP details"],
-                [["github"], "to see my github stats"],
-                [["contributors"], "to see all the contributors"],
-                [["download"], "to download my pdf resume"],
-                [["calc"], "to evaluate an expression, for eg: (2 + 3)"],
-                [["experience"], "to see my work experience"],
-                [["history"], "shows the last 10 valid commands performed, use --clear flag to clear the history"],
-                [["skills"], "to see my skills"],
+            [["help"], "for a list of commands"],
+            [["clear"], "to clear the terminal"],
+            [["about"], "to learn more about me"],
+            [["social"], "to see my social links (add flags '-l' for links and '-d' for detailed results)"],
+            [["projects"], "to see my projects"],
+            [["blogs"], "to see my recent blogs"],
+            [["contact"], "to enquire about my services"],
+            [["cheer"], "to appreciate my work"],
+            [["repos"], "to see my github repositories"],
+            [["ipconfig"], "to see your IP details"],
+            [["github"], "to see my github stats"],
+            [["contributors"], "to see all the contributors"],
+            [["download"], "to download my pdf resume"],
+            [["calc"], "to evaluate an expression, for eg: (2 + 3)"],
+            [["experience"], "to see my work experience"],
+            [["history"],"shows the last 10 valid commands performed, use --clear flag to clear the history"],
             ]
-            listOfCreateCodes.sort((a, b) => {
-                if (a[0] > b[0])
-                    return 1;
+            listOfCreateCodes.sort((a,b)=>{
+                if(a[0]>b[0])
+                return 1;
                 else
-                    return -1;
+                return -1;
             });
-            for (let i = 0; i < listOfCreateCodes.length; ++i) {
+            for(let i=0;i<listOfCreateCodes.length;++i){
                 console.log
-                createCode(listOfCreateCodes[i][0], listOfCreateCodes[i][1]);
+                createCode(listOfCreateCodes[i][0],listOfCreateCodes[i][1]);
             }
             break;
         case "neofetch":
@@ -186,23 +185,6 @@ async function getInputValue(history, cmd=undefined) {
             createText(`- Thanks to all the contributors 💖`);
             break;
 
-        case "experience":
-            trueValue(value);
-            createText("My Work Experience:");
-            config.experience.forEach((item) => {
-                createText(`<a>${item.title}</a>`);
-                createText(`${item.description}`);
-            });
-            break;
-
-        case "skills":
-            trueValue(value);
-            config.skills.forEach((item) => {
-                createText(`<a>${item.title}</a>`);
-                createText(`${item.description}`);
-            });
-            break;
-
         case "ipconfig":
             trueValue(value);
             const IP = IpDetails[0];
@@ -264,6 +246,7 @@ async function getInputValue(history, cmd=undefined) {
             createText(`Number of followers: ${githubStats.followers}`);
             createText(`Number of following: ${githubStats.following}`);
             break;
+
         case "cd":
             trueValue(value);
             createText("There's no directory in this path");
@@ -272,17 +255,24 @@ async function getInputValue(history, cmd=undefined) {
             calc(flags.join(""));
             break;
         case "history":
-            if (flag === "--clear") {
-                clearHistory();
-            }
-            if (Number(flag)) {
-                runSpecificHistoryCmd(Number(flag));
-            } else {
-                commandHistory();
-            }
+            if(flag === "--clear")
+            clearHistory();
+            else
+            commandHistory();
             break;
         case "exit":
             window.close();
+        case "experience":
+            trueValue(value);
+            createText("My Work Experience:");
+            config.experience.forEach((item) => {
+                // createText(
+                createText(`<a>${item.title}</a>`);
+                createText(`${item.description}`);
+                // );
+            });
+            break;
+
         default:
             if (value.substring(0, 5) === "cheer") {
                 trueValue(value);
@@ -293,6 +283,7 @@ async function getInputValue(history, cmd=undefined) {
                 createText(reply);
             } else {
                 falseValue(value);
+                popInvalidCommand();
                 createText(`${value} is not a valid command`);
                 let commands = suggestFurtherCommand(value);
                 createText("Are you looking for this: " + commands);

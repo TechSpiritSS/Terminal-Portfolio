@@ -3,14 +3,14 @@
 function greenBtn() {
     const container = document.querySelector("#screenContainer");
     container.classList.contains("maximized")
-        ? container.classList.remove("maximized")
-        : container.classList.add("maximized");
+      ? container.classList.remove("maximized")
+      : container.classList.add("maximized");
 }
 
 function yellowBtn() {
     bodyContainer.classList.contains("minimized")
-        ? bodyContainer.classList.remove("minimized")
-        : bodyContainer.classList.add("minimized");
+    ? bodyContainer.classList.remove("minimized")
+    : bodyContainer.classList.add("minimized");
 }
 
 function redBtn() {
