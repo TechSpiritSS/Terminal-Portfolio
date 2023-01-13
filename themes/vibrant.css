@@ -1,36 +1,35 @@
 :root {
-    --back-color: #c3dafe;
+    --back-color: #1d272a;
     --primary-color: #3c366b;
     --header-back: #5f718d;
     --header-text: #eee;
-}
-
-body {
+  }
+  
+  body {
     background-color: var(--back-color);
     color: var(--primary-color);
-}
-
-header {
+  }
+  
+  header {
     background-color: var(--header-back);
     color: var(--header-text);
-}
-
-.box img {
+  }
+  
+  .box img {
     border: 2px solid var(--primary-color);
-}
+  }
 
-.menu {
-    /* top bar */
+  .menu { /* top bar */
     background-color: #efdfcf;
 }
-
+.code{
+    color:#FF6600 !important;
+}
 .bottom-bar {
     background-color: #efdfcf;
 }
 
-.bottom-name,
-.menu h1,
-.bottom-bar {
+.bottom-name, .menu h1, .bottom-bar {
     color: #585858;
 }
 
@@ -43,41 +42,40 @@ h2 {
 }
 
 
-#app {
-    /* main content */
-    background-color: #f5ebe1;
+#app { /* main content */
+    background-color: black;
 }
 
-p.path {
-    /* username */
-    color: #8c4a79 !important;
+p.path { /* username */
+    color:#FF6600 !important;
+ 
 }
 
-#app p {
-    /* main text */
-    color: #1a8591;
+
+#app p { /* main text */
+    color: #FFFFFF;
+    font-weight: 300;
 }
 
-p.path span {
-    /* sudo */
-    color: #b3534b;
+p.path span { /* sudo */
+    color: #FFFFFF;
 }
 
-p.path span+span {
-    /* directory */
-    color: #476238;
+p.path span + span { /* directory */
+    color: #FF6600;
+    font-weight: 25px !important;
 }
 
 .icone {
-    color: #81b6bc;
+    color: #FF6600;
 }
 
 input {
-    color: #81b6bc;
+    color:#FFFFFF;
 }
 
 .error {
-    color: #ff1276;
+    color:   #bfff00    ;
 }
 
 .container {
@@ -88,8 +86,8 @@ a {
     color: #ff4d12;
 }
 
-.theme-switches {
-    background-color: #efdfcf;
+.theme-switches { 
+    background-color: #FFFFFF;
 }
 #switch8{
     background-color: #A080FF;

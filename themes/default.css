@@ -74,6 +74,16 @@ input {
     color: #ff1700;
 }
 
+.theme-switches{
+  background-color:  #faa094ff;
+}
+#switch8{
+  background-color: #A080FF;
+}
+#switch7{
+  background-color:#FF6600 ;
+
+}
 .theme-switches {
     background-color: #faa094ff;
 }
