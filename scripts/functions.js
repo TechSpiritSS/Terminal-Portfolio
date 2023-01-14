@@ -42,42 +42,45 @@ const resumeUrl = "https://drive.google.com/u/0/uc?id=1J8QGMreVTsC-K-d5bpKV1BVNX
 
 //Defining the functions
 function neofetch() {
-    const data = {
-        name: "Sidharth Sethi",
-        title: "MERN Developer",
-        skills: "Frontend, Backend, Cloud",
-        shell: "zsh",
-        langauges: "Javascript, C++, HTML/CSS, SQL",
-    };
+    // read data from data.json
+    const data = config.neofetch;
+    console.log(data);
+
     const container = document.createElement("div");
     container.classList.add("fetch-container");
+
     const fimg = document.createElement("div");
     fimg.classList.add("fetch-img-container");
     fimg.innerHTML = "<img class='fetch-img' src='js.png' />";
+
     const info = document.createElement("div");
     info.classList.add("info");
     container.appendChild(fimg);
     container.appendChild(info);
+
     for (const [key, value] of Object.entries(data)) {
         const p = document.createElement("p");
         p.innerHTML = `<span class="key">${key}</span>: <span class="value">${value}</span>`;
         info.appendChild(p);
     }
+
     app.appendChild(container);
 }
+
 
 function removeNeoFetch() {
     document.querySelector(".fetch-container").remove();
 }
 
+
 async function getInputValue(history, cmd = undefined) {
-    const val =
-        cmd || document.querySelector("input").value.trim().toLowerCase();
+    const val = cmd || document.querySelector("input").value.trim().toLowerCase();
     saveHistory(val);
     const a = val.split(" ");
     const flag = a[1];
     const value = a[0];
     const flags = [...a];
+
     flags.shift(); // removes the first element
     if (value.substring(0, 5) === "cheer") {
         value.substring(0, 5).toLowerCase();
@@ -104,6 +107,7 @@ async function getInputValue(history, cmd = undefined) {
                 [["help"], "for a list of commands"],
                 [["history"], "shows the last 10 valid commands performed, use --clear flag to clear the history"],
                 [["ipconfig"], "to see your IP details"],
+                [["neofetch"], "to see my neoFetch"],
                 [["projects"], "to see my projects"],
                 [["repos"], "to see my github repositories"],
                 [["skills"], "to see my skills"],
@@ -182,8 +186,7 @@ async function getInputValue(history, cmd = undefined) {
                 createText(`${blog.site}: `);
                 blog.items.forEach((item, index) => {
                     createText(
-                        `<a href="${item.link}" target="_blank">${index + 1}. ${
-                            item.title
+                        `<a href="${item.link}" target="_blank">${index + 1}. ${item.title
                         }</a>`
                     );
                 });
@@ -227,17 +230,14 @@ async function getInputValue(history, cmd = undefined) {
             trueValue(value);
             userRepos[0].forEach((repo, index) => {
                 createText(
-                    `- repo_${index} name: <a href=${repo.html_url}>${
-                        repo.name
-                    }</a> | language: ${
-                        repo.language === null ? "no language" : repo.language
+                    `- repo_${index} name: <a href=${repo.html_url}>${repo.name
+                    }</a> | language: ${repo.language === null ? "no language" : repo.language
                     }`
                 );
                 createText(
-                    `_ description: ${
-                        repo.description === null
-                            ? "no description."
-                            : repo.description
+                    `_ description: ${repo.description === null
+                        ? "no description."
+                        : repo.description
                     }`
                 );
             });
@@ -301,9 +301,9 @@ async function getInputValue(history, cmd = undefined) {
                 trueValue(value);
                 const reply =
                     config.cheer.responseArray[
-                        Math.floor(
-                            Math.random() * config.cheer.responseArray.length
-                        )
+                    Math.floor(
+                        Math.random() * config.cheer.responseArray.length
+                    )
                     ];
                 createText(reply);
             } else {
