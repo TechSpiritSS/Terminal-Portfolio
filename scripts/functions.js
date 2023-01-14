@@ -285,11 +285,12 @@ async function getInputValue(history, cmd = undefined) {
             break;
         case "contact":
             createText(
-                `Hey! Would love to get in touch.
-          My linkedin profile link: <a href="mailto:${config.contact.linkedin}" </a>
+                `Hey! Would love to get in touch.<br>
+          My linkedin profile link: <a href="${config.social.filter((obj)=>obj.title.toLowerCase()=='linkedin')[0].link}"> LinkedIn</a>.<br>
           Drop me a text at <a href="mailto:${config.contact.email}" target="_blank">${config.contact.email}</a>`
             );
             window.location.href = `mailto:${config.contact.email}`;
+         //   window.open(`mailto:${config.contact.email}`, "_blank");
             break;
         case "sudo":
             trueValue(value);
