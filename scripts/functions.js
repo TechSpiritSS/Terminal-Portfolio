@@ -67,37 +67,24 @@ async function getInputValue(history) {
     switch (value) {
         case "help":
         case "ls":
-            trueValue(value);
-            let listOfCreateCodes = [
-                [["help"], "for a list of commands"],
-                [["clear"], "to clear the terminal"],
-                [["about"], "to learn more about me"],
-                [["social"], "to see my social links (add flags '-l' for links and '-d' for detailed results)"],
-                [["projects"], "to see my projects"],
-                [["blogs"], "to see my recent blogs"],
-                [["contact"], "to enquire about my services"],
-                [["cheer"], "to appreciate my work"],
-                [["repos"], "to see my github repositories"],
-                [["ipconfig"], "to see your IP details"],
-                [["github"], "to see my github stats"],
-                [["contributors"], "to see all the contributors"],
-                [["download"], "to download my pdf resume"],
-                [["calc"], "to evaluate an expression, for eg: (2 + 3)"],
-                [["experience"], "to see my work experience"],
-                [["history"], "shows the last 10 valid commands performed, use --clear flag to clear the history"],
-                [["skills"], "sto see my skills"],
-            ]
-            listOfCreateCodes.sort((a, b) => {
-                if (a[0] > b[0])
-                    return 1;
-                else
-                    return -1;
+            config.help.sort((a, b) => {
+                return a.title.localeCompare(b.title);
             });
-            for (let i = 0; i < listOfCreateCodes.length; ++i) {
-                console.log
-                createCode(listOfCreateCodes[i][0], listOfCreateCodes[i][1]);
+
+            if (flag == '-d') {
+                trueValue(val)
+                config.help.forEach((item) => {
+                    createText(`${item.title} :- <a href=${item.description} target="_blank">${item.description}</a>
+            `);
+                });
+                break;
             }
+            trueValue(value);
+            let titles = config.help.map(item => item.title);
+            let titlesString = titles.join(', ');
+            createText(titlesString);
             break;
+
         case "neofetch":
             neofetch();
             break;
