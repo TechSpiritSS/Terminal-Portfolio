@@ -38,18 +38,14 @@ import {
 
 const app = document.querySelector("#app");
 let delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const resumeUrl =
-    "https://drive.google.com/u/0/uc?id=1J8QGMreVTsC-K-d5bpKV1BVNXxrCUYQa&export=download";
+const resumeUrl = "https://drive.google.com/u/0/uc?id=1J8QGMreVTsC-K-d5bpKV1BVNXxrCUYQa&export=download";
 
 //Defining the functions
 function neofetch() {
-    const data = {
-        name: "Sidharth Sethi",
-        title: "MERN Developer",
-        skills: "Frontend, Backend, Cloud",
-        shell: "zsh",
-        langauges: "Javascript, C++, HTML/CSS, SQL",
-    };
+    // read data from data.json
+    const data = config.neofetch;
+    console.log(data);
+
     const container = document.createElement("div");
     container.classList.add("fetch-container");
 
@@ -71,18 +67,20 @@ function neofetch() {
     app.appendChild(container);
 }
 
+
 function removeNeoFetch() {
     document.querySelector(".fetch-container").remove();
 }
 
+
 async function getInputValue(history, cmd = undefined) {
-    const val =
-        cmd || document.querySelector("input").value.trim().toLowerCase();
+    const val = cmd || document.querySelector("input").value.trim().toLowerCase();
     saveHistory(val);
     const a = val.split(" ");
     const flag = a[1];
     const value = a[0];
     const flags = [...a];
+
     flags.shift(); // removes the first element
     if (value.substring(0, 5) === "cheer") {
         value.substring(0, 5).toLowerCase();
@@ -96,34 +94,25 @@ async function getInputValue(history, cmd = undefined) {
         case "ls":
             trueValue(value);
             let listOfCreateCodes = [
-                [["help"], "for a list of commands"],
-                [["clear"], "to clear the terminal"],
                 [["about"], "to learn more about me"],
-                [
-                    ["social"],
-                    "to see my social links (add flags '-l' for links and '-d' for detailed results)",
-                ],
-                [["projects"], "to see my projects"],
                 [["blogs"], "to see my recent blogs"],
-                [["contact"], "to enquire about my services"],
+                [["calc"], "to evaluate an expression, for eg: (2 + 3)"],
                 [["cheer"], "to appreciate my work"],
-                [["repos"], "to see my github repositories"],
-                [["ipconfig"], "to see your IP details"],
-                [["github"], "to see my github stats"],
+                [["clear"], "to clear the terminal"],
+                [["contact"], "to enquire about my services"],
                 [["contributors"], "to see all the contributors"],
                 [["download"], "to download my pdf resume"],
-                [["calc"], "to evaluate an expression, for eg: (2 + 3)"],
                 [["experience"], "to see my work experience"],
-                [
-                    ["history"],
-                    "shows the last 10 valid commands performed, use --clear flag to clear the history",
-                ],
+                [["github"], "to see my github stats"],
+                [["help"], "for a list of commands"],
+                [["history"], "shows the last 10 valid commands performed, use --clear flag to clear the history"],
+                [["ipconfig"], "to see your IP details"],
+                [["neofetch"], "to see my neoFetch"],
+                [["projects"], "to see my projects"],
+                [["repos"], "to see my github repositories"],
                 [["skills"], "to see my skills"],
+                [["social"], "to see my social links (add flags '-l' for links and '-d' for detailed results)"],
             ];
-            listOfCreateCodes.sort((a, b) => {
-                if (a[0] > b[0]) return 1;
-                else return -1;
-            });
             for (let i = 0; i < listOfCreateCodes.length; ++i) {
                 console.log;
                 createCode(listOfCreateCodes[i][0], listOfCreateCodes[i][1]);
@@ -132,12 +121,10 @@ async function getInputValue(history, cmd = undefined) {
         case "neofetch":
             neofetch();
             break;
-
         case "about":
             trueValue(value);
             createText(config.about);
             break;
-
         case "social":
             if (flag == "-l") {
                 trueValue(val);
@@ -165,7 +152,6 @@ async function getInputValue(history, cmd = undefined) {
                         );
                         createText(`Ranking: ${ranking}`);
                     }
-
                     if (item.title == "Codechef") {
                         createText(`Rank :- ${item.rank}`);
                         createText(`Rating :- ${item.rating}`);
@@ -173,7 +159,6 @@ async function getInputValue(history, cmd = undefined) {
                 });
                 break;
             }
-
             trueValue(value);
             config.social.forEach((item) => {
                 createText(
@@ -181,7 +166,6 @@ async function getInputValue(history, cmd = undefined) {
                 );
             });
             break;
-
         case "projects":
             trueValue(value);
             createText("Projects:");
@@ -191,7 +175,6 @@ async function getInputValue(history, cmd = undefined) {
                 );
             });
             break;
-
         case "blogs":
             trueValue(value);
             createText("Recent Blogs:");
@@ -203,14 +186,12 @@ async function getInputValue(history, cmd = undefined) {
                 createText(`${blog.site}: `);
                 blog.items.forEach((item, index) => {
                     createText(
-                        `<a href="${item.link}" target="_blank">${index + 1}. ${
-                            item.title
+                        `<a href="${item.link}" target="_blank">${index + 1}. ${item.title
                         }</a>`
                     );
                 });
             });
             break;
-
         case "contributors":
             trueValue(value);
             contributors.forEach((user) => {
@@ -220,7 +201,6 @@ async function getInputValue(history, cmd = undefined) {
             });
             createText(`- Thanks to all the contributors 💖`);
             break;
-
         case "experience":
             trueValue(value);
             createText("My Work Experience:");
@@ -229,7 +209,6 @@ async function getInputValue(history, cmd = undefined) {
                 createText(`${item.description}`);
             });
             break;
-
         case "skills":
             trueValue(value);
             config.skills.forEach((item) => {
@@ -237,7 +216,6 @@ async function getInputValue(history, cmd = undefined) {
                 createText(`${item.description}`);
             });
             break;
-
         case "ipconfig":
             trueValue(value);
             const IP = IpDetails[0];
@@ -248,22 +226,18 @@ async function getInputValue(history, cmd = undefined) {
             createText(`- region: ${IP.region}`);
             createText(`- postal: ${IP.postal}`);
             break;
-
         case "repos":
             trueValue(value);
             userRepos[0].forEach((repo, index) => {
                 createText(
-                    `- repo_${index} name: <a href=${repo.html_url}>${
-                        repo.name
-                    }</a> | language: ${
-                        repo.language === null ? "no language" : repo.language
+                    `- repo_${index} name: <a href=${repo.html_url}>${repo.name
+                    }</a> | language: ${repo.language === null ? "no language" : repo.language
                     }`
                 );
                 createText(
-                    `_ description: ${
-                        repo.description === null
-                            ? "no description."
-                            : repo.description
+                    `_ description: ${repo.description === null
+                        ? "no description."
+                        : repo.description
                     }`
                 );
             });
@@ -272,7 +246,6 @@ async function getInputValue(history, cmd = undefined) {
             trueValue(value);
             downloadFile();
             break;
-
         case "clear":
         case "cls":
             document
@@ -328,9 +301,9 @@ async function getInputValue(history, cmd = undefined) {
                 trueValue(value);
                 const reply =
                     config.cheer.responseArray[
-                        Math.floor(
-                            Math.random() * config.cheer.responseArray.length
-                        )
+                    Math.floor(
+                        Math.random() * config.cheer.responseArray.length
+                    )
                     ];
                 createText(reply);
             } else {
@@ -411,7 +384,6 @@ function downloadFile() {
     link.href = resumeUrl;
     link.click();
     const p = document.createElement("p");
-
     p.innerHTML = "<span class='blink'>###############<span/>";
     app.appendChild(p);
     setTimeout(() => {
@@ -427,7 +399,10 @@ function calc(flag) {
             createText("Please Enter a Valid Expression");
         } else {
             trueValue(flag);
-            createText(flag + " = " + eval(flag));
+            function parse(str) {
+                return Function(`'use strict'; return (${str})`)();
+            }
+            createText(flag + " = " + parse(flag));
         }
     } catch (e) {
         falseValue(flag);
@@ -435,8 +410,8 @@ function calc(flag) {
     }
 }
 
+// all functions exported
 export {
-    // all functions exported
     neofetch,
     removeNeoFetch,
     getInputValue,
