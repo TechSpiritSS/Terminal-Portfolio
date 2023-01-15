@@ -1,5 +1,6 @@
 
-{
+const config = {
+
     "help": [
         {
             "title": "help",
@@ -170,5 +171,13 @@
             "title": "Other Skills are:",
             "description": "Team Leadership, Community Management, Team Building, Community Development, Team Management, Microsoft Word, Microsoft Powerpoint, Communication."
         }
-    ]
+    ],
+    "neofetch": {
+        "name": "Sidharth Sethi",
+        "title": "MERN Developer",
+        "skills": "Frontend, Backend, Cloud",
+        "shell": "zsh",
+        "languages": "Javascript, C++, HTML/CSS, SQL"
+    },
 }
+export default config

@@ -5,23 +5,24 @@
     --primary-color: #702459;
     --header-back: #874f5e;
     --header-text: #eee;
-  }
-  
-  body {
+}
+
+body {
     background-color: var(--back-color);
     color: var(--primary-color);
-  }
-  
-  header {
+}
+
+header {
     background-color: var(--header-back);
     color: var(--header-text);
-  }
-  
-  .box img {
-    border: 2px solid var(--primary-color);
-  }
+}
 
-  .menu { /* top bar */
+.box img {
+    border: 2px solid var(--primary-color);
+}
+
+.menu {
+    /* top bar */
     background-color: black;
 }
 
@@ -29,7 +30,9 @@
     background-color: black;
 }
 
-.bottom-name, .menu h1, .bottom-bar {
+.bottom-name,
+.menu h1,
+.bottom-bar {
     color: white;
 }
 
@@ -42,23 +45,28 @@ h2 {
 }
 
 
-#app { /* main content */
+#app {
+    /* main content */
     background-color: black;
 }
 
-p.path { /* username */
+p.path {
+    /* username */
     color: lime !important;
 }
 
-#app p { /* main text */
+#app p {
+    /* main text */
     color: lime;
 }
 
-p.path span { /* sudo */
+p.path span {
+    /* sudo */
     color: lime;
 }
 
-p.path span + span { /* directory */
+p.path span+span {
+    /* directory */
     color: lime;
 }
 
@@ -82,15 +90,22 @@ input {
     font-family: "VT323", monospace;
 }
 
-.theme-dropdown{
+.theme-dropdown {
     color: rgb(232, 249, 131);
 }
 
-.close{
-    border : 1px solid rgb(243, 255, 172);
+.close {
+    border: 1px solid rgb(243, 255, 172);
 }
 
-.theme-switches{
-    background-color:  #000;
+.theme-switches {
+    background-color: #000;
     color: white;
+}
+#switch8{
+    background-color: #A080FF;
+}
+#switch7{
+    background-color:#FF6600 ;
+
 }

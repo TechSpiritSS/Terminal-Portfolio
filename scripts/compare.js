@@ -1,4 +1,4 @@
-/* 
+/*
 Referenced from:
 https://github.com/aceakash/string-similarity
 https://www.tutorialspoint.com/levenshtein-distance-in-javascript

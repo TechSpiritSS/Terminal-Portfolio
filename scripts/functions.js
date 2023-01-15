@@ -1,16 +1,40 @@
 //Functions file. All important functions are defined here. These are used for setup & operations
 
 //Imports done
-import config from "../config.json" assert { type: "json" };
+import config from "../config.js";
 import {
-    fetchGithubSocialStats, fetchLinkedInStats, fetchLeetCodeStats, fetchGithubStats,
+    fetchGithubSocialStats,
+    fetchLinkedInStats,
+    fetchLeetCodeStats,
+    fetchGithubStats,
     connections,
     githubStats,
-    followers, following,
-    ranking, totalSolved, easySolved, mediumSolved, hardSolved,
+    followers,
+    following,
+    ranking,
+    totalSolved,
+    easySolved,
+    mediumSolved,
+    hardSolved,
 } from "./fetchStats.js";
-import { getContributors, getBlogs, getIPDetails, getRepo, contributors, userBlogs, IpDetails, userRepos } from "./getDetails.js";
+import {
+    getContributors,
+    getBlogs,
+    getIPDetails,
+    getRepo,
+    contributors,
+    userBlogs,
+    IpDetails,
+    userRepos,
+} from "./getDetails.js";
 import { suggestFurtherCommand } from "./compare.js";
+import {
+    commandHistory,
+    saveHistory,
+    clearHistory,
+    popInvalidCommand,
+    runSpecificHistoryCmd,
+} from "./history.js";
 
 const app = document.querySelector("#app");
 let delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -18,13 +42,10 @@ const resumeUrl = "https://drive.google.com/u/0/uc?id=1J8QGMreVTsC-K-d5bpKV1BVNX
 
 //Defining the functions
 function neofetch() {
-    const data = {
-        name: "Sidharth Sethi",
-        title: "MERN Developer",
-        skills: "Frontend, Backend, Cloud",
-        shell: "zsh",
-        langauges: "Javascript, C++, HTML/CSS, SQL",
-    };
+    // read data from data.json
+    const data = config.neofetch;
+    console.log(data);
+
     const container = document.createElement("div");
     container.classList.add("fetch-container");
 
@@ -46,16 +67,20 @@ function neofetch() {
     app.appendChild(container);
 }
 
+
 function removeNeoFetch() {
     document.querySelector(".fetch-container").remove();
 }
 
-async function getInputValue(history) {
-    const val = document.querySelector("input").value.trim().toLowerCase();
-    const a = val.split(' ')
-    const flag = a[1]
-    const value = a[0]
-    const flags = [...a]
+
+async function getInputValue(history, cmd = undefined) {
+    const val = cmd || document.querySelector("input").value.trim().toLowerCase();
+    saveHistory(val);
+    const a = val.split(" ");
+    const flag = a[1];
+    const value = a[0];
+    const flags = [...a];
+
     flags.shift(); // removes the first element
     if (value.substring(0, 5) === "cheer") {
         value.substring(0, 5).toLowerCase();
@@ -88,23 +113,20 @@ async function getInputValue(history) {
         case "neofetch":
             neofetch();
             break;
-
         case "about":
             trueValue(value);
             createText(config.about);
             break;
-
         case "social":
-            if (flag == '-l') {
-                trueValue(val)
+            if (flag == "-l") {
+                trueValue(val);
                 config.social.forEach((item) => {
                     createText(`${item.title} :- <a href=${item.link} target="_blank">${item.link}</a>
             `);
                 });
                 break;
-            }
-            else if (flag == '-d') {
-                trueValue(val)
+            } else if (flag == "-d") {
+                trueValue(val);
                 config.social.forEach((item) => {
                     createText(`${item.title} Link :- <a href=${item.link} target="_blank">${item.link}</a>
             `);
@@ -117,10 +139,11 @@ async function getInputValue(history) {
                     }
                     if (item.title == "LeetCode") {
                         createText(`Problems Solved: ${totalSolved}`);
-                        createText(`Distribution:- Easy:${easySolved} Medium:${mediumSolved} Hard:${hardSolved}`);
+                        createText(
+                            `Distribution:- Easy:${easySolved} Medium:${mediumSolved} Hard:${hardSolved}`
+                        );
                         createText(`Ranking: ${ranking}`);
                     }
-
                     if (item.title == "Codechef") {
                         createText(`Rank :- ${item.rank}`);
                         createText(`Rating :- ${item.rating}`);
@@ -128,13 +151,13 @@ async function getInputValue(history) {
                 });
                 break;
             }
-
             trueValue(value);
             config.social.forEach((item) => {
-                createText(`<a href=${item.link} target="_blank">${item.title}</a>`);
+                createText(
+                    `<a href=${item.link} target="_blank">${item.title}</a>`
+                );
             });
             break;
-
         case "projects":
             trueValue(value);
             createText("Projects:");
@@ -144,7 +167,6 @@ async function getInputValue(history) {
                 );
             });
             break;
-
         case "blogs":
             trueValue(value);
             createText("Recent Blogs:");
@@ -162,15 +184,15 @@ async function getInputValue(history) {
                 });
             });
             break;
-
         case "contributors":
             trueValue(value);
             contributors.forEach((user) => {
-                createText(`- <a href=${user.userProfile}>${user.username}</a>`);
+                createText(
+                    `- <a href=${user.userProfile}>${user.username}</a>`
+                );
             });
             createText(`- Thanks to all the contributors 💖`);
             break;
-
         case "experience":
             trueValue(value);
             createText("My Work Experience:");
@@ -179,7 +201,6 @@ async function getInputValue(history) {
                 createText(`${item.description}`);
             });
             break;
-
         case "skills":
             trueValue(value);
             config.skills.forEach((item) => {
@@ -187,7 +208,6 @@ async function getInputValue(history) {
                 createText(`${item.description}`);
             });
             break;
-
         case "ipconfig":
             trueValue(value);
             const IP = IpDetails[0];
@@ -198,7 +218,6 @@ async function getInputValue(history) {
             createText(`- region: ${IP.region}`);
             createText(`- postal: ${IP.postal}`);
             break;
-
         case "repos":
             trueValue(value);
             userRepos[0].forEach((repo, index) => {
@@ -208,7 +227,9 @@ async function getInputValue(history) {
                     }`
                 );
                 createText(
-                    `_ description: ${repo.description === null ? "no description." : repo.description
+                    `_ description: ${repo.description === null
+                        ? "no description."
+                        : repo.description
                     }`
                 );
             });
@@ -217,7 +238,6 @@ async function getInputValue(history) {
             trueValue(value);
             downloadFile();
             break;
-
         case "clear":
         case "cls":
             document
@@ -230,11 +250,12 @@ async function getInputValue(history) {
             break;
         case "contact":
             createText(
-                `Hey! Would love to get in touch.
-          My linkedin profile link: <a href="mailto:${config.contact.linkedin}" </a>
+                `Hey! Would love to get in touch.<br>
+          My linkedin profile link: <a href="${config.social.filter((obj)=>obj.title.toLowerCase()=='linkedin')[0].link}"> LinkedIn</a>.<br>
           Drop me a text at <a href="mailto:${config.contact.email}" target="_blank">${config.contact.email}</a>`
             );
             window.location.href = `mailto:${config.contact.email}`;
+         //   window.open(`mailto:${config.contact.email}`, "_blank");
             break;
         case "sudo":
             trueValue(value);
@@ -249,7 +270,6 @@ async function getInputValue(history) {
             createText(`Number of followers: ${githubStats.followers}`);
             createText(`Number of following: ${githubStats.following}`);
             break;
-
         case "cd":
             trueValue(value);
             createText("There's no directory in this path");
@@ -257,15 +277,26 @@ async function getInputValue(history) {
         case "calc":
             calc(flags.join(""));
             break;
+        case "history":
+            if (flag === "--clear") {
+                clearHistory();
+            }
+            if (Number(flag)) {
+                runSpecificHistoryCmd(Number(flag));
+            } else {
+                commandHistory();
+            }
+            break;
         case "exit":
             window.close();
-
         default:
             if (value.substring(0, 5) === "cheer") {
                 trueValue(value);
                 const reply =
                     config.cheer.responseArray[
-                    Math.floor(Math.random() * config.cheer.responseArray.length)
+                    Math.floor(
+                        Math.random() * config.cheer.responseArray.length
+                    )
                     ];
                 createText(reply);
             } else {
@@ -346,7 +377,6 @@ function downloadFile() {
     link.href = resumeUrl;
     link.click();
     const p = document.createElement("p");
-
     p.innerHTML = "<span class='blink'>###############<span/>";
     app.appendChild(p);
     setTimeout(() => {
@@ -362,7 +392,10 @@ function calc(flag) {
             createText("Please Enter a Valid Expression");
         } else {
             trueValue(flag);
-            createText(flag + " = " + eval(flag));
+            function parse(str) {
+                return Function(`'use strict'; return (${str})`)();
+            }
+            createText(flag + " = " + parse(flag));
         }
     } catch (e) {
         falseValue(flag);
@@ -370,8 +403,8 @@ function calc(flag) {
     }
 }
 
+// all functions exported
 export {
-    // all functions exported
     neofetch,
     removeNeoFetch,
     getInputValue,
@@ -382,5 +415,5 @@ export {
     createText,
     createCode,
     downloadFile,
-    calc
-}
+    calc,
+};

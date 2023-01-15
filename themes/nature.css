@@ -3,23 +3,24 @@
     --primary-color: #000000;
     --header-back: #5d5d5d;
     --header-text: #eee;
-  }
-  
-  body {
+}
+
+body {
     background-color: var(--back-color);
     color: var(--primary-color);
-  }
-  
-  header {
+}
+
+header {
     background-color: var(--header-back);
     color: var(--header-text);
-  }
-  
-  .box img {
-    border: 2px solid var(--primary-color);
-  }
+}
 
-  .menu { /* top bar */
+.box img {
+    border: 2px solid var(--primary-color);
+}
+
+.menu {
+    /* top bar */
     background-color: #4b4343;
 }
 
@@ -27,7 +28,9 @@
     background-color: #1e1a1a;
 }
 
-.bottom-name, .menu h1, .bottom-bar {
+.bottom-name,
+.menu h1,
+.bottom-bar {
     color: #f9ffee;
 }
 
@@ -35,28 +38,34 @@ p {
     color: #96905f;
 }
 
-h2, a {
+h2,
+a {
     color: #71a46c;
 }
 
 
-#app { /* main content */
+#app {
+    /* main content */
     background-color: #292424;
 }
 
-p.path { /* username */
+p.path {
+    /* username */
     color: #c27d7b !important;
 }
 
-#app p { /* main text */
+#app p {
+    /* main text */
     color: #96905f;
 }
 
-p.path span { /* sudo */
+p.path span {
+    /* sudo */
     color: #e81050;
 }
 
-p.path span + span { /* directory */
+p.path span+span {
+    /* directory */
     color: #b680b1;
 }
 
@@ -76,15 +85,22 @@ input {
     border: 1px solid #000000;
 }
 
-.theme-dropdown{
-    color:white;
+.theme-dropdown {
+    color: white;
 }
 
-.close{
-    border : 1px solid white;
+.close {
+    border: 1px solid white;
 }
 
-.theme-switches{
+.theme-switches {
     background-color: #4b4343;
     color: white;
+}
+#switch8{
+    background-color: #A080FF;
+}
+#switch7{
+    background-color:#FF6600 ;
+
 }
