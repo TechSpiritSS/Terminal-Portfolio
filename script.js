@@ -45,7 +45,8 @@ export let commandsList = [
     "github",
     "experience",
     "skills",
-    "history"
+    "history",
+    "reset"
 ];
 
 

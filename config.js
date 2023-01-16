@@ -69,6 +69,10 @@ const config = {
         {
             "title": "skills",
             "description": "sto see my skills"
+        },
+        {
+            "title": "reset",
+            "description": "to reload site"
         }
     ],
     "terminal": {
