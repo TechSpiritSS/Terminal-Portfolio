@@ -92,8 +92,6 @@ async function getInputValue(history, remove = false, cmd = undefined) {
 
     if (remove) removeInput();
 
-    console.log(value);
-
     switch (value) {
         case "help":
         case "ls":
@@ -260,7 +258,8 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             document
                 .querySelectorAll("section")
                 .forEach((e) => e.parentNode.removeChild(e));
-            removeNeoFetch();
+            removeInput();
+            await delay(150);
             break;
         case "contact":
             await createText(
@@ -349,7 +348,7 @@ function new_line() {
 
 function removeInput() {
     const div = document.querySelector(".type");
-    app.removeChild(div);
+    if (div) app.removeChild(div);
 }
 
 function trueValue(value) {
