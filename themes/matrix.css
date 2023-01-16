@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 
 :root {
-    --back-color: #1b1b1b;
-    --primary-color: #702459;
-    --header-back: #874f5e;
+    --back-color: #f19a9a;
+    --primary-color: #c356a2;
+    --header-back: #c32550;
     --header-text: #eee;
 }
 
@@ -23,11 +23,11 @@ header {
 
 .menu {
     /* top bar */
-    background-color: black;
+    background-color: #5d2828;
 }
 
 .bottom-bar {
-    background-color: black;
+    background-color: #5d2828;
 }
 
 .bottom-name,
@@ -47,48 +47,45 @@ h2 {
 
 #app {
     /* main content */
-    background-color: black;
+    background-color: #aa84ec;
 }
 
 p.path {
     /* username */
-    color: lime !important;
+    color: #daeaef!important;
 }
 
 #app p {
     /* main text */
-    color: lime;
+    color: #daeaef;
 }
 
 p.path span {
     /* sudo */
-    color: lime;
+    color: #7d118d
 }
 
 p.path span+span {
     /* directory */
-    color: lime;
+    color: #7d118d;
 }
 
 .icone {
-    color: lime;
+    color: #dfeddf;
 }
 
 input {
-    color: lime;
+    color:#43abdb;
 }
 
 .error {
-    background-color: #;
+    background-color:# ;
 }
 
 .container {
-    border: .5px solid rgb(47, 47, 47);
+    border: .2px solid rgb(47, 47, 47);
 }
 
-* {
-    font-family: "VT323", monospace;
-}
 
 .theme-dropdown {
     color: rgb(232, 249, 131);
@@ -99,7 +96,7 @@ input {
 }
 
 .theme-switches {
-    background-color: #000;
+    background-color: #5d2828;
     color: white;
 }
 #switch8{

@@ -20,13 +20,13 @@
   }
 
   .menu { /* top bar */
-    background-color: #efdfcf;
+    background-color: #cee7b1;
 }
 .code{
     color:#FF6600 !important;
 }
 .bottom-bar {
-    background-color: #efdfcf;
+    background-color: #cee7b1;
 }
 
 .bottom-name, .menu h1, .bottom-bar {
@@ -43,7 +43,7 @@ h2 {
 
 
 #app { /* main content */
-    background-color: black;
+    background-color: #dfcf44;
 }
 
 p.path { /* username */
@@ -53,12 +53,12 @@ p.path { /* username */
 
 
 #app p { /* main text */
-    color: #FFFFFF;
+    color: #6f2828;
     font-weight: 300;
 }
 
 p.path span { /* sudo */
-    color: #FFFFFF;
+    color: #0f4911;
 }
 
 p.path span + span { /* directory */
@@ -87,7 +87,7 @@ a {
 }
 
 .theme-switches { 
-    background-color: #FFFFFF;
+    background-color: #cee7b1;
 }
 #switch8{
     background-color: #A080FF;

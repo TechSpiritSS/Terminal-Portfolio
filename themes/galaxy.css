@@ -23,7 +23,7 @@
     background-color: #efdfcf;
 }
 .code{
-    color:#A080FF !important;
+    color:#1d0a56 !important;
 }
 .bottom-bar {
     background-color: #efdfcf;
@@ -38,22 +38,22 @@ p {
 }
 
 h2 {
-    color: #A080FF;
+    color: #3f2883;
 }
 
 
 #app { /* main content */
-    background-color: black;
+    background-color: #3ec7d8;
 }
 
 p.path { /* username */
-    color:#A080FF !important;
+    color:#ea6d2a !important;
  
 }
 
 
 #app p { /* main text */
-    color: #D0D0FF;
+    color: #2d2de2;
     font-weight: 300;
 }
 
@@ -62,12 +62,12 @@ p.path span { /* sudo */
 }
 
 p.path span + span { /* directory */
-    color: #D0D0FF;
+    color: #3f6d0a;
     font-weight: 25px !important;
 }
 
 .icone {
-    color: #A080FF;
+    color: #4c2395;
 }
 
 input {

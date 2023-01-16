@@ -1,7 +1,7 @@
 :root {
-    --back-color: #1d272a;
+    --back-color: #211d2a;
     --primary-color: #f9ffee;
-    --header-back: #1a1d24;
+    --header-back: #714266;
     --header-text: #eee;
 }
 
@@ -34,7 +34,7 @@ header {
 
 .bottom-name,
 .bottom-bar {
-    color: #727272;
+    color: #fe1717;
 }
 
 p {
@@ -43,21 +43,21 @@ p {
 
 #app {
     /* main content */
-    background-color: #1d272a;
+    background-color: #7bc6dd;
 }
 
 p.path {
     /* username */
-    color: #7a9f81 !important;
+    color: #0f8926!important;
 }
 
 #app p {
     /* main text */
-    color: #6e94ad;
+    color: #cf1d17;
 }
 
 p.path span {
-    color: #ff8800;
+    color: #d07915;
 }
 
 p.path span+span {
@@ -65,15 +65,15 @@ p.path span+span {
 }
 
 .icone {
-    color: #6e94ad;
+    color: #051927;
 }
 
 input {
-    background-color: #;
+    background-color: ;
 }
 
 .error {
-    background-color: #;
+    background-color: ;
 }
 
 .container {
@@ -89,7 +89,7 @@ input {
     color: white;
 }
 #switch8{
-    background-color: #A080FF;
+    background-color: #ea8942;
 }
 #switch7{
     background-color:#FF6600 ;

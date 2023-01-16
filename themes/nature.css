@@ -46,7 +46,7 @@ a {
 
 #app {
     /* main content */
-    background-color: #292424;
+    background-color: #f8efa8;
 }
 
 p.path {
@@ -56,7 +56,7 @@ p.path {
 
 #app p {
     /* main text */
-    color: #96905f;
+    color: #40af1d;
 }
 
 p.path span {
