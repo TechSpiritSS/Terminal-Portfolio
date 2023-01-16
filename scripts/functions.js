@@ -389,11 +389,13 @@ async function createText(text) {
         return;
     }
 
+    const typingSpeed = localStorage.getItem("typingSpeed") || 20;
+
     let index = 0;    
     async function writeText() {
       while (index < text.length) {
         p.innerHTML += text[index++];
-        await new Promise((writeText) => setTimeout(writeText, 20));
+        await new Promise((writeText) => setTimeout(writeText, typingSpeed));
       }
       return;
     }
@@ -413,6 +415,8 @@ async function createCode(code, text) {
         return;
     }
 
+    const typingSpeed = localStorage.getItem("typingSpeed") || 20;
+
     const span = document.createElement("span");
     span.className="code"
     p.appendChild(span);
@@ -421,7 +425,7 @@ async function createCode(code, text) {
     async function writeCode() {
       while (index < code.length) {
         span.innerHTML += code[index++];
-        await new Promise((writeCode) => setTimeout(writeCode, 20));
+        await new Promise((writeCode) => setTimeout(writeCode, typingSpeed));
       }
       return;
     }
@@ -433,7 +437,7 @@ async function createCode(code, text) {
     async function writeText() {
       while (index < text.length) {
         p.innerHTML += text[index++];
-        await new Promise((writeText) => setTimeout(writeText, 20));
+        await new Promise((writeText) => setTimeout(writeText, typingSpeed));
       }
       return;
     }
@@ -489,15 +493,22 @@ export {
 };
 
 const typingCmd = async (flag) => {
+    const typing = localStorage.getItem("typing");
+    let typingSpeed = localStorage.getItem("typingSpeed");
+
     if (flag == "--on") {
         localStorage.setItem("typing","on");
         createText("Typing animation is turned on");
     } else if (flag == "--off") {
         localStorage.setItem("typing","off");
         createText("Typing animation is turned off");
+    } else if (Number(flag)) {
+        localStorage.setItem("typingSpeed",Number(flag));
+        typingSpeed = localStorage.getItem("typingSpeed");
+        await createText(`Typing animation speed is set to ${typingSpeed ? typingSpeed : 20}ms`);
     } else {
-        const typing = localStorage.getItem("typing");
-        await createText(`Typing animation is currently ${typing ? typing : "on"}`);
+        await createText(`Typing animation is currently ${typing ? typing : "on"} and speed is set to ${typingSpeed ? typingSpeed : 20}ms`);
         await createText("Turn typing animation on and off by adding --on or --off flags respectively");
+        await createText("Also u can write a number(in ms) to set typing custom animation speed");
     }
 }
