@@ -69,7 +69,8 @@ function neofetch() {
 
 
 function removeNeoFetch() {
-    document.querySelector(".fetch-container").remove();
+    const element = document.querySelector(".fetch-container")
+    element.remove();
 }
 
 
@@ -132,16 +133,16 @@ async function getInputValue(history, remove = false, cmd = undefined) {
         case "social":
             if (flag == "-l") {
                 trueValue(val);
-                config.social.forEach(async (item) => {
-                    await createText(`${item.title} :- <a href=${item.link} target="_blank">${item.link}</a>
-            `);
+                config.social.forEach((item) => {
+                    createText(`${item.title} :- <a href=${item.link} target="_blank">${item.link}</a>
+            `,false);
                 });
                 break;
             } else if (flag == "-d") {
                 trueValue(val);
                 config.social.forEach(async (item) => {
-                    await createText(`${item.title} Link :- <a href=${item.link} target="_blank">${item.link}</a>
-            `);
+                    createText(`${item.title} Link :- <a href=${item.link} target="_blank">${item.link}</a>
+            `,false);
                     if (item.title == "Github") {
                         await createText(`Number of followers: ${followers}`);
                         await createText(`Number of following: ${following}`);
@@ -164,9 +165,9 @@ async function getInputValue(history, remove = false, cmd = undefined) {
                 break;
             }
             trueValue(value);
-            config.social.forEach(async (item) => {
-                await createText(
-                    `<a href=${item.link} target="_blank">${item.title}</a>`
+            config.social.forEach((item) => {
+                createText(
+                    `<a href=${item.link} target="_blank">${item.title}</a>`,false
                 );
             });
             break;
@@ -175,7 +176,7 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             await createText("Projects:");
             config.projects.forEach(async (item) => {
                 await createText(
-                    `<a href=${item.link} target="_blank">${item.title}</a> - ${item.description}`
+                    `<a href=${item.link} target="_blank">${item.title}</a> - ${item.description}`,false
                 );
             });
             break;
@@ -187,20 +188,20 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             // Medium Feed URL: https://medium.com/feed/@username
             // TODO: Insert your Medium/Dev/Hashnode or any blog feed URL below
             userBlogs.forEach(async(blog) => {
-                await createText(`${blog.site}: `);
-                blog.items.forEach(async(item, index) => {
-                    await createText(
+                createText(`${blog.site}: `);
+                blog.items.forEach((item, index) => {
+                    createText(
                         `<a href="${item.link}" target="_blank">${index + 1}. ${item.title
-                        }</a>`
+                        }</a>`,false
                     );
                 });
             });
             break;
         case "contributors":
             trueValue(value);
-            contributors.forEach(async (user) => {
-                await createText(
-                    `- <a href=${user.userProfile}>${user.username}</a>`
+            contributors.forEach((user) => {
+                createText(
+                    `- <a href=${user.userProfile}>${user.username}</a>`,false
                 );
             });
             await createText(`- Thanks to all the contributors 💖`);
@@ -208,16 +209,16 @@ async function getInputValue(history, remove = false, cmd = undefined) {
         case "experience":
             trueValue(value);
             await createText("My Work Experience:");
-            config.experience.forEach(async (item) => {
-                await createText(`<a>${item.title}</a>`);
-                await createText(`${item.description}`);
+            config.experience.forEach((item) => {
+                createText(`<a>${item.title}</a>`);
+                createText(`${item.description}`);
             });
             break;
         case "skills":
             trueValue(value);
-            config.skills.forEach(async (item) => {
-                await createText(`<a>${item.title}</a>`);
-                await createText(`${item.description}`);
+            config.skills.forEach((item) => {
+                createText(`<a>${item.title}</a>`);
+                createText(`${item.description}`);
             });
             break;
         case "ipconfig":
@@ -232,13 +233,13 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             break;
         case "repos":
             trueValue(value);
-            userRepos[0].forEach(async (repo, index) => {
-                await createText(
+            userRepos[0].forEach((repo, index) => {
+                createText(
                     `- repo_${index} name: <a href=${repo.html_url}>${repo.name
                     }</a> | language: ${repo.language === null ? "no language" : repo.language
-                    }`
+                    }`,false
                 );
-                await createText(
+                createText(
                     `_ description: ${repo.description === null
                         ? "no description."
                         : repo.description
@@ -258,14 +259,15 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             document
                 .querySelectorAll("section")
                 .forEach((e) => e.parentNode.removeChild(e));
+            removeNeoFetch();
             removeInput();
             await delay(150);
             break;
         case "contact":
-            await createText(
+            createText(
                 `Hey! Would love to get in touch.<br>
           My linkedin profile link: <a href="${config.social.filter((obj)=>obj.title.toLowerCase()=='linkedin')[0].link}"> LinkedIn</a>.<br>
-          Drop me a text at <a href="mailto:${config.contact.email}" target="_blank">${config.contact.email}</a>`
+          Drop me a text at <a href="mailto:${config.contact.email}" target="_blank">${config.contact.email}</a>`,false
             );
             window.location.href = `mailto:${config.contact.email}`;
          //   window.open(`mailto:${config.contact.email}`, "_blank");
@@ -376,14 +378,16 @@ function falseValue(value) {
     app.appendChild(div);
 }
 
-async function createText(text) {
+async function createText(text,typingOn = true) {
     const p = document.createElement("p");
     app.appendChild(p);
     p.scrollIntoView({ behavior: 'smooth'});
 
     const typing = localStorage.getItem("typing");
 
-    if (typing && typing === "off") {
+    console.log(typingOn);
+
+    if (!typingOn || (typing && typing === "off")) {
         p.innerHTML = text;
         return;
     }
