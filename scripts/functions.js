@@ -73,22 +73,27 @@ function removeNeoFetch() {
 }
 
 
-async function getInputValue(history, cmd = undefined) {
+async function getInputValue(history, remove = false, cmd = undefined) {
     const val = cmd || document.querySelector("input").value.trim().toLowerCase();
     saveHistory(val);
     const a = val.split(" ");
     const flag = a[1];
     const value = a[0];
     const flags = [...a];
-
+    
     flags.shift(); // removes the first element
     if (value.substring(0, 5) === "cheer") {
         value.substring(0, 5).toLowerCase();
     } else {
         value.replace(/\s+/g, "").toLowerCase();
     }
+    
+    history.push(cmd || document.querySelector("input").value);
 
-    history.push(document.querySelector("input").value);
+    if (remove) removeInput();
+
+    console.log(value);
+
     switch (value) {
         case "help":
         case "ls":
@@ -112,10 +117,11 @@ async function getInputValue(history, cmd = undefined) {
                 [["repos"], "to see my github repositories"],
                 [["skills"], "to see my skills"],
                 [["social"], "to see my social links (add flags '-l' for links and '-d' for detailed results)"],
+                [["typing"], "shows typing animation status"],
             ];
             for (let i = 0; i < listOfCreateCodes.length; ++i) {
                 console.log;
-                createCode(listOfCreateCodes[i][0], listOfCreateCodes[i][1]);
+                await createCode(listOfCreateCodes[i][0], listOfCreateCodes[i][1]);
             }
             break;
         case "neofetch":
@@ -123,69 +129,69 @@ async function getInputValue(history, cmd = undefined) {
             break;
         case "about":
             trueValue(value);
-            createText(config.about);
+            await createText(config.about);
             break;
         case "social":
             if (flag == "-l") {
                 trueValue(val);
-                config.social.forEach((item) => {
-                    createText(`${item.title} :- <a href=${item.link} target="_blank">${item.link}</a>
+                config.social.forEach(async (item) => {
+                    await createText(`${item.title} :- <a href=${item.link} target="_blank">${item.link}</a>
             `);
                 });
                 break;
             } else if (flag == "-d") {
                 trueValue(val);
-                config.social.forEach((item) => {
-                    createText(`${item.title} Link :- <a href=${item.link} target="_blank">${item.link}</a>
+                config.social.forEach(async (item) => {
+                    await createText(`${item.title} Link :- <a href=${item.link} target="_blank">${item.link}</a>
             `);
                     if (item.title == "Github") {
-                        createText(`Number of followers: ${followers}`);
-                        createText(`Number of following: ${following}`);
+                        await createText(`Number of followers: ${followers}`);
+                        await createText(`Number of following: ${following}`);
                     }
                     if (item.title == "LinkedIn") {
-                        createText(`Connections :- ${connections}`);
+                        await createText(`Connections :- ${connections}`);
                     }
                     if (item.title == "LeetCode") {
-                        createText(`Problems Solved: ${totalSolved}`);
-                        createText(
+                        await createText(`Problems Solved: ${totalSolved}`);
+                        await createText(
                             `Distribution:- Easy:${easySolved} Medium:${mediumSolved} Hard:${hardSolved}`
                         );
-                        createText(`Ranking: ${ranking}`);
+                        await createText(`Ranking: ${ranking}`);
                     }
                     if (item.title == "Codechef") {
-                        createText(`Rank :- ${item.rank}`);
-                        createText(`Rating :- ${item.rating}`);
+                        await createText(`Rank :- ${item.rank}`);
+                        await createText(`Rating :- ${item.rating}`);
                     }
                 });
                 break;
             }
             trueValue(value);
-            config.social.forEach((item) => {
-                createText(
+            config.social.forEach(async (item) => {
+                await createText(
                     `<a href=${item.link} target="_blank">${item.title}</a>`
                 );
             });
             break;
         case "projects":
             trueValue(value);
-            createText("Projects:");
-            config.projects.forEach((item) => {
-                createText(
+            await createText("Projects:");
+            config.projects.forEach(async (item) => {
+                await createText(
                     `<a href=${item.link} target="_blank">${item.title}</a> - ${item.description}`
                 );
             });
             break;
         case "blogs":
             trueValue(value);
-            createText("Recent Blogs:");
+            await createText("Recent Blogs:");
             // Hashnode Feed URL: https://username.hashnode.dev/rss.xml
             // Dev.to Feed URL: https://dev.to/feed/username
             // Medium Feed URL: https://medium.com/feed/@username
             // TODO: Insert your Medium/Dev/Hashnode or any blog feed URL below
-            userBlogs.forEach((blog) => {
-                createText(`${blog.site}: `);
-                blog.items.forEach((item, index) => {
-                    createText(
+            userBlogs.forEach(async(blog) => {
+                await createText(`${blog.site}: `);
+                blog.items.forEach(async(item, index) => {
+                    await createText(
                         `<a href="${item.link}" target="_blank">${index + 1}. ${item.title
                         }</a>`
                     );
@@ -194,47 +200,47 @@ async function getInputValue(history, cmd = undefined) {
             break;
         case "contributors":
             trueValue(value);
-            contributors.forEach((user) => {
-                createText(
+            contributors.forEach(async (user) => {
+                await createText(
                     `- <a href=${user.userProfile}>${user.username}</a>`
                 );
             });
-            createText(`- Thanks to all the contributors 💖`);
+            await createText(`- Thanks to all the contributors 💖`);
             break;
         case "experience":
             trueValue(value);
-            createText("My Work Experience:");
-            config.experience.forEach((item) => {
-                createText(`<a>${item.title}</a>`);
-                createText(`${item.description}`);
+            await createText("My Work Experience:");
+            config.experience.forEach(async (item) => {
+                await createText(`<a>${item.title}</a>`);
+                await createText(`${item.description}`);
             });
             break;
         case "skills":
             trueValue(value);
-            config.skills.forEach((item) => {
-                createText(`<a>${item.title}</a>`);
-                createText(`${item.description}`);
+            config.skills.forEach(async (item) => {
+                await createText(`<a>${item.title}</a>`);
+                await createText(`${item.description}`);
             });
             break;
         case "ipconfig":
             trueValue(value);
             const IP = IpDetails[0];
-            createText(`- Ipv6: ${IP.ip}`);
-            createText(`- network: ${IP.network}`);
-            createText(`- city: ${IP.city}`);
-            createText(`- network org: ${IP.org}`);
-            createText(`- region: ${IP.region}`);
-            createText(`- postal: ${IP.postal}`);
+            await createText(`- Ipv6: ${IP.ip}`);
+            await createText(`- network: ${IP.network}`);
+            await createText(`- city: ${IP.city}`);
+            await createText(`- network org: ${IP.org}`);
+            await createText(`- region: ${IP.region}`);
+            await createText(`- postal: ${IP.postal}`);
             break;
         case "repos":
             trueValue(value);
-            userRepos[0].forEach((repo, index) => {
-                createText(
+            userRepos[0].forEach(async (repo, index) => {
+                await createText(
                     `- repo_${index} name: <a href=${repo.html_url}>${repo.name
                     }</a> | language: ${repo.language === null ? "no language" : repo.language
                     }`
                 );
-                createText(
+                await createText(
                     `_ description: ${repo.description === null
                         ? "no description."
                         : repo.description
@@ -257,7 +263,7 @@ async function getInputValue(history, cmd = undefined) {
             removeNeoFetch();
             break;
         case "contact":
-            createText(
+            await createText(
                 `Hey! Would love to get in touch.<br>
           My linkedin profile link: <a href="${config.social.filter((obj)=>obj.title.toLowerCase()=='linkedin')[0].link}"> LinkedIn</a>.<br>
           Drop me a text at <a href="mailto:${config.contact.email}" target="_blank">${config.contact.email}</a>`
@@ -267,20 +273,20 @@ async function getInputValue(history, cmd = undefined) {
             break;
         case "sudo":
             trueValue(value);
-            createText("You are not authorized to use this command");
+            await createText("You are not authorized to use this command");
             break;
         case "github":
             trueValue(value);
-            createText(`Github Username: ${githubStats.username}`);
-            createText(`Github Bio: ${githubStats.bio}`);
-            createText(`Number of repositories : ${githubStats.public_repos}`);
-            createText(`Number of gists: ${githubStats.public_gists}`);
-            createText(`Number of followers: ${githubStats.followers}`);
-            createText(`Number of following: ${githubStats.following}`);
+            await createText(`Github Username: ${githubStats.username}`);
+            await createText(`Github Bio: ${githubStats.bio}`);
+            await createText(`Number of repositories : ${githubStats.public_repos}`);
+            await createText(`Number of gists: ${githubStats.public_gists}`);
+            await createText(`Number of followers: ${githubStats.followers}`);
+            await createText(`Number of following: ${githubStats.following}`);
             break;
         case "cd":
             trueValue(value);
-            createText("There's no directory in this path");
+            await createText("There's no directory in this path");
             break;
         case "calc":
             calc(flags.join(""));
@@ -290,10 +296,13 @@ async function getInputValue(history, cmd = undefined) {
                 clearHistory();
             }
             if (Number(flag)) {
-                runSpecificHistoryCmd(Number(flag));
+                await runSpecificHistoryCmd(Number(flag));
             } else {
-                commandHistory();
+                await commandHistory();
             }
+            break;
+        case "typing":
+            typingCmd();
             break;
         case "exit":
             window.close();
@@ -306,12 +315,12 @@ async function getInputValue(history, cmd = undefined) {
                         Math.random() * config.cheer.responseArray.length
                     )
                     ];
-                createText(reply);
+                await createText(reply);
             } else {
                 falseValue(value);
-                createText(`${value} is not a valid command`);
+                await createText(`${value} is not a valid command`);
                 let commands = suggestFurtherCommand(value);
-                createText("Are you looking for this: " + commands);
+                await createText("Are you looking for this: " + commands);
             }
     }
 }
@@ -368,16 +377,69 @@ function falseValue(value) {
     app.appendChild(div);
 }
 
-function createText(text) {
+async function createText(text) {
     const p = document.createElement("p");
-    p.innerHTML = text;
     app.appendChild(p);
+    p.scrollIntoView({ behavior: 'smooth'});
+
+    const typing = localStorage.getItem("typing");
+
+    if (typing && typing === "off") {
+        p.innerHTML = text;
+        return;
+    }
+
+    let index = 0;    
+    async function writeText() {
+      while (index < text.length) {
+        p.innerHTML += text[index++];
+        await new Promise((writeText) => setTimeout(writeText, 20));
+      }
+      return;
+    }
+    
+    await writeText();
+    
 }
 
-function createCode(code, text) {
+async function createCode(code, text) {
     const p = document.createElement("p");
-    p.innerHTML = `<span class="code">${code} =></span> ${text}`;
     app.appendChild(p);
+
+    const typing = localStorage.getItem("typing");
+
+    if (typing && typing === "off") {
+        p.innerHTML = `<span class="code">${code} =></span> ${text}`;
+        return;
+    }
+
+    const span = document.createElement("span");
+    span.className="code"
+    p.appendChild(span);
+    p.scrollIntoView({ behavior: 'smooth'});
+    let index = 0;    
+    async function writeCode() {
+      while (index < code.length) {
+        span.innerHTML += code[index++];
+        await new Promise((writeCode) => setTimeout(writeCode, 20));
+      }
+      return;
+    }
+    await writeCode();
+
+    p.innerHTML += " "
+
+    index = 0;    
+    async function writeText() {
+      while (index < text.length) {
+        p.innerHTML += text[index++];
+        await new Promise((writeText) => setTimeout(writeText, 20));
+      }
+      return;
+    }
+    
+    await writeText();
+
 }
 
 function downloadFile() {
@@ -393,21 +455,21 @@ function downloadFile() {
     document.body.removeChild(link);
 }
 
-function calc(flag) {
+async function calc(flag) {
     try {
         if (flag === "" || flag === " " || flag === undefined) {
             falseValue(flag);
-            createText("Please Enter a Valid Expression");
+            await createText("Please Enter a Valid Expression");
         } else {
             trueValue(flag);
             function parse(str) {
                 return Function(`'use strict'; return (${str})`)();
             }
-            createText(flag + " = " + parse(flag));
+            await createText(flag + " = " + parse(flag));
         }
     } catch (e) {
         falseValue(flag);
-        createText(flag + " is an Invalid Expression");
+        await createText(flag + " is an Invalid Expression");
     }
 }
 
@@ -425,3 +487,17 @@ export {
     downloadFile,
     calc,
 };
+
+const typingCmd = async (flag) => {
+    if (flag == "--on") {
+        localStorage.setItem("typing","on");
+        createText("Typing animation is turned on");
+    } else if (flag == "--off") {
+        localStorage.setItem("typing","off");
+        createText("Typing animation is turned off");
+    } else {
+        const typing = localStorage.getItem("typing");
+        await createText(`Typing animation is currently ${typing ? typing : "on"}`);
+        await createText("Turn typing animation on and off by adding --on or --off flags respectively");
+    }
+}

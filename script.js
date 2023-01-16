@@ -45,7 +45,8 @@ export let commandsList = [
     "github",
     "experience",
     "skills",
-    "history"
+    "history",
+    "typing"
 ];
 
 
@@ -68,12 +69,12 @@ themeButton.addEventListener("click", themeBtn);
 
 //function to set up and start the terminal
 async function openTerminal() {
-    createText("Welcome to the Terminal");
+    await createText("Welcome to the Terminal");
     await delay(500);
-    createText("Starting up...");
+    await createText("Starting up...");
     await delay(800);
-    createText("You can now interact with the Terminal");
-    createCode("Type help", "for a list of commands");
+    await createText("You can now interact with the Terminal");
+    await createCode("Type help", "for a list of commands");
     await delay(500);
     new_line();
 }
