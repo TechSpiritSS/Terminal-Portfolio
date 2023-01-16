@@ -302,7 +302,7 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             }
             break;
         case "typing":
-            await typingCmd();
+            await typingCmd(flag);
             break;
         case "exit":
             window.close();
