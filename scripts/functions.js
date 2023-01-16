@@ -99,8 +99,7 @@ async function getInputValue(history, cmd = undefined) {
             if (flag == '-d') {
                 trueValue(val)
                 config.help.forEach((item) => {
-                    createText(`${item.title} :- <a href=${item.description} target="_blank">${item.description}</a>
-            `);
+                    createText(`${item.title} :- ${item.description}`);
                 });
                 break;
             }
@@ -108,6 +107,7 @@ async function getInputValue(history, cmd = undefined) {
             let titles = config.help.map(item => item.title);
             let titlesString = titles.join(', ');
             createText(titlesString);
+            createText("type -d for more description")
             break;
 
         case "neofetch":
@@ -121,32 +121,32 @@ async function getInputValue(history, cmd = undefined) {
             if (flag == "-l") {
                 trueValue(val);
                 config.social.forEach((item) => {
-                    createText(`${item.title} :- <a href=${item.link} target="_blank">${item.link}</a>
-            `);
+                    createText(`${item.title} : - <a href=${item.link} target = "_blank" > ${item.link}</a >
+                    `);
                 });
                 break;
             } else if (flag == "-d") {
                 trueValue(val);
                 config.social.forEach((item) => {
-                    createText(`${item.title} Link :- <a href=${item.link} target="_blank">${item.link}</a>
-            `);
+                    createText(`${item.title} Link: - <a href=${item.link} target = "_blank" > ${item.link}</a >
+                    `);
                     if (item.title == "Github") {
-                        createText(`Number of followers: ${followers}`);
-                        createText(`Number of following: ${following}`);
+                        createText(`Number of followers: ${followers} `);
+                        createText(`Number of following: ${following} `);
                     }
                     if (item.title == "LinkedIn") {
-                        createText(`Connections :- ${connections}`);
+                        createText(`Connections: - ${connections} `);
                     }
                     if (item.title == "LeetCode") {
-                        createText(`Problems Solved: ${totalSolved}`);
+                        createText(`Problems Solved: ${totalSolved} `);
                         createText(
-                            `Distribution:- Easy:${easySolved} Medium:${mediumSolved} Hard:${hardSolved}`
+                            `Distribution: - Easy:${easySolved} Medium:${mediumSolved} Hard:${hardSolved} `
                         );
-                        createText(`Ranking: ${ranking}`);
+                        createText(`Ranking: ${ranking} `);
                     }
                     if (item.title == "Codechef") {
-                        createText(`Rank :- ${item.rank}`);
-                        createText(`Rating :- ${item.rating}`);
+                        createText(`Rank: - ${item.rank} `);
+                        createText(`Rating: - ${item.rating} `);
                     }
                 });
                 break;
@@ -154,7 +154,7 @@ async function getInputValue(history, cmd = undefined) {
             trueValue(value);
             config.social.forEach((item) => {
                 createText(
-                    `<a href=${item.link} target="_blank">${item.title}</a>`
+                    `< a href = ${item.link} target = "_blank" > ${item.title}</a > `
                 );
             });
             break;
@@ -163,7 +163,7 @@ async function getInputValue(history, cmd = undefined) {
             createText("Projects:");
             config.projects.forEach((item) => {
                 createText(
-                    `<a href=${item.link} target="_blank">${item.title}</a> - ${item.description}`
+                    `< a href = ${item.link} target = "_blank" > ${item.title}</a > - ${item.description} `
                 );
             });
             break;
@@ -178,8 +178,8 @@ async function getInputValue(history, cmd = undefined) {
                 createText(`${blog.site}: `);
                 blog.items.forEach((item, index) => {
                     createText(
-                        `<a href="${item.link}" target="_blank">${index + 1}. ${item.title
-                        }</a>`
+                        `< a href = "${item.link}" target = "_blank" > ${index + 1}. ${item.title
+                        }</a > `
                     );
                 });
             });
@@ -197,26 +197,26 @@ async function getInputValue(history, cmd = undefined) {
             trueValue(value);
             createText("My Work Experience:");
             config.experience.forEach((item) => {
-                createText(`<a>${item.title}</a>`);
-                createText(`${item.description}`);
+                createText(`< a > ${item.title}</a > `);
+                createText(`${item.description} `);
             });
             break;
         case "skills":
             trueValue(value);
             config.skills.forEach((item) => {
-                createText(`<a>${item.title}</a>`);
-                createText(`${item.description}`);
+                createText(`< a > ${item.title}</a > `);
+                createText(`${item.description} `);
             });
             break;
         case "ipconfig":
             trueValue(value);
             const IP = IpDetails[0];
-            createText(`- Ipv6: ${IP.ip}`);
-            createText(`- network: ${IP.network}`);
-            createText(`- city: ${IP.city}`);
-            createText(`- network org: ${IP.org}`);
-            createText(`- region: ${IP.region}`);
-            createText(`- postal: ${IP.postal}`);
+            createText(`- Ipv6: ${IP.ip} `);
+            createText(`- network: ${IP.network} `);
+            createText(`- city: ${IP.city} `);
+            createText(`- network org: ${IP.org} `);
+            createText(`- region: ${IP.region} `);
+            createText(`- postal: ${IP.postal} `);
             break;
         case "repos":
             trueValue(value);
@@ -224,13 +224,13 @@ async function getInputValue(history, cmd = undefined) {
                 createText(
                     `- repo_${index} name: <a href=${repo.html_url}>${repo.name
                     }</a> | language: ${repo.language === null ? "no language" : repo.language
-                    }`
+                    } `
                 );
                 createText(
                     `_ description: ${repo.description === null
                         ? "no description."
                         : repo.description
-                    }`
+                    } `
                 );
             });
             break;
@@ -250,12 +250,12 @@ async function getInputValue(history, cmd = undefined) {
             break;
         case "contact":
             createText(
-                `Hey! Would love to get in touch.<br>
-          My linkedin profile link: <a href="${config.social.filter((obj)=>obj.title.toLowerCase()=='linkedin')[0].link}"> LinkedIn</a>.<br>
-          Drop me a text at <a href="mailto:${config.contact.email}" target="_blank">${config.contact.email}</a>`
+                `Hey! Would love to get in touch.< br >
+                    My linkedin profile link: <a href="${config.social.filter((obj) => obj.title.toLowerCase() == 'linkedin')[0].link}"> LinkedIn</a>.<br>
+                        Drop me a text at <a href="mailto:${config.contact.email}" target="_blank">${config.contact.email}</a>`
             );
             window.location.href = `mailto:${config.contact.email}`;
-         //   window.open(`mailto:${config.contact.email}`, "_blank");
+            //   window.open(`mailto:${config.contact.email}`, "_blank");
             break;
         case "sudo":
             trueValue(value);
@@ -377,7 +377,7 @@ function downloadFile() {
     link.href = resumeUrl;
     link.click();
     const p = document.createElement("p");
-    p.innerHTML = "<span class='blink'>###############<span/>";
+    p.innerHTML = "<span class='blink'>###############<span />";
     app.appendChild(p);
     setTimeout(() => {
         app.removeChild(p);
