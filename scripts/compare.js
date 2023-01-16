@@ -69,6 +69,3 @@ export function suggestFurtherCommand(inputString) {
     similarityList.sort((a, b) => a[0] - b[0]).reverse();
     return similarityList[0][1];
 }
-
-
-
