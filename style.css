@@ -306,7 +306,7 @@ div.title {
 
 @media (max-width: 3500px) {
     .theme-switches{
-        margin:11rem;
+        right:11rem;
     }
     .theme-dropdown{
         width:14%;
@@ -314,7 +314,7 @@ div.title {
 }
 @media (max-width: 2990px) {
     .theme-switches{
-        margin: 9rem;
+        right: 9rem;
     }
 }
 @media (max-width: 1300px) {
@@ -322,7 +322,7 @@ div.title {
         width:14%;
     }
     .theme-switches{
-        margin: 4rem;
+        right: 4rem;
     }
 }
 
