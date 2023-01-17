@@ -304,6 +304,11 @@ div.title {
     color: #000000;
 }
 
+@media (max-width: 1300px) {
+    .theme-dropdown{
+        width:14%;
+    }
+}
 @media (max-width: 1150px) {
     .theme-switches {
         right: 6rem;
@@ -313,6 +318,9 @@ div.title {
 @media (max-width: 850px) {
     .theme-switches {
         right: 5rem;
+    }
+    .theme-dropdown{
+        width:18%;
     }
 }
 
@@ -328,6 +336,9 @@ div.title {
     }
     body{
         height: 90vh;
+    }
+    .theme-dropdown{
+        width:24%;
     }
     /* .close {
         margin-left: 5px;
