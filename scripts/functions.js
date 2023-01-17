@@ -96,33 +96,24 @@ async function getInputValue(history, remove = false, cmd = undefined) {
     switch (value) {
         case "help":
         case "ls":
-            trueValue(value);
-            let listOfCreateCodes = [
-                [["about"], "to learn more about me"],
-                [["blogs"], "to see my recent blogs"],
-                [["calc"], "to evaluate an expression, for eg: (2 + 3)"],
-                [["cheer"], "to appreciate my work"],
-                [["clear"], "to clear the terminal"],
-                [["contact"], "to enquire about my services"],
-                [["contributors"], "to see all the contributors"],
-                [["download"], "to download my pdf resume"],
-                [["experience"], "to see my work experience"],
-                [["github"], "to see my github stats"],
-                [["help"], "for a list of commands"],
-                [["history"], "shows the last 10 valid commands performed, use --clear flag to clear the history"],
-                [["ipconfig"], "to see your IP details"],
-                [["neofetch"], "to see my neoFetch"],
-                [["projects"], "to see my projects"],
-                [["repos"], "to see my github repositories"],
-                [["skills"], "to see my skills"],
-                [["social"], "to see my social links (add flags '-l' for links and '-d' for detailed results)"],
-                [["typing"], "shows typing animation status"],
-            ];
-            for (let i = 0; i < listOfCreateCodes.length; ++i) {
-                console.log;
-                await createCode(listOfCreateCodes[i][0], listOfCreateCodes[i][1]);
+            config.help.sort((a, b) => {
+                return a.title.localeCompare(b.title);
+            });
+
+            if (flag == '-d') {
+                trueValue(val)
+                config.help.forEach((item) => {
+                    await createText(`${item.title} :- ${item.description}`);
+                });
+                break;
             }
+            trueValue(value);
+            let titles = config.help.map(item => item.title);
+            let titlesString = titles.join(', ');
+            await createText(titlesString);
+            await createText("type -d for more description")
             break;
+
         case "neofetch":
             neofetch();
             break;
@@ -210,15 +201,15 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             trueValue(value);
             await createText("My Work Experience:");
             config.experience.forEach((item) => {
-                createText(`<a>${item.title}</a>`);
-                createText(`${item.description}`);
+                createText(`< a > ${item.title}</a > `);
+                createText(`${item.description} `);
             });
             break;
         case "skills":
             trueValue(value);
             config.skills.forEach((item) => {
-                createText(`<a>${item.title}</a>`);
-                createText(`${item.description}`);
+                createText(`< a > ${item.title}</a > `);
+                createText(`${item.description} `);
             });
             break;
         case "ipconfig":
@@ -243,7 +234,7 @@ async function getInputValue(history, remove = false, cmd = undefined) {
                     `_ description: ${repo.description === null
                         ? "no description."
                         : repo.description
-                    }`
+                    } `
                 );
             });
             break;
@@ -265,12 +256,12 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             break;
         case "contact":
             createText(
-                `Hey! Would love to get in touch.<br>
-          My linkedin profile link: <a href="${config.social.filter((obj)=>obj.title.toLowerCase()=='linkedin')[0].link}"> LinkedIn</a>.<br>
-          Drop me a text at <a href="mailto:${config.contact.email}" target="_blank">${config.contact.email}</a>`,false
+                `Hey! Would love to get in touch.< br >
+                    My linkedin profile link: <a href="${config.social.filter((obj) => obj.title.toLowerCase() == 'linkedin')[0].link}"> LinkedIn</a>.<br>
+                        Drop me a text at <a href="mailto:${config.contact.email}" target="_blank">${config.contact.email}</a>`,false
             );
             window.location.href = `mailto:${config.contact.email}`;
-         //   window.open(`mailto:${config.contact.email}`, "_blank");
+            //   window.open(`mailto:${config.contact.email}`, "_blank");
             break;
         case "sudo":
             trueValue(value);
@@ -452,7 +443,7 @@ function downloadFile() {
     link.href = resumeUrl;
     link.click();
     const p = document.createElement("p");
-    p.innerHTML = "<span class='blink'>###############<span/>";
+    p.innerHTML = "<span class='blink'>###############<span />";
     app.appendChild(p);
     setTimeout(() => {
         app.removeChild(p);

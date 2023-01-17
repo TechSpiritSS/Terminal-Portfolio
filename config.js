@@ -1,4 +1,76 @@
+
 const config = {
+
+    "help": [
+        {
+            "title": "help",
+            "description": "for a list of commands(add flags '-d' for commands description)"
+        },
+        {
+            "title": "clear",
+            "description": "to clear the terminal"
+        },
+        {
+            "title": "about",
+            "description": "to learn more about me"
+        },
+        {
+            "title": "social",
+            "description": "to see my social links (add flags '-l' for links and '-d' for detailed results)"
+        },
+        {
+            "title": "projects",
+            "description": "to see my projects"
+        },
+        {
+            "title": "blogs",
+            "description": "to see my recent blogs"
+        },
+        {
+            "title": "contact",
+            "description": "to enquire about my services"
+        },
+        {
+            "title": "cheer",
+            "description": "to appreciate my work"
+        },
+        {
+            "title": "repos",
+            "description": "to see my github repositories"
+        },
+        {
+            "title": "ipconfig",
+            "description": "to see your IP details"
+        },
+        {
+            "title": "github",
+            "description": "to see my github stats"
+        },
+        {
+            "title": "contributors",
+            "description": "to see all the contributors"
+        },
+        {
+            "title": "download",
+            "description": "to download my pdf resume"
+        },
+        {
+            "title": "calc",
+            "description": "to evaluate an expression, for eg: (2 + 3)"
+        },
+        {
+            "title": "experience",
+            "description": "to see my work experience"
+        },
+        {
+            "title": "history",
+            "description": "shows the last 10 valid commands performed, use --clear flag to clear the history"
+        },
+        {
+            "title": "skills",
+            "description": "sto see my skills"
+        }
+    ],
     "terminal": {
         "user": "$Sidharth_Sethi",
         "host": "sudo",
