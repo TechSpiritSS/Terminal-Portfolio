@@ -102,9 +102,9 @@ async function getInputValue(history, remove = false, cmd = undefined) {
 
             if (flag == '-d') {
                 trueValue(val)
-                config.help.forEach((item) => {
+                for (let item of config.help) {
                     await createText(`${item.title} :- ${item.description}`);
-                });
+                }
                 break;
             }
             trueValue(value);
