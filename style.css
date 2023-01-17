@@ -337,7 +337,7 @@ div.title {
 
 @media (max-width: 580px) {
     .theme-switches {
-        right: 2rem;
+        right: 2.5rem;
     }
     body{
         height: 90vh;
@@ -381,7 +381,7 @@ div.title {
     }
     .theme-dropdown{
         font-size: 5em;
-        width: 36%;
+        width: 30%;
     }
     span{
         font-size: small;
