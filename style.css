@@ -326,7 +326,9 @@ div.title {
     .theme-switches {
         right: 2rem;
     }
-
+    body{
+        height: 90vh;
+    }
     .close {
         margin-left: 5px;
     }
