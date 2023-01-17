@@ -73,6 +73,10 @@ const config = {
         {
             "title": "typing",
             "description": "shows typing animation status"
+        },
+        {
+            "title": "reset",
+            "description": "to reload site"
         }
     ],
     "terminal": {

@@ -121,6 +121,11 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             trueValue(value);
             await createText(config.about);
             break;
+
+        case "reset":
+            trueValue(value);
+            location.reload(true);
+            break;
         case "social":
             if (flag == "-l") {
                 trueValue(val);
