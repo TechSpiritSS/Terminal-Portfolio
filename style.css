@@ -304,17 +304,9 @@ div.title {
     color: #000000;
 }
 
-@media (max-width: 3500px) {
-    .theme-switches{
-        right:11rem;
-    }
-    .theme-dropdown{
-        width:14%;
-    }
-}
 @media (max-width: 2990px) {
     .theme-switches{
-        right: 9rem;
+        right: 6rem;
     }
 }
 @media (max-width: 1300px) {
