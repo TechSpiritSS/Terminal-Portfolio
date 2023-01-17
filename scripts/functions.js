@@ -69,26 +69,30 @@ function neofetch() {
 
 
 function removeNeoFetch() {
-    document.querySelector(".fetch-container").remove();
+    const element = document.querySelector(".fetch-container")
+    if (element) element.remove();
 }
 
 
-async function getInputValue(history, cmd = undefined) {
+async function getInputValue(history, remove = false, cmd = undefined) {
     const val = cmd || document.querySelector("input").value.trim().toLowerCase();
     saveHistory(val);
     const a = val.split(" ");
     const flag = a[1];
     const value = a[0];
     const flags = [...a];
-
+    
     flags.shift(); // removes the first element
     if (value.substring(0, 5) === "cheer") {
         value.substring(0, 5).toLowerCase();
     } else {
         value.replace(/\s+/g, "").toLowerCase();
     }
+    
+    history.push(cmd || document.querySelector("input").value);
 
-    history.push(document.querySelector("input").value);
+    if (remove) removeInput();
+
     switch (value) {
         case "help":
         case "ls":
@@ -98,16 +102,16 @@ async function getInputValue(history, cmd = undefined) {
 
             if (flag == '-d') {
                 trueValue(val)
-                config.help.forEach((item) => {
-                    createText(`${item.title} :- ${item.description}`);
-                });
+                for (let item of config.help) {
+                    await createText(`${item.title} :- ${item.description}`);
+                }
                 break;
             }
             trueValue(value);
             let titles = config.help.map(item => item.title);
             let titlesString = titles.join(', ');
-            createText(titlesString);
-            createText("type -d for more description")
+            await createText(titlesString);
+            await createText("type -d for more description")
             break;
 
         case "neofetch":
@@ -115,7 +119,7 @@ async function getInputValue(history, cmd = undefined) {
             break;
         case "about":
             trueValue(value);
-            createText(config.about);
+            await createText(config.about);
             break;
 
         case "reset":
@@ -126,32 +130,32 @@ async function getInputValue(history, cmd = undefined) {
             if (flag == "-l") {
                 trueValue(val);
                 config.social.forEach((item) => {
-                    createText(`${item.title} : - <a href=${item.link} target = "_blank" > ${item.link}</a >
-                    `);
+                    createText(`${item.title} :- <a href=${item.link} target="_blank">${item.link}</a>
+            `,false);
                 });
                 break;
             } else if (flag == "-d") {
                 trueValue(val);
-                config.social.forEach((item) => {
-                    createText(`${item.title} Link: - <a href=${item.link} target = "_blank" > ${item.link}</a >
-                    `);
+                config.social.forEach(async (item) => {
+                    createText(`${item.title} Link :- <a href=${item.link} target="_blank">${item.link}</a>
+            `,false);
                     if (item.title == "Github") {
-                        createText(`Number of followers: ${followers} `);
-                        createText(`Number of following: ${following} `);
+                        await createText(`Number of followers: ${followers}`);
+                        await createText(`Number of following: ${following}`);
                     }
                     if (item.title == "LinkedIn") {
-                        createText(`Connections: - ${connections} `);
+                        await createText(`Connections :- ${connections}`);
                     }
                     if (item.title == "LeetCode") {
-                        createText(`Problems Solved: ${totalSolved} `);
-                        createText(
-                            `Distribution: - Easy:${easySolved} Medium:${mediumSolved} Hard:${hardSolved} `
+                        await createText(`Problems Solved: ${totalSolved}`);
+                        await createText(
+                            `Distribution:- Easy:${easySolved} Medium:${mediumSolved} Hard:${hardSolved}`
                         );
-                        createText(`Ranking: ${ranking} `);
+                        await createText(`Ranking: ${ranking}`);
                     }
                     if (item.title == "Codechef") {
-                        createText(`Rank: - ${item.rank} `);
-                        createText(`Rating: - ${item.rating} `);
+                        await createText(`Rank :- ${item.rank}`);
+                        await createText(`Rating :- ${item.rating}`);
                     }
                 });
                 break;
@@ -159,32 +163,32 @@ async function getInputValue(history, cmd = undefined) {
             trueValue(value);
             config.social.forEach((item) => {
                 createText(
-                    `< a href = ${item.link} target = "_blank" > ${item.title}</a > `
+                    `<a href=${item.link} target="_blank">${item.title}</a>`,false
                 );
             });
             break;
         case "projects":
             trueValue(value);
-            createText("Projects:");
-            config.projects.forEach((item) => {
-                createText(
-                    `< a href = ${item.link} target = "_blank" > ${item.title}</a > - ${item.description} `
+            await createText("Projects:");
+            config.projects.forEach(async (item) => {
+                await createText(
+                    `<a href=${item.link} target="_blank">${item.title}</a> - ${item.description}`,false
                 );
             });
             break;
         case "blogs":
             trueValue(value);
-            createText("Recent Blogs:");
+            await createText("Recent Blogs:");
             // Hashnode Feed URL: https://username.hashnode.dev/rss.xml
             // Dev.to Feed URL: https://dev.to/feed/username
             // Medium Feed URL: https://medium.com/feed/@username
             // TODO: Insert your Medium/Dev/Hashnode or any blog feed URL below
-            userBlogs.forEach((blog) => {
+            userBlogs.forEach(async(blog) => {
                 createText(`${blog.site}: `);
                 blog.items.forEach((item, index) => {
                     createText(
-                        `< a href = "${item.link}" target = "_blank" > ${index + 1}. ${item.title
-                        }</a > `
+                        `<a href="${item.link}" target="_blank">${index + 1}. ${item.title
+                        }</a>`,false
                     );
                 });
             });
@@ -193,14 +197,14 @@ async function getInputValue(history, cmd = undefined) {
             trueValue(value);
             contributors.forEach((user) => {
                 createText(
-                    `- <a href=${user.userProfile}>${user.username}</a>`
+                    `- <a href=${user.userProfile}>${user.username}</a>`,false
                 );
             });
-            createText(`- Thanks to all the contributors 💖`);
+            await createText(`- Thanks to all the contributors 💖`);
             break;
         case "experience":
             trueValue(value);
-            createText("My Work Experience:");
+            await createText("My Work Experience:");
             config.experience.forEach((item) => {
                 createText(`< a > ${item.title}</a > `);
                 createText(`${item.description} `);
@@ -216,12 +220,12 @@ async function getInputValue(history, cmd = undefined) {
         case "ipconfig":
             trueValue(value);
             const IP = IpDetails[0];
-            createText(`- Ipv6: ${IP.ip} `);
-            createText(`- network: ${IP.network} `);
-            createText(`- city: ${IP.city} `);
-            createText(`- network org: ${IP.org} `);
-            createText(`- region: ${IP.region} `);
-            createText(`- postal: ${IP.postal} `);
+            await createText(`- Ipv6: ${IP.ip}`);
+            await createText(`- network: ${IP.network}`);
+            await createText(`- city: ${IP.city}`);
+            await createText(`- network org: ${IP.org}`);
+            await createText(`- region: ${IP.region}`);
+            await createText(`- postal: ${IP.postal}`);
             break;
         case "repos":
             trueValue(value);
@@ -229,7 +233,7 @@ async function getInputValue(history, cmd = undefined) {
                 createText(
                     `- repo_${index} name: <a href=${repo.html_url}>${repo.name
                     }</a> | language: ${repo.language === null ? "no language" : repo.language
-                    } `
+                    }`,false
                 );
                 createText(
                     `_ description: ${repo.description === null
@@ -252,32 +256,34 @@ async function getInputValue(history, cmd = undefined) {
                 .querySelectorAll("section")
                 .forEach((e) => e.parentNode.removeChild(e));
             removeNeoFetch();
+            removeInput();
+            await delay(150);
             break;
         case "contact":
             createText(
                 `Hey! Would love to get in touch.< br >
                     My linkedin profile link: <a href="${config.social.filter((obj) => obj.title.toLowerCase() == 'linkedin')[0].link}"> LinkedIn</a>.<br>
-                        Drop me a text at <a href="mailto:${config.contact.email}" target="_blank">${config.contact.email}</a>`
+                        Drop me a text at <a href="mailto:${config.contact.email}" target="_blank">${config.contact.email}</a>`,false
             );
             window.location.href = `mailto:${config.contact.email}`;
             //   window.open(`mailto:${config.contact.email}`, "_blank");
             break;
         case "sudo":
             trueValue(value);
-            createText("You are not authorized to use this command");
+            await createText("You are not authorized to use this command");
             break;
         case "github":
             trueValue(value);
-            createText(`Github Username: ${githubStats.username}`);
-            createText(`Github Bio: ${githubStats.bio}`);
-            createText(`Number of repositories : ${githubStats.public_repos}`);
-            createText(`Number of gists: ${githubStats.public_gists}`);
-            createText(`Number of followers: ${githubStats.followers}`);
-            createText(`Number of following: ${githubStats.following}`);
+            await createText(`Github Username: ${githubStats.username}`);
+            await createText(`Github Bio: ${githubStats.bio}`);
+            await createText(`Number of repositories : ${githubStats.public_repos}`);
+            await createText(`Number of gists: ${githubStats.public_gists}`);
+            await createText(`Number of followers: ${githubStats.followers}`);
+            await createText(`Number of following: ${githubStats.following}`);
             break;
         case "cd":
             trueValue(value);
-            createText("There's no directory in this path");
+            await createText("There's no directory in this path");
             break;
         case "calc":
             calc(flags.join(""));
@@ -287,10 +293,13 @@ async function getInputValue(history, cmd = undefined) {
                 clearHistory();
             }
             if (Number(flag)) {
-                runSpecificHistoryCmd(Number(flag));
+                await runSpecificHistoryCmd(Number(flag));
             } else {
-                commandHistory();
+                await commandHistory();
             }
+            break;
+        case "typing":
+            await typingCmd(flag);
             break;
         case "exit":
             window.close();
@@ -303,12 +312,12 @@ async function getInputValue(history, cmd = undefined) {
                         Math.random() * config.cheer.responseArray.length
                     )
                     ];
-                createText(reply);
+                await createText(reply);
             } else {
                 falseValue(value);
-                createText(`${value} is not a valid command`);
+                await createText(`${value} is not a valid command`);
                 let commands = suggestFurtherCommand(value);
-                createText("Are you looking for this: " + commands);
+                await createText("Are you looking for this: " + commands);
             }
     }
 }
@@ -337,7 +346,7 @@ function new_line() {
 
 function removeInput() {
     const div = document.querySelector(".type");
-    app.removeChild(div);
+    if (div) app.removeChild(div);
 }
 
 function trueValue(value) {
@@ -365,16 +374,73 @@ function falseValue(value) {
     app.appendChild(div);
 }
 
-function createText(text) {
+async function createText(text,typingOn = true) {
     const p = document.createElement("p");
-    p.innerHTML = text;
     app.appendChild(p);
+    p.scrollIntoView({ behavior: 'smooth'});
+
+    const typing = localStorage.getItem("typing");
+
+    if (!typingOn || (typing && typing === "off")) {
+        p.innerHTML = text;
+        return;
+    }
+
+    const typingSpeed = localStorage.getItem("typingSpeed") || 20;
+
+    let index = 0;    
+    async function writeText() {
+      while (index < text.length) {
+        p.innerHTML += text[index++];
+        await new Promise((writeText) => setTimeout(writeText, typingSpeed));
+      }
+      return;
+    }
+    
+    await writeText();
+    
 }
 
-function createCode(code, text) {
+async function createCode(code, text,typingOn = true) {
     const p = document.createElement("p");
-    p.innerHTML = `<span class="code">${code} =></span> ${text}`;
     app.appendChild(p);
+
+    const typing = localStorage.getItem("typing");
+
+    if (!typingOn || (typing && typing === "off")) {
+        p.innerHTML = `<span class="code">${code} =></span> ${text}`;
+        return;
+    }
+
+    const typingSpeed = localStorage.getItem("typingSpeed") || 20;
+
+    const span = document.createElement("span");
+    span.className="code"
+    p.appendChild(span);
+    p.scrollIntoView({ behavior: 'smooth'});
+    let index = 0;    
+    async function writeCode() {
+      while (index < code.length) {
+        span.innerHTML += code[index++];
+        await new Promise((writeCode) => setTimeout(writeCode, typingSpeed));
+      }
+      return;
+    }
+    await writeCode();
+
+    p.innerHTML += " "
+
+    index = 0;    
+    async function writeText() {
+      while (index < text.length) {
+        p.innerHTML += text[index++];
+        await new Promise((writeText) => setTimeout(writeText, typingSpeed));
+      }
+      return;
+    }
+    
+    await writeText();
+
 }
 
 function downloadFile() {
@@ -390,21 +456,21 @@ function downloadFile() {
     document.body.removeChild(link);
 }
 
-function calc(flag) {
+async function calc(flag) {
     try {
         if (flag === "" || flag === " " || flag === undefined) {
             falseValue(flag);
-            createText("Please Enter a Valid Expression");
+            await createText("Please Enter a Valid Expression");
         } else {
             trueValue(flag);
             function parse(str) {
                 return Function(`'use strict'; return (${str})`)();
             }
-            createText(flag + " = " + parse(flag));
+            await createText(flag + " = " + parse(flag));
         }
     } catch (e) {
         falseValue(flag);
-        createText(flag + " is an Invalid Expression");
+        await createText(flag + " is an Invalid Expression");
     }
 }
 
@@ -422,3 +488,24 @@ export {
     downloadFile,
     calc,
 };
+
+const typingCmd = async (flag) => {
+    const typing = localStorage.getItem("typing");
+    let typingSpeed = localStorage.getItem("typingSpeed");
+
+    if (flag == "-on") {
+        localStorage.setItem("typing","on");
+        createText("Typing animation is turned on");
+    } else if (flag == "-off") {
+        localStorage.setItem("typing","off");
+        createText("Typing animation is turned off");
+    } else if (Number(flag)) {
+        localStorage.setItem("typingSpeed",Number(flag));
+        typingSpeed = localStorage.getItem("typingSpeed");
+        await createText(`Typing animation speed is set to ${typingSpeed ? typingSpeed : 20}ms`);
+    } else {
+        await createText(`Typing animation is currently ${typing ? typing : "on"} and speed is set to ${typingSpeed ? typingSpeed : 20}ms`);
+        await createText("Turn typing animation on and off by adding -on or -off flags respectively");
+        await createText("Also u can write a number(in ms) to set typing custom animation speed");
+    }
+}

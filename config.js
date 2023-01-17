@@ -71,6 +71,10 @@ const config = {
             "description": "sto see my skills"
         },
         {
+            "title": "typing",
+            "description": "shows typing animation status"
+        },
+        {
             "title": "reset",
             "description": "to reload site"
         }
