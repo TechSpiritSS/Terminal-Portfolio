@@ -238,7 +238,7 @@ body {
 .buttons-flex {
     display: flex;
     flex-direction: row;
-    flex-grow: 1;
+    /* flex-grow: 1; */
     flex-basis: 0;
 }
 
@@ -333,10 +333,14 @@ div.title {
 }
 
 @media (max-width: 500px) {
-    .button-flex {
-        position: unset;
+    *{
+        font-size: 0.6em;
+    }
+    .buttons-flex {
+        /* position: unset; */
         display: flex;
         flex-direction: row;
+        flex-basis: 0;
     }
 
     .fetch-img-container {
@@ -352,6 +356,21 @@ div.title {
 
     .info {
         width: 100%;
+    }
+
+    .menu h1 {
+        font-size: small;
+    }
+    .theme-dropdown{
+        font-size: 5em;
+        width: 15%;
+    }
+    span{
+        font-size: small;
+    }
+    .title
+    {
+        font-size: 5em;
     }
 }
 
