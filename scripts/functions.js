@@ -70,7 +70,7 @@ function neofetch() {
 
 function removeNeoFetch() {
     const element = document.querySelector(".fetch-container")
-    element.remove();
+    if (element) element.remove();
 }
 
 
@@ -385,8 +385,6 @@ async function createText(text,typingOn = true) {
 
     const typing = localStorage.getItem("typing");
 
-    console.log(typingOn);
-
     if (!typingOn || (typing && typing === "off")) {
         p.innerHTML = text;
         return;
@@ -407,13 +405,13 @@ async function createText(text,typingOn = true) {
     
 }
 
-async function createCode(code, text) {
+async function createCode(code, text,typingOn = true) {
     const p = document.createElement("p");
     app.appendChild(p);
 
     const typing = localStorage.getItem("typing");
 
-    if (typing && typing === "off") {
+    if (!typingOn || (typing && typing === "off")) {
         p.innerHTML = `<span class="code">${code} =></span> ${text}`;
         return;
     }
@@ -499,10 +497,10 @@ const typingCmd = async (flag) => {
     const typing = localStorage.getItem("typing");
     let typingSpeed = localStorage.getItem("typingSpeed");
 
-    if (flag == "--on") {
+    if (flag == "-on") {
         localStorage.setItem("typing","on");
         createText("Typing animation is turned on");
-    } else if (flag == "--off") {
+    } else if (flag == "-off") {
         localStorage.setItem("typing","off");
         createText("Typing animation is turned off");
     } else if (Number(flag)) {
@@ -511,7 +509,7 @@ const typingCmd = async (flag) => {
         await createText(`Typing animation speed is set to ${typingSpeed ? typingSpeed : 20}ms`);
     } else {
         await createText(`Typing animation is currently ${typing ? typing : "on"} and speed is set to ${typingSpeed ? typingSpeed : 20}ms`);
-        await createText("Turn typing animation on and off by adding --on or --off flags respectively");
+        await createText("Turn typing animation on and off by adding -on or -off flags respectively");
         await createText("Also u can write a number(in ms) to set typing custom animation speed");
     }
 }
