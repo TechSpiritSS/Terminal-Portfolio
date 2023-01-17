@@ -1,26 +1,26 @@
 //imports
 import { createText, getInputValue } from "./functions.js";
 //end imports
-export function commandHistory(){
+export async function commandHistory(){
     let record = JSON.parse(localStorage.getItem("history")) || [];
     if(record.length === 0){
-        createText("No History Found!");
+        await createText("No History Found!");
     }else{
-        createText("Previously used commands are: ");
+        await createText("Previously used commands are: ");
         for(let i=0;i<record.length;++i){
-            createText((i+1).toString() + ".) " + record[i]);
+            await createText((i+1).toString() + ".) " + record[i]);
         }
-        createText("To run a specific cmd from history, run history {id} where id is the id of that cmd in histroy")
+        await createText("To run a specific cmd from history, run history {id} where id is the id of that cmd in histroy")
     }
 }
 
-export function runSpecificHistoryCmd(id) {
+export async function runSpecificHistoryCmd(id) {
     let record = JSON.parse(localStorage.getItem("history")) || [];
     if (id < 1 || id > record.length) {
-        createText("No History Found for this id!");
+        await createText("No History Found for this id!");
     } else {
-        createText(`Running command: ${record[id-1]}`);
-        getInputValue(record,record[id-1]);
+        await createText(`Running command: ${record[id-1]}`);
+        await getInputValue(record,false,record[id-1]);
     }
 }
 
@@ -37,9 +37,9 @@ export function saveHistory(value){
 }
 
 
-export function clearHistory(){
+export async function clearHistory(){
     let record = JSON.parse(localStorage.getItem("history")) || [];
-    createText("Clearing your history");
+    await createText("Clearing your history");
     record = [];
     localStorage.setItem("history", JSON.stringify(record));
 }

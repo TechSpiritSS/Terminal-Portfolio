@@ -24,8 +24,8 @@ let count = history.length;
 app.addEventListener("keydown", async function (event) {
     if (event.key === "Enter") {
         await delay(150);
-        getInputValue(history);
-        removeInput();
+        await getInputValue(history,true);
+        // removeInput();
         await delay(150);
         new_line();
         count = history.length;
