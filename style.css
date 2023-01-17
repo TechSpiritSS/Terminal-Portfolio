@@ -329,9 +329,9 @@ div.title {
     body{
         height: 90vh;
     }
-    .close {
+    /* .close {
         margin-left: 5px;
-    }
+    } */
 }
 
 @media (max-width: 500px) {
@@ -365,7 +365,7 @@ div.title {
     }
     .theme-dropdown{
         font-size: 5em;
-        width: 15%;
+        width: 36%;
     }
     span{
         font-size: small;
