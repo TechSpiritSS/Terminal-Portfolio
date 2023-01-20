@@ -304,6 +304,18 @@ div.title {
     color: #000000;
 }
 
+.theme-group {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    margin: 10px;
+}
+
+.theme-group h3 {
+    text-align: center;
+}
+
+
 @media (max-width: 2990px) {
     .theme-switches{
         right: 6rem;
