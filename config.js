@@ -4,79 +4,98 @@ const config = {
     "help": [
         {
             "title": "help",
-            "description": "for a list of commands(add flags '-d' for commands description)"
+            "description": "for a list of commands(add flags '-d' for commands description)",
+            "info": ["help or ls command gives the list of commands","add '-d' flag for description of all commands also","write command after help to get info about that specific command like 'help typing'"]
         },
         {
             "title": "clear",
-            "description": "to clear the terminal"
+            "description": "to clear the terminal",
+            "info": ["clear or cls command clears the terminal"]
         },
         {
             "title": "about",
-            "description": "to learn more about me"
+            "description": "to learn more about me",
+            "info": ["use about command to learn more about me"]
         },
         {
             "title": "social",
-            "description": "to see my social links (add flags '-l' for links and '-d' for detailed results)"
+            "description": "to see my social links (add flags '-l' for links and '-d' for detailed results)",
+            "info": ["use social command to see my social links","add '-l' flag for links and '-d' flag for detailed results"]
         },
         {
             "title": "projects",
-            "description": "to see my projects"
+            "description": "to see my projects",
+            "info": ["use projects command to see my projects"]
         },
         {
             "title": "blogs",
-            "description": "to see my recent blogs"
+            "description": "to see my recent blogs",
+            "info": ["use blogs command to see my recent blogs"]
         },
         {
             "title": "contact",
-            "description": "to enquire about my services"
+            "description": "to enquire about my services",
+            "info": ["use enquire command to enquire about my services"]
         },
         {
             "title": "cheer",
-            "description": "to appreciate my work"
+            "description": "to appreciate my work",
+            "info": ["use cheer command to appreciate my work"]
         },
         {
             "title": "repos",
-            "description": "to see my github repositories"
+            "description": "to see my github repositories",
+            "info": ["use repos command to see my github repositories"]
         },
         {
             "title": "ipconfig",
-            "description": "to see your IP details"
+            "description": "to see your IP details",
+            "info": ["use ipconfig command to see your IP details"]
         },
         {
             "title": "github",
-            "description": "to see my github stats"
+            "description": "to see my github stats",
+            "info": ["use github command to see my github stats"]
         },
         {
             "title": "contributors",
-            "description": "to see all the contributors"
+            "description": "to see all the contributors",
+            "info": ["use contributors command to see all the contributors"]
         },
         {
             "title": "download",
-            "description": "to download my pdf resume"
+            "description": "to download my pdf resume",
+            "info": ["use download command to download my pdf resume"]
         },
         {
             "title": "calc",
-            "description": "to evaluate an expression, for eg: (2 + 3)"
+            "description": "to evaluate an expression, for eg: (2 + 3)",
+            "info": ["use calc command to evaluate an expression","for eg: write 'calc 2+6*5/3'"]
         },
         {
             "title": "experience",
-            "description": "to see my work experience"
+            "description": "to see my work experience",
+            "info": ["use experience command to see my work experience"]
         },
         {
             "title": "history",
-            "description": "shows the last 10 valid commands performed, use --clear flag to clear the history"
+            "description": "shows the last 10 valid commands performed, use --clear flag to clear the history",
+            "info": ["use history command to show your last 10 commands history","use --clear flag to clear the history","use history {id} command to run command of that id in your history"]
         },
         {
             "title": "skills",
-            "description": "sto see my skills"
+            "description": "to see my skills",
+            "info": ["use skills command to see my skills"]
         },
         {
             "title": "typing",
-            "description": "shows typing animation status"
+            "description": "shows typing animation status",
+            "info": ["use typing command to see typing animation status","Turn typing animation on and off by adding -on or -off flags respectively","Also u can write a number(in ms) to set typing custom animation speed"]
         },
         {
             "title": "reset",
-            "description": "to reload site"
+            "description": "to reload site",
+            "info": ["use reset command to to reload site"]
         }
     ],
     "terminal": {
