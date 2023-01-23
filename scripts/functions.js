@@ -81,14 +81,14 @@ async function getInputValue(history, remove = false, cmd = undefined) {
     const flag = a[1];
     const value = a[0];
     const flags = [...a];
-    
+
     flags.shift(); // removes the first element
     if (value.substring(0, 5) === "cheer") {
         value.substring(0, 5).toLowerCase();
     } else {
         value.replace(/\s+/g, "").toLowerCase();
     }
-    
+
     history.push(cmd || document.querySelector("input").value);
 
     if (remove) removeInput();
@@ -131,14 +131,14 @@ async function getInputValue(history, remove = false, cmd = undefined) {
                 trueValue(val);
                 config.social.forEach((item) => {
                     createText(`${item.title} :- <a href=${item.link} target="_blank">${item.link}</a>
-            `,false);
+            `, false);
                 });
                 break;
             } else if (flag == "-d") {
                 trueValue(val);
                 config.social.forEach(async (item) => {
                     createText(`${item.title} Link :- <a href=${item.link} target="_blank">${item.link}</a>
-            `,false);
+            `, false);
                     if (item.title == "Github") {
                         await createText(`Number of followers: ${followers}`);
                         await createText(`Number of following: ${following}`);
@@ -163,7 +163,7 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             trueValue(value);
             config.social.forEach((item) => {
                 createText(
-                    `<a href=${item.link} target="_blank">${item.title}</a>`,false
+                    `<a href=${item.link} target="_blank">${item.title}</a>`, false
                 );
             });
             break;
@@ -172,7 +172,7 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             await createText("Projects:");
             config.projects.forEach(async (item) => {
                 await createText(
-                    `<a href=${item.link} target="_blank">${item.title}</a> - ${item.description}`,false
+                    `<a href=${item.link} target="_blank">${item.title}</a> - ${item.description}`, false
                 );
             });
             break;
@@ -183,12 +183,12 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             // Dev.to Feed URL: https://dev.to/feed/username
             // Medium Feed URL: https://medium.com/feed/@username
             // TODO: Insert your Medium/Dev/Hashnode or any blog feed URL below
-            userBlogs.forEach(async(blog) => {
+            userBlogs.forEach(async (blog) => {
                 createText(`${blog.site}: `);
                 blog.items.forEach((item, index) => {
                     createText(
                         `<a href="${item.link}" target="_blank">${index + 1}. ${item.title
-                        }</a>`,false
+                        }</a>`, false
                     );
                 });
             });
@@ -197,7 +197,7 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             trueValue(value);
             contributors.forEach((user) => {
                 createText(
-                    `- <a href=${user.userProfile}>${user.username}</a>`,false
+                    `- <a href=${user.userProfile}>${user.username}</a>`, false
                 );
             });
             await createText(`- Thanks to all the contributors 💖`);
@@ -206,14 +206,14 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             trueValue(value);
             await createText("My Work Experience:");
             config.experience.forEach((item) => {
-                createText(`< a > ${item.title}</a > `);
+                createText(`<a> ${item.title}</a > `);
                 createText(`${item.description} `);
             });
             break;
         case "skills":
             trueValue(value);
             config.skills.forEach((item) => {
-                createText(`< a > ${item.title}</a > `);
+                createText(`<a> ${item.title}</a > `);
                 createText(`${item.description} `);
             });
             break;
@@ -233,7 +233,7 @@ async function getInputValue(history, remove = false, cmd = undefined) {
                 createText(
                     `- repo_${index} name: <a href=${repo.html_url}>${repo.name
                     }</a> | language: ${repo.language === null ? "no language" : repo.language
-                    }`,false
+                    }`, false
                 );
                 createText(
                     `_ description: ${repo.description === null
@@ -263,7 +263,7 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             createText(
                 `Hey! Would love to get in touch.< br >
                     My linkedin profile link: <a href="${config.social.filter((obj) => obj.title.toLowerCase() == 'linkedin')[0].link}"> LinkedIn</a>.<br>
-                        Drop me a text at <a href="mailto:${config.contact.email}" target="_blank">${config.contact.email}</a>`,false
+                        Drop me a text at <a href="mailto:${config.contact.email}" target="_blank">${config.contact.email}</a>`, false
             );
             window.location.href = `mailto:${config.contact.email}`;
             //   window.open(`mailto:${config.contact.email}`, "_blank");
@@ -374,10 +374,10 @@ function falseValue(value) {
     app.appendChild(div);
 }
 
-async function createText(text,typingOn = true) {
+async function createText(text, typingOn = true) {
     const p = document.createElement("p");
     app.appendChild(p);
-    p.scrollIntoView({ behavior: 'smooth'});
+    p.scrollIntoView({ behavior: 'smooth' });
 
     const typing = localStorage.getItem("typing");
 
@@ -388,20 +388,20 @@ async function createText(text,typingOn = true) {
 
     const typingSpeed = localStorage.getItem("typingSpeed") || 20;
 
-    let index = 0;    
+    let index = 0;
     async function writeText() {
-      while (index < text.length) {
-        p.innerHTML += text[index++];
-        await new Promise((writeText) => setTimeout(writeText, typingSpeed));
-      }
-      return;
+        while (index < text.length) {
+            p.innerHTML += text[index++];
+            await new Promise((writeText) => setTimeout(writeText, typingSpeed));
+        }
+        return;
     }
-    
+
     await writeText();
-    
+
 }
 
-async function createCode(code, text,typingOn = true) {
+async function createCode(code, text, typingOn = true) {
     const p = document.createElement("p");
     app.appendChild(p);
 
@@ -415,30 +415,30 @@ async function createCode(code, text,typingOn = true) {
     const typingSpeed = localStorage.getItem("typingSpeed") || 20;
 
     const span = document.createElement("span");
-    span.className="code"
+    span.className = "code"
     p.appendChild(span);
-    p.scrollIntoView({ behavior: 'smooth'});
-    let index = 0;    
+    p.scrollIntoView({ behavior: 'smooth' });
+    let index = 0;
     async function writeCode() {
-      while (index < code.length) {
-        span.innerHTML += code[index++];
-        await new Promise((writeCode) => setTimeout(writeCode, typingSpeed));
-      }
-      return;
+        while (index < code.length) {
+            span.innerHTML += code[index++];
+            await new Promise((writeCode) => setTimeout(writeCode, typingSpeed));
+        }
+        return;
     }
     await writeCode();
 
     p.innerHTML += " "
 
-    index = 0;    
+    index = 0;
     async function writeText() {
-      while (index < text.length) {
-        p.innerHTML += text[index++];
-        await new Promise((writeText) => setTimeout(writeText, typingSpeed));
-      }
-      return;
+        while (index < text.length) {
+            p.innerHTML += text[index++];
+            await new Promise((writeText) => setTimeout(writeText, typingSpeed));
+        }
+        return;
     }
-    
+
     await writeText();
 
 }
@@ -494,13 +494,13 @@ const typingCmd = async (flag) => {
     let typingSpeed = localStorage.getItem("typingSpeed");
 
     if (flag == "-on") {
-        localStorage.setItem("typing","on");
+        localStorage.setItem("typing", "on");
         createText("Typing animation is turned on");
     } else if (flag == "-off") {
-        localStorage.setItem("typing","off");
+        localStorage.setItem("typing", "off");
         createText("Typing animation is turned off");
     } else if (Number(flag)) {
-        localStorage.setItem("typingSpeed",Number(flag));
+        localStorage.setItem("typingSpeed", Number(flag));
         typingSpeed = localStorage.getItem("typingSpeed");
         await createText(`Typing animation speed is set to ${typingSpeed ? typingSpeed : 20}ms`);
     } else {
