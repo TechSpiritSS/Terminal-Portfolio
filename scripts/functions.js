@@ -110,17 +110,21 @@ async function getInputValue(history, remove = false, cmd = undefined) {
 
             if (flag) {
                 trueValue(val);
+                let isCmd = false;
                 for (let x of config.help) {
                     if (flag === x.title) {
                         for (let i=0;i<x.info.length;i++)
                             await createText(x.info[i]);
-                        return;
+                        isCmd = true;
+                        break;
                     }
                 }
             
-                await createText(`${flag} is not a valid command`);
-                let commands = suggestFurtherCommand(flag);
-                await createText("Are you looking for this: " + commands);
+                if (!isCmd) {
+                    await createText(`${flag} is not a valid command`);
+                    let commands = suggestFurtherCommand(flag);
+                    await createText("Are you looking for this: " + commands);
+                }
                 break;
             }
 
