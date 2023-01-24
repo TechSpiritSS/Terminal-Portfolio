@@ -133,6 +133,7 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             let titlesString = titles.join(', ');
             await createText(titlesString);
             await createText("type -d for more description")
+            await createText("write help {command name} to know about specific command like 'help github'")
             break;
 
         case "neofetch":
