@@ -1,4 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@600&display=swap");
+@font-face {
+    font-family: Menlo-Regular;
+    src: url(./fonts/Menlo-Regular.ttf);
+}
 
 :root {
     --font-size: 1.3rem;
@@ -88,13 +91,12 @@
     margin-left: 1.5rem;
     font-size: large;
     font-weight: bold;
-    font-family: "Arial Narrow", Arial, sans-serif;
+    font-family: "Menlo-Regular", sans-serif;
     border: 1px solid black;
     padding: 4px 10px;
     border-radius: 5px;
     animation: close-animation 1s ease infinite;
 }
-
 
 .hide {
     display: none;
@@ -148,7 +150,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Source Code Pro", monospace;
+    font-family: "Menlo-Regular", sans-serif;
 }
 
 ::-webkit-scrollbar-track {
@@ -278,7 +280,6 @@ body {
     width: 12px;
     background-color: #00b14a;
     border-radius: 50%;
-    ;
     animation: on-off 1s linear infinite;
 }
 
@@ -313,20 +314,19 @@ div.title {
 
 .theme-group h3 {
     text-align: center;
-     border-bottom: 2px dotted black;
+    border-bottom: 2px dotted black;
 }
 
-
 @media (max-width: 2990px) {
-    .theme-switches{
+    .theme-switches {
         right: 6rem;
     }
 }
 @media (max-width: 1300px) {
-    .theme-dropdown{
-        width:14%;
+    .theme-dropdown {
+        width: 14%;
     }
-    .theme-switches{
+    .theme-switches {
         right: 4rem;
     }
 }
@@ -335,8 +335,8 @@ div.title {
     .theme-switches {
         right: 2.5rem;
     }
-    .theme-dropdown{
-        width:24%;
+    .theme-dropdown {
+        width: 24%;
     }
 }
 
@@ -344,11 +344,11 @@ div.title {
     .theme-switches {
         right: 2.5rem;
     }
-    body{
+    body {
         height: 90vh;
     }
-    .theme-dropdown{
-        width:30%;
+    .theme-dropdown {
+        width: 30%;
     }
     /* .close {
         margin-left: 5px;
@@ -356,7 +356,7 @@ div.title {
 }
 
 @media (max-width: 500px) {
-    *{
+    * {
         font-size: 0.6em;
     }
     .buttons-flex {
@@ -384,18 +384,17 @@ div.title {
     .menu h1 {
         font-size: small;
     }
-    .theme-dropdown{
+    .theme-dropdown {
         font-size: 5em;
         width: 30%;
     }
-    span{
+    span {
         font-size: small;
     }
-    .title
-    {
+    .title {
         font-size: 5em;
     }
-    .theme-switches{
+    .theme-switches {
         margin-top: 3.5rem;
     }
 }
@@ -461,7 +460,7 @@ p.path span {
     color: #3ec70b;
 }
 
-p.path span+span {
+p.path span + span {
     color: #3b44f6;
 }
 
