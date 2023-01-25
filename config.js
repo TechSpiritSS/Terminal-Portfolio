@@ -77,6 +77,10 @@ const config = {
         {
             "title": "reset",
             "description": "to reload site"
+        },
+        {
+            "title": "education",
+            "description": "Education details"
         }
     ],
     "terminal": {
@@ -168,6 +172,13 @@ const config = {
         {
             "title": "Google Venkat Panchapakesan Memorial Scholar 2022",
             "description": "One of the 14 awardees of this prestigious scholarship across India, which recognizes ‘Upcoming Computer Scientists and Technology Leaders who wish to give back to society. The scholarship included a substantial amount as well as a virtual retreat by Google, wherein we met the Googlers, Scholarship Alumni, Prominent Leaders at Google and YouTube."
+        }
+    ],
+    "education": [
+        {
+            "title": "Punjab University",
+            "description": "Bachelor of Engineering - BE, Computer Science",
+            "date": "2020-2024"
         }
     ],
     "skills": [

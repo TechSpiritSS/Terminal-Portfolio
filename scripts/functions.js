@@ -217,6 +217,14 @@ async function getInputValue(history, remove = false, cmd = undefined) {
                 createText(`${item.description} `);
             });
             break;
+        case "education":
+            trueValue(value);
+            config.education.forEach((item) => {
+                createText(`<a> ${item.title}</a > `);
+                createText(`${item.description} `);
+                createText(`${item.date} `);
+            });
+            break;
         case "ipconfig":
             trueValue(value);
             const IP = IpDetails[0];
