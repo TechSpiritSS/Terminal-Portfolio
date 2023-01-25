@@ -47,7 +47,8 @@ export let commandsList = [
     "skills",
     "history",
     "typing",
-    "reset"
+    "reset",
+    "education"
 ];
 
 
