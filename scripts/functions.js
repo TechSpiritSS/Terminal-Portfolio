@@ -220,7 +220,7 @@ async function getInputValue(history, remove = false, cmd = undefined) {
         case "education":
             trueValue(value);
             config.education.forEach((item) => {
-                createText(`<a> ${item.title}</a > `);
+                createText(`<a> ${item.title} </a> `);
                 createText(`${item.description} `);
                 createText(`${item.date} `);
             });
