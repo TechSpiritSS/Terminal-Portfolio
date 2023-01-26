@@ -104,6 +104,19 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    cursor: pointer;
+}
+
+.theme-options:hover {
+    border-color: #85899b;
+    border-radius: 15px;
+    font-size: large;
+    box-shadow: 2px 3px 5px 1px rgb(0 0 0 / 57%);
+}
+
+.theme-options:hover .switch {
+    transform: scale(1.1);
+    transition: 0.3s ease-in-out;
 }
 
 .switch {
@@ -113,11 +126,6 @@
     width: 30px;
     margin: 10px;
     cursor: pointer;
-}
-
-.switch:hover {
-    transform: scale(1.2);
-    transition: 0.3s ease-in-out;
 }
 
 #switch1 {
@@ -314,6 +322,7 @@ div.title {
 .theme-group h3 {
     text-align: center;
      border-bottom: 2px dotted black;
+     margin-bottom: 4px;
 }
 
 

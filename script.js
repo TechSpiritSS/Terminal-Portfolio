@@ -100,7 +100,7 @@ getRepo();
 
 
 // Themes Switcher
-let switches = document.getElementsByClassName("switch");
+let switches = document.getElementsByClassName("main-switch");
 let style = localStorage.getItem("style");
 
 if (style == null) {
