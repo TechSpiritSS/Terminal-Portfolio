@@ -5,7 +5,7 @@ const config = {
         {
             "title": "help",
             "description": "for a list of commands(add flags '-d' for commands description)",
-            "info": ["help or ls command gives the list of commands","add '-d' flag for description of all commands also","write command after help to get info about that specific command like 'help typing'"]
+            "info": ["help or ls command gives the list of commands", "add '-d' flag for description of all commands also", "write command after help to get info about that specific command like 'help typing'"]
         },
         {
             "title": "clear",
@@ -20,7 +20,7 @@ const config = {
         {
             "title": "social",
             "description": "to see my social links (add flags '-l' for links and '-d' for detailed results)",
-            "info": ["use social command to see my social links","add '-l' flag for links and '-d' flag for detailed results"]
+            "info": ["use social command to see my social links", "add '-l' flag for links and '-d' flag for detailed results"]
         },
         {
             "title": "projects",
@@ -70,7 +70,7 @@ const config = {
         {
             "title": "calc",
             "description": "to evaluate an expression, for eg: (2 + 3)",
-            "info": ["use calc command to evaluate an expression","for eg: write 'calc 2+6*5/3'"]
+            "info": ["use calc command to evaluate an expression", "for eg: write 'calc 2+6*5/3'"]
         },
         {
             "title": "experience",
@@ -80,7 +80,7 @@ const config = {
         {
             "title": "history",
             "description": "shows the last 10 valid commands performed, use --clear flag to clear the history",
-            "info": ["use history command to show your last 10 commands history","use --clear flag to clear the history","use history {id} command to run command of that id in your history"]
+            "info": ["use history command to show your last 10 commands history", "use --clear flag to clear the history", "use history {id} command to run command of that id in your history"]
         },
         {
             "title": "skills",
@@ -90,7 +90,7 @@ const config = {
         {
             "title": "typing",
             "description": "shows typing animation status",
-            "info": ["use typing command to see typing animation status","Turn typing animation on and off by adding -on or -off flags respectively","Also u can write a number(in ms) to set typing custom animation speed"]
+            "info": ["use typing command to see typing animation status", "Turn typing animation on and off by adding -on or -off flags respectively", "Also u can write a number(in ms) to set typing custom animation speed"]
         },
         {
             "title": "reset",

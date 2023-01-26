@@ -119,7 +119,6 @@ async function getInputValue(history, remove = false, cmd = undefined) {
                         break;
                     }
                 }
-
                 if (!isCmd) {
                     await createText(`${flag} is not a valid command`);
                     let commands = suggestFurtherCommand(flag);
