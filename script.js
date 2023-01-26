@@ -116,5 +116,3 @@ for (let i of switches) {
         setTheme(theme);
     });
 }
-
-

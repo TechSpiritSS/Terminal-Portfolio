@@ -107,11 +107,33 @@ async function getInputValue(history, remove = false, cmd = undefined) {
                 }
                 break;
             }
+
+            if (flag) {
+                trueValue(val);
+                let isCmd = false;
+                for (let x of config.help) {
+                    if (flag === x.title) {
+                        for (let i = 0; i < x.info.length; i++)
+                            await createText(x.info[i]);
+                        isCmd = true;
+                        break;
+                    }
+                }
+
+                if (!isCmd) {
+                    await createText(`${flag} is not a valid command`);
+                    let commands = suggestFurtherCommand(flag);
+                    await createText("Are you looking for this: " + commands);
+                }
+                break;
+            }
+
             trueValue(value);
             let titles = config.help.map(item => item.title);
             let titlesString = titles.join(', ');
             await createText(titlesString);
             await createText("type -d for more description")
+            await createText("write help {command name} to know about specific command like 'help github'")
             break;
 
         case "neofetch":
@@ -220,7 +242,7 @@ async function getInputValue(history, remove = false, cmd = undefined) {
         case "education":
             trueValue(value);
             config.education.forEach((item) => {
-                createText(`<a> ${item.title}</a > `);
+                createText(`<a> ${item.title} </a> `);
                 createText(`${item.description} `);
                 createText(`${item.date} `);
             });
