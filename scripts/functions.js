@@ -219,7 +219,7 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             trueValue(value);
             contributors.forEach((user) => {
                 createText(
-                    `- <a href=${user.userProfile}>${user.username}</a>`, false
+                    `- <a href=${user.userProfile} target="_blank">${user.username}</a>`, false
                 );
             });
             await createText(`- Thanks to all the contributors 💖`);
@@ -228,14 +228,14 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             trueValue(value);
             await createText("My Work Experience:");
             config.experience.forEach((item) => {
-                createText(`<a> ${item.title}</a > `);
+                createText(`<a target="_blank"> ${item.title}</a > `);
                 createText(`${item.description} `);
             });
             break;
         case "skills":
             trueValue(value);
             config.skills.forEach((item) => {
-                createText(`<a> ${item.title}</a > `);
+                createText(`<a target="_blank"> ${item.title}</a > `);
                 createText(`${item.description} `);
             });
             break;
@@ -253,7 +253,7 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             trueValue(value);
             userRepos[0].forEach((repo, index) => {
                 createText(
-                    `- repo_${index} name: <a href=${repo.html_url}>${repo.name
+                    `- repo_${index} name: <a href=${repo.html_url} target="_blank">${repo.name
                     }</a> | language: ${repo.language === null ? "no language" : repo.language
                     }`, false
                 );
@@ -283,8 +283,8 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             break;
         case "contact":
             createText(
-                `Hey! Would love to get in touch.< br >
-                    My linkedin profile link: <a href="${config.social.filter((obj) => obj.title.toLowerCase() == 'linkedin')[0].link}"> LinkedIn</a>.<br>
+                `Hey! Would love to get in touch.<br>
+                    My linkedin profile link: <a href="${config.social.filter((obj) => obj.title.toLowerCase() == 'linkedin')[0].link}" target="_blank"> LinkedIn</a>.<br>
                         Drop me a text at <a href="mailto:${config.contact.email}" target="_blank">${config.contact.email}</a>`, false
             );
             window.location.href = `mailto:${config.contact.email}`;
