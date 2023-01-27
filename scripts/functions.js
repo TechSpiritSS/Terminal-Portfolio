@@ -228,14 +228,14 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             trueValue(value);
             await createText("My Work Experience:");
             config.experience.forEach((item) => {
-                createText(`<a> ${item.title}</a > `);
+                createText(`${item.title}`);
                 createText(`${item.description} `);
             });
             break;
         case "skills":
             trueValue(value);
             config.skills.forEach((item) => {
-                createText(`<a> ${item.title}</a > `);
+                createText(`${item.title}`);
                 createText(`${item.description} `);
             });
             break;
