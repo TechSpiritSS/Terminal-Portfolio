@@ -162,22 +162,22 @@ async function getInputValue(history, remove = false, cmd = undefined) {
                     createText(`${item.title} Link :- <a href=${item.link} target="_blank">${item.link}</a>
             `, false);
                     if (item.title == "Github") {
-                        await createText(`Number of followers: ${followers}`);
-                        await createText(`Number of following: ${following}`);
+                         createText(`Number of followers: ${followers}`);
+                         createText(`Number of following: ${following}`);
                     }
                     if (item.title == "LinkedIn") {
-                        await createText(`Connections :- ${connections}`);
+                         createText(`Connections : 500+`);
                     }
                     if (item.title == "LeetCode") {
-                        await createText(`Problems Solved: ${totalSolved}`);
-                        await createText(
+                         createText(`Problems Solved: ${totalSolved}`);
+                         createText(
                             `Distribution:- Easy:${easySolved} Medium:${mediumSolved} Hard:${hardSolved}`
                         );
-                        await createText(`Ranking: ${ranking}`);
+                         createText(`Ranking: ${ranking}`);
                     }
                     if (item.title == "Codechef") {
-                        await createText(`Rank :- ${item.rank}`);
-                        await createText(`Rating :- ${item.rating}`);
+                         createText(`Rank : ${item.rank}`);
+                         createText(`Rating : ${item.rating}`);
                     }
                 });
                 break;
@@ -228,15 +228,15 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             trueValue(value);
             await createText("My Work Experience:");
             config.experience.forEach((item) => {
-                createText(`<a> ${item.title}</a > `);
-                createText(`${item.description} `);
+                createText(` ${item.title} `);
+                createText(`${item.description}`);
             });
             break;
         case "skills":
             trueValue(value);
             config.skills.forEach((item) => {
-                createText(`<a> ${item.title}</a > `);
-                createText(`${item.description} `);
+                createText(` ${item.title} `);
+                createText(`${item.description}`);
             });
             break;
         case "ipconfig":
