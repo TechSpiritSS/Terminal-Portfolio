@@ -47,7 +47,8 @@ export let commandsList = [
     "skills",
     "history",
     "typing",
-    "reset"
+    "reset",
+    "education"
 ];
 
 
@@ -115,5 +116,3 @@ for (let i of switches) {
         setTheme(theme);
     });
 }
-
-

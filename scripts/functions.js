@@ -113,13 +113,12 @@ async function getInputValue(history, remove = false, cmd = undefined) {
                 let isCmd = false;
                 for (let x of config.help) {
                     if (flag === x.title) {
-                        for (let i=0;i<x.info.length;i++)
+                        for (let i = 0; i < x.info.length; i++)
                             await createText(x.info[i]);
                         isCmd = true;
                         break;
                     }
                 }
-            
                 if (!isCmd) {
                     await createText(`${flag} is not a valid command`);
                     let commands = suggestFurtherCommand(flag);
@@ -237,6 +236,14 @@ async function getInputValue(history, remove = false, cmd = undefined) {
             config.skills.forEach((item) => {
                 createText(`${item.title}`);
                 createText(`${item.description} `);
+            });
+            break;
+        case "education":
+            trueValue(value);
+            config.education.forEach((item) => {
+                createText(`<a> ${item.title} </a> `);
+                createText(`${item.description} `);
+                createText(`${item.date} `);
             });
             break;
         case "ipconfig":
