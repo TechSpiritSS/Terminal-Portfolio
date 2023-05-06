@@ -106,7 +106,7 @@ const config = {
     "blogs": [
         {
             "site": "Medium",
-            "url": "https://medium.com/feed/@sadashay"
+            "url": "https://medium.com/feed/@sidharth.sherry"
         }
     ],
     "cheer": {
@@ -140,6 +140,11 @@ const config = {
         }
     ],
     "projects": [
+        {
+            "title": "PregChat",
+            "link": "https://github.com/TechSpiritSS/PregChat_Dialogflow",
+            "description": "PregChat is a chatbot designed to help expecting mothers access important information about their pregnancy in a simple, accessible and interactive way. Our chatbot is powered by Dialogflow, a Google Cloud-based natural language processing platform. With PregChat, mothers can easily ask about their symptoms and receive information regarding medical emergencies, first aid, medications, and exercises. PregChat aims to provide support and education to mothers in need, ultimately improving the health outcomes for both mother and child."
+        },
         {
             "title": "S Movies",
             "link": "https://s-movies-react.netlify.app/",
