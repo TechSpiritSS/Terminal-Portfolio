@@ -141,13 +141,18 @@ const config = {
     ],
     "projects": [
         {
+            "title": "Mood Messenger",
+            "link": "https://github.com/TechSpiritSS/Mood-Messenger",
+            "description": "Mood Messenger is a real-time chat application built using Node.js, React.js, and Cloud SQL. It allows users to sign in with their Google account, initiate chats with other registered users based on their email, send messages, and view previous chats."
+        },
+        {
             "title": "PregChat",
             "link": "https://github.com/TechSpiritSS/PregChat_Dialogflow",
             "description": "PregChat is a chatbot designed to help expecting mothers access important information about their pregnancy in a simple, accessible and interactive way. Our chatbot is powered by Dialogflow, a Google Cloud-based natural language processing platform. With PregChat, mothers can easily ask about their symptoms and receive information regarding medical emergencies, first aid, medications, and exercises. PregChat aims to provide support and education to mothers in need, ultimately improving the health outcomes for both mother and child."
         },
         {
             "title": "S Movies",
-            "link": "https://s-movies-react.netlify.app/",
+            "link": "https://github.com/TechSpiritSS/S-Movies",
             "description": "This is a full fledged movie web app with profile and recommendations system. I am using ESLint configurations for clean code."
         },
         {
@@ -186,22 +191,22 @@ const config = {
     },
     "experience": [
         {
-            "title": "Project AdministratorProject Administrator",
-            "description": "Terminal-Portfolio invites talented developers to create stunning, command-line themed portfolios to showcase their skills and work. Command-line interface is a powerful and efficient tool for developers, and this project aims to celebrate this through the creation of visually striking and intuitively designed web terminals."
+            "title": "SDE Intern at Quaterstack Technologies",
+            "description": "▪️ Improved performance and maintainability of client-team management application, Redwing, through refactoring of static code into dynamic function calls and reduction of team page code by 70%. \n ▪️ Identified and fixed drag event bug in Nodle Project that caused dramatic increase in CPU utilization (from 7% to 73% with a single mouse drag on flowchart area). \n ▪️ Resolved complex SVG scaling issue in Anatomy-Mapper Project, ensuring accuracy and reliability of visualization."
         },
         {
-            "title": "Google Venkat Panchapakesan Memorial Scholar 2022",
-            "description": "One of the 14 awardees of this prestigious scholarship across India, which recognizes ‘Upcoming Computer Scientists and Technology Leaders who wish to give back to society. The scholarship included a substantial amount as well as a virtual retreat by Google, wherein we met the Googlers, Scholarship Alumni, Prominent Leaders at Google and YouTube."
+            "title": "React Developer at EQ Soft Solutions",
+            "description": "▪️ Acquired a strong foundation in ReactJS, including in-depth knowledge of key concepts such as routing, reducer, and Axios. \n ▪️ Demonstrated the ability to effectively apply ReactJS principles and techniques in projects and assignments. \n ▪️ Developed a solid understanding of the ReactJS ecosystem, including popular libraries and tools. \n ▪️ Demonstrated adaptability and a willingness to continuously learn and stay up-to-date with developments in the ReactJS field."
         }
     ],
     "skills": [
         {
             "title": "Technical skills are: ",
-            "description": "Front-End Development, C++, C, MySQL, Linux, SQL, Node.js, MongoDB, JSON, DSA, OOP, Problem Solving."
+            "description": "C++, C, MySQL, Linux, ReactJS, NodeJS, MongoDB, JSON, DSA, Google Cloud Platform, ExpressJS, VueJS, Redux, Material UI, Bootstrap, Tailwind"
         },
         {
             "title": "Other Skills are:",
-            "description": "Team Leadership, Community Management, Team Building, Community Development, Team Management, Microsoft Word, Microsoft Powerpoint, Communication."
+            "description": "Problem Solving, Team Leadership, Community Management, Team Building"
         }
     ],
     "neofetch": {
