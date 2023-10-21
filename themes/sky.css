@@ -1,8 +1,8 @@
 :root {
-    --back-color: #c3dafe;
-    --primary-color: #3c366b;
-    --header-back: #5f718d;
-    --header-text: #eee;
+    --back-color: #3b88a7; /* Sky Blue */
+    --primary-color: #3b88a7; /* Peach Puff */
+    --header-back: #5f718d; /* Keep the same */
+    --header-text: #eee; /* Keep the same */
 }
 
 body {
@@ -21,97 +21,94 @@ header {
 
 .menu {
     /* top bar */
-    background-color: #efdfcf;
+    background-color: #efdfcf; /* Keep the same */
 }
 
 .bottom-bar {
-    background-color: #efdfcf;
+    background-color: #efdfcf; /* Keep the same */
 }
 
 .bottom-name,
 .menu h1,
 .bottom-bar {
-    color: #585858;
+    color: #585858; /* Keep the same */
 }
 
 p {
-    color: #96905f;
+    color: #96905f; /* Keep the same */
 }
 
 h2 {
-    color: #81b6bc;
+    color: #81b6bc; /* Keep the same */
 }
-
 
 #app {
     /* main content */
-    background-color: #f5ebe1;
+    background-color: #f5ebe1; /* Keep the same */
 }
 
 p.path {
     /* username */
-    color: #8c4a79 !important;
+    color: #8c4a79 !important; /* Keep the same */
 }
 
 #app p {
     /* main text */
-    color: #1a8591;
+    color: #1a8591; /* Keep the same */
 }
 
 p.path span {
     /* sudo */
-    color: #b3534b;
+    color: #b3534b; /* Keep the same */
 }
 
 p.path span+span {
     /* directory */
-    color: #476238;
+    color: #476238; /* Keep the same */
 }
 
 .icone {
-    color: #81b6bc;
+    color: #81b6bc; /* Keep the same */
 }
 
 input {
-    color: #81b6bc;
+    color: #81b6bc; /* Keep the same */
 }
 
 .error {
-    color: #ff1276;
+    color: #ff1276; /* Keep the same */
 }
 
 .container {
-    border: 1px solid #000000;
+    border: 1px solid #000000; /* Keep the same */
 }
 
 a {
-    color: #ff4d12;
+    color: #ff4d12; /* Keep the same */
 }
 
 .theme-switches {
-    background-color: #efdfcf;
+    background-color: #efdfcf; /* Keep the same */
 }
 #switch8{
-    background-color: #A080FF;
+    background-color: #A080FF; /* Keep the same */
 }
 #switch7{
-    background-color:#FF6600 ;
-
+    background-color:#FF6600; /* Keep the same */
 }
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: #f5ebe1;
-
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); /* Keep the same */
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); /* Keep the same */
+    background-color: #f5ebe1; /* Keep the same */
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 8px; /* Keep the same */
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: #1a8591;
+    border-radius: 10px; /* Keep the same */
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); /* Keep the same */
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); /* Keep the same */
+    background-color: #1a8591; /* Keep the same */
 }
